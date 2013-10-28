@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Android Concurrency</string>
+
+    <!-- chapter2 -->
+    <string name="ch2_ex1">Chapter2 Example1</string>
+    <string name="ch2_ex2">Chapter2 Example2</string>
+    <string name="ch2_ex3">Chapter2 Example3</string>
+    <string name="ch2_ex4">Chapter2 Example4</string>
+    <string name="ch2_ex5">Chapter2 Example5</string>
+    <string name="ch2_medley">Chapter2 AsyncTask Medley</string>
+
+    <string name="no_result_yet">Press a button</string>
+    <string name="do_on_main_thread">Execute on Main thread</string>
+    <string name="do_in_background">Execute in background</string>
+    <string name="do_in_background_with_feedback">Execute in background with spinner</string>
+    <string name="calculating">Calculating&#8230;</string>
+    <string name="do_in_background_with_progress">Execute in background showing progress</string>
+    <string name="do_in_background_with_cancel">Execute in background allowing cancel</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- chapter3 -->
+    <string name="ch3_ex1a">Chapter3 Example1a</string>
+    <string name="ch3_ex1b">Chapter3 Example1b</string>
+    <string name="ch3_ex2">Chapter3 Example2</string>
+    <string name="ch3_ex3">Chapter3 Example3</string>
+    <string name="ch3_ex4">Chapter3 Example4</string>
+    <string name="ch3_ex5">Chapter3 Example5</string>
+
+    <string name="tap_to_queue">Tap me more than once</string>
+    <string name="wait">Wait for it...</string>
+    <string name="tada">Ta-da!</string>
+    <string name="cancelled">Cancelled</string>
+
+    <!-- chapter4 -->
+    <string name="ch4_ex1">Chapter4 Example1</string>
+    <string name="ch4_ex2">Chapter4 Example2</string>
+    <string name="ch4_ex3">Chapter4 Example3</string>
+    <string name="ch4_ex4">Chapter4 Example4</string>
+    <string name="ch4_ex5">Chapter4 Example5</string>
+
+    <string name="choose_number">number greater than 2</string>
+    <string name="go">go</string>
+    <string name="send_from_gallery">open your gallery app, choose an image and "send" it to this activity</string>
+
+    <!-- chapter5 -->
+    <string name="ch5_ex1">Chapter5 Example1</string>
+    <string name="ch5_ex2">Chapter5 Example2</string>
+
+    <string name="primes_service">Primes IntentService</string>
+    <string name="upload_service">Upload IntentService</string>
+    <string name="nth_prime">Enter N to find Nth Prime</string>
+
+    <!-- chapter6 -->
+    <!-- chapter7 -->
+
+</resources>
