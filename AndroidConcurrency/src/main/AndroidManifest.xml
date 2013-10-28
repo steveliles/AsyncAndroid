@@ -30,115 +30,66 @@
         <activity
             android:name=".chapter2.example1.Example1Activity"
             android:label="@string/ch2_ex1"
-            android:description="@string/ch2_ex1_desc">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:description="@string/ch2_ex1_desc"/>
 
         <activity
             android:name=".chapter2.example2.Example2Activity"
-            android:label="@string/ch2_ex2" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="@string/ch2_ex2"
+            android:description="@string/ch2_ex2_desc"/>
 
         <activity
             android:name=".chapter2.example3.Example3Activity"
-            android:label="@string/ch2_ex3" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="@string/ch2_ex3"
+            android:description="@string/ch2_ex3_desc"/>
 
         <activity
             android:name=".chapter2.example4.Example4Activity"
-            android:label="@string/ch2_ex4" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="@string/ch2_ex4"
+            android:description="@string/ch2_ex4_desc"/>
 
         <activity
             android:name=".chapter2.example5.Example5Activity"
-            android:label="@string/ch2_ex5" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="@string/ch2_ex5"
+            android:description="@string/ch2_ex5_desc"/>
 
         <activity
             android:name=".chapter2.AsyncTaskMedleyActivity"
-            android:label="@string/ch2_medley" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="@string/ch2_medley"
+            android:description="@string/ch2_medley_desc"/>
 
         <!--
         CHAPTER3: HANDLER/HANDLERTHREAD EXAMPLES
         -->
         <activity
             android:name=".chapter3.example1.ExplicitHandlerPrimesActivity"
-            android:label="@string/ch3_ex1a" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="@string/ch3_ex1a"
+            android:description="@string/ch3_ex1a_desc"/>
 
         <activity
             android:name=".chapter3.example1.ViewHandlerPrimesActivity"
-            android:label="@string/ch3_ex1b" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="@string/ch3_ex1b"
+            android:description="@string/ch3_ex1b_desc"/>
 
         <activity
             android:name=".chapter3.example2.PostDelayedActivity"
-            android:label="@string/ch3_ex2" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="@string/ch3_ex2"
+            android:description="@string/ch3_ex2_desc"/>
 
         <activity
             android:name=".chapter3.example3.EchoActivity"
-            android:label="@string/ch3_ex3" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="@string/ch3_ex3"
+            android:description="@string/ch3_ex3_desc"/>
 
         <activity
             android:name=".chapter3.example4.HandlerThreadActivity"
-            android:label="@string/ch3_ex4" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="@string/ch3_ex4"
+            android:description="@string/ch3_ex4_desc"/>
 
         <activity
             android:name=".chapter3.example5.CompassActivity"
             android:label="@string/ch3_ex5"
-            android:screenOrientation="locked">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:description="@string/ch3_ex5_desc"
+            android:screenOrientation="locked"/>
 
         <!--
         CHAPTER4: LOADER EXAMPLES
@@ -148,48 +99,26 @@
             android:label="@string/ch4_ex1">
             <intent-filter>
                 <action android:name="android.intent.action.SEND"/>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
                 <data android:mimeType="image/*" />
             </intent-filter>
         </activity>
 
         <activity
             android:name=".chapter4.example2.MediaStoreActivity"
-            android:label="@string/ch4_ex2">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="@string/ch4_ex2"/>
 
         <activity
             android:name=".chapter4.example3.MediaStoreActivity"
-            android:label="@string/ch4_ex3">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="@string/ch4_ex3"/>
 
         <activity
             android:name=".chapter4.example4.PrimesActivity"
             android:label="@string/ch4_ex4"
-            android:windowSoftInputMode="stateUnchanged">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:windowSoftInputMode="stateUnchanged"/>
 
         <activity
             android:name=".chapter4.example5.FileListActivity"
-            android:label="@string/ch4_ex5">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="@string/ch4_ex5"/>
 
         <!--
         CHAPTER5: INTENTSERVICE EXAMPLES
@@ -200,12 +129,7 @@
 
         <activity
             android:name=".chapter5.example1.PrimesActivity"
-            android:label="@string/ch5_ex1">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="@string/ch5_ex1"/>
 
         <service
             android:name=".chapter5.example2.UploadIntentService"
@@ -213,12 +137,7 @@
 
         <activity
             android:name=".chapter5.example2.UploadPhotoActivity"
-            android:label="@string/ch5_ex2">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="@string/ch5_ex2"/>
 
     </application>
 

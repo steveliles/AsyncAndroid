@@ -7,10 +7,15 @@
     <string name="ch2_ex1">Chapter2 Example1</string>
     <string name="ch2_ex1_desc">Find the nth probable prime in the background using AsyncTask</string>
     <string name="ch2_ex2">Chapter2 Example2</string>
+    <string name="ch2_ex2_desc">Find the nth probable prime using AsyncTask, displaying indeterminate progress dialog</string>
     <string name="ch2_ex3">Chapter2 Example3</string>
+    <string name="ch2_ex3_desc">Find the nth probable prime using AsyncTask, displaying a determinate progress bar</string>
     <string name="ch2_ex4">Chapter2 Example4</string>
+    <string name="ch2_ex4_desc">Find the nth probable prime with cancellation</string>
     <string name="ch2_ex5">Chapter2 Example5</string>
+    <string name="ch2_ex5_desc">Retained Headless Fragment to continue AsyncTask processing across activity restarts</string>
     <string name="ch2_medley">Chapter2 AsyncTask Medley</string>
+    <string name="ch2_medley_desc">One Activity incorporating all of the chapter 2 examples for comparison</string>
 
     <string name="no_result_yet">Press a button</string>
     <string name="do_on_main_thread">Execute on Main thread</string>
@@ -23,11 +28,17 @@
 
     <!-- chapter3 -->
     <string name="ch3_ex1a">Chapter3 Example1a</string>
+    <string name="ch3_ex1a_desc">Handler example, using post(Runnable) to update the view</string>
     <string name="ch3_ex1b">Chapter3 Example1b</string>
+    <string name="ch3_ex1b_desc">Handler example, using view.post(Runnable)</string>
     <string name="ch3_ex2">Chapter3 Example2</string>
+    <string name="ch3_ex2_desc">Handler example using postDelayed</string>
     <string name="ch3_ex3">Chapter3 Example3</string>
+    <string name="ch3_ex3_desc">Network IO on a background thread, sending messages to the main thread</string>
     <string name="ch3_ex4">Chapter3 Example4</string>
+    <string name="ch3_ex4_desc">HandlerThread example - sending messages back and forth between HandlerThread and main thread</string>
     <string name="ch3_ex5">Chapter3 Example5</string>
+    <string name="ch3_ex5_desc">Handler example - consuming sensor events on a HandlerThread and updating the UI to show a compass pointer</string>
 
     <string name="tap_to_queue">Tap me more than once</string>
     <string name="wait">Wait for it...</string>
@@ -36,10 +47,15 @@
 
     <!-- chapter4 -->
     <string name="ch4_ex1">Chapter4 Example1</string>
+    <string name="ch4_ex1_desc"></string>
     <string name="ch4_ex2">Chapter4 Example2</string>
+    <string name="ch4_ex2_desc"></string>
     <string name="ch4_ex3">Chapter4 Example3</string>
+    <string name="ch4_ex3_desc"></string>
     <string name="ch4_ex4">Chapter4 Example4</string>
+    <string name="ch4_ex4_desc"></string>
     <string name="ch4_ex5">Chapter4 Example5</string>
+    <string name="ch4_ex5_desc"></string>
 
     <string name="choose_number">number greater than 2</string>
     <string name="go">go</string>
@@ -47,7 +63,9 @@
 
     <!-- chapter5 -->
     <string name="ch5_ex1">Chapter5 Example1</string>
+    <string name="ch5_ex1_desc"></string>
     <string name="ch5_ex2">Chapter5 Example2</string>
+    <string name="ch5_ex2_desc"></string>
 
     <string name="primes_service">Primes IntentService</string>
     <string name="upload_service">Upload IntentService</string>
