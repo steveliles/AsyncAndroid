@@ -1,18 +1,20 @@
-package com.packt.androidconcurrency.chapter5.example2;
+package com.packt.androidconcurrency;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 
-public class SquareImage extends ImageView {
+public class SquareLayout extends LinearLayout {
 
-    public SquareImage(Context context, AttributeSet attrs) {
+    public SquareLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth());
+
+        setMeasuredDimension(widthMeasureSpec, widthMeasureSpec);
     }
+
 }

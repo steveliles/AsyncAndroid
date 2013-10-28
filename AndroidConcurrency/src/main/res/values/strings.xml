@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Android Concurrency</string>
+    <string name="app_name">Android Concurrency Examples</string>
 
     <!-- chapter2 -->
     <string name="ch2_ex1">Chapter2 Example1</string>
+    <string name="ch2_ex1_desc">Find the nth probable prime in the background using AsyncTask</string>
     <string name="ch2_ex2">Chapter2 Example2</string>
     <string name="ch2_ex3">Chapter2 Example3</string>
     <string name="ch2_ex4">Chapter2 Example4</string>

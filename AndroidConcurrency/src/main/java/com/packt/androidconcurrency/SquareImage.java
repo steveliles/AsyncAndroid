@@ -1,4 +1,4 @@
-package com.packt.androidconcurrency.chapter4.example3;
+package com.packt.androidconcurrency;
 
 import android.content.Context;
 import android.util.AttributeSet;

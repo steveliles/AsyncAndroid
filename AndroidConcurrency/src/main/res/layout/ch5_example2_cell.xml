@@ -1,4 +1,4 @@
-<androidconcurrency.chapter5.example2.SquareImage
+<com.packt.androidconcurrency.SquareImage
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/image"
     android:layout_width="match_parent"
