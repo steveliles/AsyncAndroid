@@ -96,7 +96,8 @@
         -->
         <activity
             android:name=".chapter4.example1.ThumbnailActivity"
-            android:label="@string/ch4_ex1">
+            android:label="@string/ch4_ex1"
+            android:description="@string/ch4_ex1_desc">
             <intent-filter>
                 <action android:name="android.intent.action.SEND"/>
                 <data android:mimeType="image/*" />
@@ -105,20 +106,24 @@
 
         <activity
             android:name=".chapter4.example2.MediaStoreActivity"
-            android:label="@string/ch4_ex2"/>
+            android:label="@string/ch4_ex2"
+            android:description="@string/ch4_ex2_desc"/>
 
         <activity
             android:name=".chapter4.example3.MediaStoreActivity"
-            android:label="@string/ch4_ex3"/>
+            android:label="@string/ch4_ex3"
+            android:description="@string/ch4_ex3_desc"/>
 
         <activity
             android:name=".chapter4.example4.PrimesActivity"
             android:label="@string/ch4_ex4"
+            android:description="@string/ch4_ex4_desc"
             android:windowSoftInputMode="stateUnchanged"/>
 
         <activity
             android:name=".chapter4.example5.FileListActivity"
-            android:label="@string/ch4_ex5"/>
+            android:label="@string/ch4_ex5"
+            android:description="@string/ch4_ex5_desc"/>
 
         <!--
         CHAPTER5: INTENTSERVICE EXAMPLES
@@ -129,7 +134,8 @@
 
         <activity
             android:name=".chapter5.example1.PrimesActivity"
-            android:label="@string/ch5_ex1"/>
+            android:label="@string/ch5_ex1"
+            android:description="@string/ch5_ex1_desc"/>
 
         <service
             android:name=".chapter5.example2.UploadIntentService"
@@ -137,7 +143,8 @@
 
         <activity
             android:name=".chapter5.example2.UploadPhotoActivity"
-            android:label="@string/ch5_ex2"/>
+            android:label="@string/ch5_ex2"
+            android:description="@string/ch5_ex2_desc"/>
 
     </application>
 

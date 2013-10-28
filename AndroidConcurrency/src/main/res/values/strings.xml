@@ -47,15 +47,15 @@
 
     <!-- chapter4 -->
     <string name="ch4_ex1">Chapter4 Example1</string>
-    <string name="ch4_ex1_desc"></string>
+    <string name="ch4_ex1_desc">Send an image from the gallery app, loads thumbnail in the background using a Loader</string>
     <string name="ch4_ex2">Chapter4 Example2</string>
-    <string name="ch4_ex2_desc"></string>
+    <string name="ch4_ex2_desc">Demonstrates use of a CursorLoader to list image filenames from the MediaStore on a background thread</string>
     <string name="ch4_ex3">Chapter4 Example3</string>
-    <string name="ch4_ex3_desc"></string>
+    <string name="ch4_ex3_desc">Combines examples 1 &amp; 2 to display a tiled grid of thumbnails from the MediaStore</string>
     <string name="ch4_ex4">Chapter4 Example4</string>
-    <string name="ch4_ex4_desc"></string>
+    <string name="ch4_ex4_desc">Demonstrates use of AsyncTaskLoader to perform background calculations</string>
     <string name="ch4_ex5">Chapter4 Example5</string>
-    <string name="ch4_ex5_desc"></string>
+    <string name="ch4_ex5_desc">CursorLoader &amp; ListView example</string>
 
     <string name="choose_number">number greater than 2</string>
     <string name="go">go</string>
@@ -63,9 +63,9 @@
 
     <!-- chapter5 -->
     <string name="ch5_ex1">Chapter5 Example1</string>
-    <string name="ch5_ex1_desc"></string>
+    <string name="ch5_ex1_desc">Demonstrates using an IntentService to perform long-running calculations, returning results in-app or via notification</string>
     <string name="ch5_ex2">Chapter5 Example2</string>
-    <string name="ch5_ex2_desc"></string>
+    <string name="ch5_ex2_desc">Demos uploading an image to a remote server using IntentService (your images are safe, the server never stores them)</string>
 
     <string name="primes_service">Primes IntentService</string>
     <string name="upload_service">Upload IntentService</string>
