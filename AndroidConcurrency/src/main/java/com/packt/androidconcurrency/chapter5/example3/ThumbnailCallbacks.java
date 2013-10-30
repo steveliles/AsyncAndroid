@@ -1,4 +1,4 @@
-package com.packt.androidconcurrency.chapter5.example2;
+package com.packt.androidconcurrency.chapter5.example3;
 
 import android.content.Context;
 import android.graphics.Bitmap;

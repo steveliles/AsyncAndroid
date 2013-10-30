@@ -76,7 +76,7 @@ public class ThumbnailLoader extends AsyncTaskLoader<Bitmap> {
         // if we've been notified that the content
         // changed, or if we don't currently have
         // a bitmap at all ...
-        if (takeContentChanged() || data == null) {
+        if ((takeContentChanged() || data == null) && (mediaId != null)) {
             // kick-start loading of the new data
             forceLoad();
         }

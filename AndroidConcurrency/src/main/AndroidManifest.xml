@@ -138,13 +138,22 @@
             android:description="@string/ch5_ex1_desc"/>
 
         <service
-            android:name=".chapter5.example2.UploadIntentService"
+            android:name=".chapter5.example2.PrimesIntentService"
             android:exported="false"/>
 
         <activity
-            android:name=".chapter5.example2.UploadPhotoActivity"
+            android:name=".chapter5.example2.PrimesActivity"
             android:label="@string/ch5_ex2"
             android:description="@string/ch5_ex2_desc"/>
+
+        <service
+            android:name=".chapter5.example3.UploadIntentService"
+            android:exported="false"/>
+
+        <activity
+            android:name=".chapter5.example3.UploadPhotoActivity"
+            android:label="@string/ch5_ex3"
+            android:description="@string/ch5_ex3_desc"/>
 
     </application>
 

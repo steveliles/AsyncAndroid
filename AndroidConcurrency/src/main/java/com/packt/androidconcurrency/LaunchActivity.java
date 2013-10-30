@@ -40,6 +40,7 @@ public class LaunchActivity extends Activity {
         setContentView(R.layout.book_layout);
 
         final List<ActivityInfo> info = getActivityList();
+        Log.i(TAG, info.size() + " demos to enjoy!");
 
         GridView grid = (GridView) findViewById(R.id.grid);
         grid.setAdapter(new ArrayAdapter<ActivityInfo>(this, R.layout.book_activity_cell, info) {

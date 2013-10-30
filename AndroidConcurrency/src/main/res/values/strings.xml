@@ -63,9 +63,11 @@
 
     <!-- chapter5 -->
     <string name="ch5_ex1">Chapter5 Example1</string>
-    <string name="ch5_ex1_desc">Demonstrates using an IntentService to perform long-running calculations, returning results in-app or via notification</string>
+    <string name="ch5_ex1_desc">Demonstrates using an IntentService to perform long-running calculations, returning results via messenger</string>
     <string name="ch5_ex2">Chapter5 Example2</string>
-    <string name="ch5_ex2_desc">Demos uploading an image to a remote server using IntentService (your images are safe, the server never stores them)</string>
+    <string name="ch5_ex2_desc">Demonstrates using an IntentService to perform long-running calculations, returning results via broadcast or notification</string>
+    <string name="ch5_ex3">Chapter5 Example3</string>
+    <string name="ch5_ex3_desc">Demos uploading an image to a remote server using IntentService (your images are safe, the server never stores them)</string>
 
     <string name="primes_service">Primes IntentService</string>
     <string name="upload_service">Upload IntentService</string>

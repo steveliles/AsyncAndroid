@@ -1,4 +1,4 @@
-package com.packt.androidconcurrency.chapter5.example2;
+package com.packt.androidconcurrency.chapter5.example3;
 
 import android.content.Intent;
 import android.database.Cursor;

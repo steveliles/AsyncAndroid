@@ -1,4 +1,4 @@
-package com.packt.androidconcurrency.chapter5.example2;
+package com.packt.androidconcurrency.chapter5.example3;
 
 import android.app.IntentService;
 import android.app.NotificationManager;
