@@ -93,7 +93,7 @@ public class ImageUploader {
     private void pump(InputStream in, OutputStream out, ProgressCallback callback, int len)
             throws IOException {
         try {
-            int length,i=0,size=64;
+            int length,i=0,size=256;
             byte[] buffer = new byte[size];
 
             while ((length = in.read(buffer)) > -1) {
