@@ -11,11 +11,13 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.Messenger;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.packt.androidconcurrency.LaunchActivity;
 import com.packt.androidconcurrency.R;
 
 public class PrimesActivity extends Activity {
@@ -73,6 +75,8 @@ public class PrimesActivity extends Activity {
             if (message.what == PrimesIntentService.RESULT) {
                 if (view != null)
                     view.setText(message.obj.toString());
+                else
+                    Log.i(LaunchActivity.TAG, "received a result, ignoring because we're detached");
             } else if (message.what == PrimesIntentService.INVALID) {
                 if (view != null)
                     view.setText("Invalid request");

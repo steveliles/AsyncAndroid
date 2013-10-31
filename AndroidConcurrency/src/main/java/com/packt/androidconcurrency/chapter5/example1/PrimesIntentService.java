@@ -22,7 +22,7 @@ public class PrimesIntentService extends IntentService {
     public static final String PARAM = "prime_to_find";
     public static final String MESSENGER = "messenger";
     public static final int INVALID = "invalid".hashCode();
-    public static final int RESULT = "result".hashCode();
+    public static final int RESULT = "nth_prime".hashCode();
 
     public PrimesIntentService() {
         super("primes");

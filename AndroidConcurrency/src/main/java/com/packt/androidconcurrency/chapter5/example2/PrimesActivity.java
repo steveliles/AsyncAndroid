@@ -18,7 +18,7 @@ import com.packt.androidconcurrency.R;
 
 public class PrimesActivity extends Activity {
 
-    private static final int RESULT = "result".hashCode();
+    private static final int RESULT_MSG = "result".hashCode();
 
     private static PrimesHandler handler = new PrimesHandler();
     private BroadcastReceiver receiver;
@@ -51,7 +51,7 @@ public class PrimesActivity extends Activity {
         super.onResume();
 
         handler.attach((TextView)findViewById(R.id.result));
-        
+
         receiver = new NthPrimeReceiver(handler);
         IntentFilter filter = new IntentFilter(
             PrimesIntentService.PRIMES_BROADCAST);
@@ -86,7 +86,7 @@ public class PrimesActivity extends Activity {
                 PrimesIntentService.RESULT);
 
             intent.putExtra(PrimesIntentService.HANDLED, true);
-            handler.sendMessage(Message.obtain(handler, RESULT, result));
+            handler.sendMessage(Message.obtain(handler, RESULT_MSG, result));
         }
     }
 
@@ -95,7 +95,7 @@ public class PrimesActivity extends Activity {
 
         @Override
         public void handleMessage(Message message) {
-            if (message.what == RESULT) {
+            if (message.what == RESULT_MSG) {
                 if (view != null)
                     view.setText(message.obj.toString());
             } else {
