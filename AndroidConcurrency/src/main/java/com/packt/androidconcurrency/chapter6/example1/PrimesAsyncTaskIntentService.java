@@ -37,7 +37,6 @@ public class PrimesAsyncTaskIntentService extends AsyncTaskIntentService {
         BigInteger prime = new BigInteger("2");
         for (int i=0; i<primeToFind; i++) {
             prime = prime.nextProbablePrime();
-System.out.println(prime);
         }
         return prime;
     }

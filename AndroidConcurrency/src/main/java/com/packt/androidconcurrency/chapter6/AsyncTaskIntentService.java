@@ -25,6 +25,8 @@ import java.util.List;
  */
 public abstract class AsyncTaskIntentService extends Service {
 
+    // no need for synchronisation - only ever accessed from
+    // the main thread.
     private final List<AsyncTask> active = new ArrayList<AsyncTask>();
 
     /**
@@ -42,11 +44,6 @@ public abstract class AsyncTaskIntentService extends Service {
     @Override
     public void onStart(Intent intent, final int startId) {
         execute(new AsyncTask<Intent, Void, Void>() {
-            @Override
-            protected void onPreExecute() {
-                active.add(this);
-            }
-
             @Override
             protected Void doInBackground(Intent... params) {
                 onHandleIntent(params[0]);
@@ -107,6 +104,7 @@ public abstract class AsyncTaskIntentService extends Service {
      * @param intent
      */
     private void execute(AsyncTask<Intent,Void,Void> task, Intent intent) {
+        active.add(task);
         if (Build.VERSION.SDK_INT >= 11) {
             task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, intent);
         } else {

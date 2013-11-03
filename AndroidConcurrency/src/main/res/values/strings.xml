@@ -75,7 +75,10 @@
 
     <!-- chapter6 -->
     <string name="ch6_ex1">Chapter6 Example1</string>
-    <string name="ch6_ex1_desc">Demonstrates using a Service to perform multiple concurrent long-running calculations, returning results via messenger</string>
+    <string name="ch6_ex1_desc">Invoke a Service with Intents, perform multiple concurrent calculations, return results via messenger</string>
+
+    <string name="ch6_ex2">Chapter6 Example2</string>
+    <string name="ch6_ex2_desc">Invoke a Service via Messenger, perform multiple concurrent calculations, return results via messenger</string>
 
     <!-- chapter7 -->
 

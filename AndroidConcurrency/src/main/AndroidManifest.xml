@@ -167,6 +167,15 @@
             android:label="@string/ch6_ex1"
             android:description="@string/ch6_ex1_desc"/>
 
+        <service
+            android:name=".chapter6.example2.PrimesAsyncTaskMessengerService"
+            android:exported="false"/>
+
+        <activity
+            android:name=".chapter6.example2.PrimesActivity"
+            android:label="@string/ch6_ex2"
+            android:description="@string/ch6_ex2_desc"/>
+
     </application>
 
 </manifest>
