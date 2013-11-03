@@ -65,6 +65,9 @@ public class PrimesActivity extends Activity implements ServiceConnection {
     protected void onPause() {
         super.onPause();
         handler.detach();
+
+        if (isFinishing())
+            unbindService(this);
     }
 
     @Override

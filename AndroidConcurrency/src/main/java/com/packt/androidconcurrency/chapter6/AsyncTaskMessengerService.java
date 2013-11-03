@@ -8,6 +8,9 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
+import android.util.Log;
+
+import com.packt.androidconcurrency.LaunchActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +21,11 @@ import java.util.List;
  */
 public abstract class AsyncTaskMessengerService extends Service {
 
+    private final List<AsyncTask<Void,Void,Void>> active =
+            new ArrayList<AsyncTask<Void,Void,Void>>();
+
     private final Messenger messenger;
+    private boolean bound;
 
     public AsyncTaskMessengerService() {
         messenger = new Messenger(new AsyncTaskHandler());
@@ -34,12 +41,24 @@ public abstract class AsyncTaskMessengerService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
+        bound = true;
         return messenger.getBinder();
     }
 
+    @Override
+    public boolean onUnbind(Intent intent) {
+        // all clients have departed
+        bound = false;
+        if (active.isEmpty()) {
+            Log.i(LaunchActivity.TAG, "no more clients or tasks, stopping.");
+            stopSelf();
+        } else {
+            Log.i(LaunchActivity.TAG, "no more clients, will stop when all tasks complete.");
+        }
+        return true;
+    }
+
     public class AsyncTaskHandler extends Handler {
-        private final List<AsyncTask<Void,Void,Void>> active =
-            new ArrayList<AsyncTask<Void,Void,Void>>();
 
         @Override
         public final void handleMessage(Message msg) {
@@ -53,6 +72,26 @@ public abstract class AsyncTaskMessengerService extends Service {
                 protected Void doInBackground(Void... params) {
                     AsyncTaskMessengerService.this.doInBackground(what, obj, replyTo);
                     return null;
+                }
+
+                @Override
+                protected void onCancelled() {
+                    onComplete();
+                }
+
+                @Override
+                protected void onPostExecute(Void aVoid) {
+                    onComplete();
+                }
+
+                private void onComplete() {
+                    active.remove(this);
+                    if (active.isEmpty()) {
+                        if (!bound) {
+                            Log.i(LaunchActivity.TAG, "no more clients or tasks, stopping.");
+                            stopSelf();
+                        }
+                    }
                 }
             };
         }
