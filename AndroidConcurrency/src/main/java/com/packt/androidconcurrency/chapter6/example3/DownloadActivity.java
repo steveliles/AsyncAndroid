@@ -15,7 +15,8 @@ import com.packt.androidconcurrency.R;
 
 public class DownloadActivity extends Activity {
 
-    public static final String URL = "http://www.nasa.gov/images/content/158270main_solarflare.jpg";
+    public static final String URL =
+        "http://www.nasa.gov/images/content/158270main_solarflare.jpg";
 
     private static final BitmapHandler handler = new BitmapHandler();
     private static final Messenger messenger = new Messenger(handler);
@@ -31,7 +32,7 @@ public class DownloadActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-        handler.attach((ImageView)findViewById(R.id.download));
+        handler.attach((ImageView)findViewById(R.id.img));
 
         Intent intent = new Intent(this, BitmapDownloadService.class);
         intent.putExtra(BitmapDownloadService.DOWNLOAD_FROM_URL, URL);
@@ -53,7 +54,8 @@ public class DownloadActivity extends Activity {
         @Override
         public void handleMessage(Message message) {
             if (message.what == BitmapDownloadService.SUCCESSFUL) {
-                view.setImageBitmap((Bitmap)message.obj);
+                if (view != null)
+                    view.setImageBitmap((Bitmap)message.obj);
             } else {
                 Log.w(LaunchActivity.TAG, "download failed :(");
             }

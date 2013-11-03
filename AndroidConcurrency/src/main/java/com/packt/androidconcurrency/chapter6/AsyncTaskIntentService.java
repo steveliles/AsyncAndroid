@@ -15,13 +15,8 @@ import java.util.List;
 /**
  * A Service that implements Intent-driven behavior like IntentService,
  * but uses AsyncTask to perform the background work instead of
- * IntentService's single worker thread.
- *
- * Note that AsyncTask's level of concurrency varies by platform, so the
- * level of concurrency achieved by this class is 1 for Android 1.6-2.x
- * and up to 128 for other Android versions.
- *
- * See ExecutorIntentService for consistent behaviour across all API levels.
+ * IntentService's single worker thread, giving a level of concurrency
+ * of up to 128 on all API levels.
  */
 public abstract class AsyncTaskIntentService extends Service {
 
