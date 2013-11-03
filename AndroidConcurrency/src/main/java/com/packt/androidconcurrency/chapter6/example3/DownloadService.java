@@ -77,11 +77,10 @@ public abstract class DownloadService<T> extends AsyncTaskIntentService {
         OutputStream out = cache.getOutputStream(from);
 
         int length;
-        byte[] buffer = new byte[256];
+        byte[] buffer = new byte[1024];
         while ((length = in.read(buffer)) > -1) {
             out.write(buffer, 0, length);
             out.flush();
-            System.out.println("got " + length + " bytes");
         }
         close(in);
         close(out);
@@ -89,7 +88,6 @@ public abstract class DownloadService<T> extends AsyncTaskIntentService {
 
     private void sendSuccessMessage(Messenger messenger, int requestId, InputStream in) {
         try {
-            System.out.println("yay");
             Message msg = Message.obtain();
             msg.what = SUCCESSFUL;
             msg.arg1 = requestId;
@@ -104,7 +102,6 @@ public abstract class DownloadService<T> extends AsyncTaskIntentService {
 
     private void sendErrorMessage(Messenger messenger, int requestId) {
         try {
-            System.out.println("boo");
             Message msg = Message.obtain();
             msg.what = FAILED;
             msg.arg1 = requestId;
