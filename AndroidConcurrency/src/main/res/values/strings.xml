@@ -74,6 +74,9 @@
     <string name="nth_prime">Enter N to find Nth Prime</string>
 
     <!-- chapter6 -->
+    <string name="ch6_ex1">Chapter6 Example1</string>
+    <string name="ch6_ex1_desc">Demonstrates using a Service to perform multiple concurrent long-running calculations, returning results via messenger</string>
+
     <!-- chapter7 -->
 
 </resources>

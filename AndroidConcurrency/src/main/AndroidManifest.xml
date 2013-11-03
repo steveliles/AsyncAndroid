@@ -155,6 +155,18 @@
             android:label="@string/ch5_ex3"
             android:description="@string/ch5_ex3_desc"/>
 
+        <!--
+        CHAPTER6: SERVICE EXAMPLES
+        -->
+        <service
+            android:name=".chapter6.example1.PrimesAsyncTaskIntentService"
+            android:exported="false"/>
+
+        <activity
+            android:name=".chapter6.example1.PrimesActivity"
+            android:label="@string/ch6_ex1"
+            android:description="@string/ch6_ex1_desc"/>
+
     </application>
 
 </manifest>

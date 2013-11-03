@@ -24,13 +24,13 @@ public class LaunchActivity extends Activity {
 
     public static final String TAG = "android.concurrency";
     public static final int[] COLORS = new int[]{
-        0xff0099ff,
-        0xff00ff99,
-        0xffff9900,
-        0xff88dd00,
-        0xff0099ff,
-        0xffff0099,
-        0xff0099ff
+        0xff0099ff, // not used
+        0xff00ff99, // ch1
+        0xffff9900, // ch2
+        0xff88dd00, // ch3
+        0xff0099ff, // ch4
+        0xffff0099, // ch5
+        0xff9900ff  // ch6
     };
 
     @Override
