@@ -176,6 +176,15 @@
             android:label="@string/ch6_ex2"
             android:description="@string/ch6_ex2_desc"/>
 
+        <service
+            android:name=".chapter6.example3.BitmapDownloadService"
+            android:exported="false"/>
+
+        <activity
+            android:name=".chapter6.example3.DownloadActivity"
+            android:label="@string/ch6_ex3"
+            android:description="@string/ch6_ex3_desc"/>
+
     </application>
 
 </manifest>

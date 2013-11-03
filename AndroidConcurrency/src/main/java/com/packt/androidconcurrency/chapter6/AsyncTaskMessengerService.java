@@ -31,7 +31,7 @@ public abstract class AsyncTaskMessengerService extends Service {
         messenger = new Messenger(new AsyncTaskHandler());
     }
 
-    protected abstract void doInBackground(int what, Object obj, Messenger replyTo);
+    protected abstract void doInBackground(int what, int arg1, Object obj, Messenger replyTo);
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -62,15 +62,18 @@ public abstract class AsyncTaskMessengerService extends Service {
 
         @Override
         public final void handleMessage(Message msg) {
-            execute(newAsyncTask(msg.what, msg.obj, msg.replyTo));
+            execute(newAsyncTask(
+                msg.what, msg.arg1, msg.obj, msg.replyTo));
         }
 
         private AsyncTask<Void,Void,Void> newAsyncTask(
-            final int what, final Object obj, final Messenger replyTo) {
+            final int what, final int arg1,
+            final Object obj, final Messenger replyTo) {
             return new AsyncTask<Void,Void,Void>(){
                 @Override
                 protected Void doInBackground(Void... params) {
-                    AsyncTaskMessengerService.this.doInBackground(what, obj, replyTo);
+                    AsyncTaskMessengerService.this.doInBackground(
+                        what, arg1, obj, replyTo);
                     return null;
                 }
 

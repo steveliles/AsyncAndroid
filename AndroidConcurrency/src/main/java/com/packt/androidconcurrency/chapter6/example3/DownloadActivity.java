@@ -1,0 +1,70 @@
+package com.packt.androidconcurrency.chapter6.example3;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.Messenger;
+import android.util.Log;
+import android.widget.ImageView;
+
+import com.packt.androidconcurrency.LaunchActivity;
+import com.packt.androidconcurrency.R;
+
+public class DownloadActivity extends Activity {
+
+    public static final String URL = "http://www.nasa.gov/images/content/158270main_solarflare.jpg";
+
+    private static final BitmapHandler handler = new BitmapHandler();
+    private static final Messenger messenger = new Messenger(handler);
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.ch6_example3_layout);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        handler.attach((ImageView)findViewById(R.id.download));
+
+        Intent intent = new Intent(this, BitmapDownloadService.class);
+        intent.putExtra(BitmapDownloadService.DOWNLOAD_FROM_URL, URL);
+        intent.putExtra(BitmapDownloadService.REQUEST_ID, 1);
+        intent.putExtra(BitmapDownloadService.MESSENGER, messenger);
+        startService(intent);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        handler.detach();
+    }
+
+    private static class BitmapHandler extends Handler {
+        private ImageView view;
+
+        @Override
+        public void handleMessage(Message message) {
+            if (message.what == BitmapDownloadService.SUCCESSFUL) {
+                view.setImageBitmap((Bitmap)message.obj);
+            } else {
+                Log.w(LaunchActivity.TAG, "download failed :(");
+            }
+        }
+
+        public void attach(ImageView view) {
+            this.view = view;
+        }
+
+        public void detach() {
+            this.view = null;
+        }
+    }
+}

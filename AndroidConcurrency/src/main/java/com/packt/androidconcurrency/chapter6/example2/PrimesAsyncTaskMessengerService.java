@@ -16,7 +16,7 @@ public class PrimesAsyncTaskMessengerService extends AsyncTaskMessengerService {
     public static final int RESULT = "nth_prime".hashCode();
 
     @Override
-    protected void doInBackground(int what, Object obj, Messenger replyTo) {
+    protected void doInBackground(int what, int arg1, Object obj, Messenger replyTo) {
         if (what == FIND_PRIME) {
             try {
                 if (replyTo != null) {
