@@ -1,6 +1,8 @@
-package com.packt.androidconcurrency.chapter6.example3;
+package com.packt.androidconcurrency.chapter6;
 
 import android.content.Context;
+
+import com.packt.androidconcurrency.chapter6.DownloadService;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

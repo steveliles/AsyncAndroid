@@ -185,6 +185,15 @@
             android:label="@string/ch6_ex3"
             android:description="@string/ch6_ex3_desc"/>
 
+        <service
+            android:name=".chapter6.example4.NasaRSSDownloadService"
+            android:exported="false"/>
+
+        <activity
+            android:name=".chapter6.example4.NasaImageOfTheDayActivity"
+            android:label="@string/ch6_ex4"
+            android:description="@string/ch6_ex4_desc"/>
+
     </application>
 
 </manifest>

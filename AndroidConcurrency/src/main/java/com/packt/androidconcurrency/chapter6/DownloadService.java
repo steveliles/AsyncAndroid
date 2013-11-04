@@ -1,4 +1,4 @@
-package com.packt.androidconcurrency.chapter6.example3;
+package com.packt.androidconcurrency.chapter6;
 
 import android.content.Intent;
 import android.os.Message;
@@ -40,19 +40,25 @@ public abstract class DownloadService<T> extends AsyncTaskIntentService {
     @Override
     public void onCreate() {
         super.onCreate();
-        cache = initCache();
+        try {
+            cache = initCache();
+        } catch (Exception exc) {
+            Log.e(LaunchActivity.TAG, "problem while initialising cache", exc);
+        }
     }
 
     /**
      * @return a cache implementation ready for use.
      */
-    protected abstract Cache initCache();
+    protected abstract Cache initCache()
+    throws Exception;
 
     /**
      * @param in inputstream from the cached data
      * @return a parcelable version of the data
      */
-    protected abstract T convert(InputStream in);
+    protected abstract T convert(InputStream in)
+    throws Exception;
 
     @Override
     protected void onHandleIntent(Intent intent) {
@@ -95,6 +101,8 @@ public abstract class DownloadService<T> extends AsyncTaskIntentService {
             messenger.send(msg);
         } catch (RemoteException exc) {
             Log.e(LaunchActivity.TAG, "unable to send success message to client.");
+        } catch (Exception exc) {
+            Log.e(LaunchActivity.TAG, "unable to convert downloaded data to parcelable.", exc);
         } finally {
             close(in);
         }

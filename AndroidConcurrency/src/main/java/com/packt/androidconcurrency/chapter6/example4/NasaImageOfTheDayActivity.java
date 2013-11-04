@@ -1,9 +1,7 @@
-package com.packt.androidconcurrency.chapter6.example3;
+package com.packt.androidconcurrency.chapter6.example4;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Messenger;
@@ -14,20 +12,12 @@ import com.packt.androidconcurrency.LaunchActivity;
 import com.packt.androidconcurrency.R;
 import com.packt.androidconcurrency.chapter6.DownloadService;
 
-public class DownloadActivity extends Activity {
+public class NasaImageOfTheDayActivity extends Activity {
 
-    public static final String URL =
-        "http://www.nasa.gov/images/content/158270main_solarflare.jpg";
+    private static final String URL = "http://www.nasa.gov/rss/dyn/lg_image_of_the_day.rss";
 
-    private static final BitmapHandler handler = new BitmapHandler();
+    private static final RSSHandler handler = new RSSHandler();
     private static final Messenger messenger = new Messenger(handler);
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.ch6_example3_layout);
-    }
 
     @Override
     protected void onResume() {
@@ -35,7 +25,7 @@ public class DownloadActivity extends Activity {
 
         handler.attach((ImageView)findViewById(R.id.img));
 
-        Intent intent = new Intent(this, BitmapDownloadService.class);
+        Intent intent = new Intent(this, NasaRSSDownloadService.class);
         intent.putExtra(DownloadService.DOWNLOAD_FROM_URL, URL);
         intent.putExtra(DownloadService.REQUEST_ID, 1);
         intent.putExtra(DownloadService.MESSENGER, messenger);
@@ -49,25 +39,25 @@ public class DownloadActivity extends Activity {
         handler.detach();
     }
 
-    private static class BitmapHandler extends Handler {
-        private ImageView view;
+    private static class RSSHandler extends Handler {
 
         @Override
         public void handleMessage(Message message) {
             if (message.what == DownloadService.SUCCESSFUL) {
-                if (view != null)
-                    view.setImageBitmap((Bitmap)message.obj);
+                NasaRSS rss = (NasaRSS) message.obj;
+                Log.i(LaunchActivity.TAG, "found " + rss.size() + "items");
             } else {
                 Log.w(LaunchActivity.TAG, "download failed :(");
             }
         }
 
         public void attach(ImageView view) {
-            this.view = view;
+            // todo
         }
 
         public void detach() {
-            this.view = null;
+            // todo
         }
     }
+
 }
