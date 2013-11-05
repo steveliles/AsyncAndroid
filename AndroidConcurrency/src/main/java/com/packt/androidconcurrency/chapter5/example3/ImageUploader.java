@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
 
+import com.packt.androidconcurrency.Streams;
+
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
@@ -59,8 +61,7 @@ public class ImageUploader {
                     out = conn.getOutputStream(),
                     callback, len);
             } finally {
-                close(in);
-                close(out);
+                Streams.close(in, out);
             }
 
             if ((conn.getResponseCode() >= 200) && (conn.getResponseCode() < 400)) {
@@ -102,17 +103,7 @@ public class ImageUploader {
                 callback.onProgress(len, ++i*size);
             }
         } finally {
-            close(in);
-            close(out);
-        }
-    }
-
-    private final void close(Closeable stream) {
-        try {
-            if (stream != null)
-                stream.close();
-        } catch (IOException anExc) {
-            Log.w(TAG, "problem closing stream", anExc);
+            Streams.close(in, out);
         }
     }
 }

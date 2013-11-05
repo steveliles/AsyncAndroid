@@ -2,7 +2,7 @@ package com.packt.androidconcurrency.chapter6.example3;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import com.packt.androidconcurrency.LaunchActivity;
 import com.packt.androidconcurrency.R;
+import com.packt.androidconcurrency.chapter6.CachingDownloadService;
 import com.packt.androidconcurrency.chapter6.DownloadService;
 
 public class DownloadActivity extends Activity {
@@ -35,7 +36,7 @@ public class DownloadActivity extends Activity {
 
         handler.attach((ImageView)findViewById(R.id.img));
 
-        Intent intent = new Intent(this, BitmapDownloadService.class);
+        Intent intent = new Intent(this, CachingDownloadService.class);
         intent.putExtra(DownloadService.DOWNLOAD_FROM_URL, URL);
         intent.putExtra(DownloadService.REQUEST_ID, 1);
         intent.putExtra(DownloadService.MESSENGER, messenger);
@@ -56,7 +57,7 @@ public class DownloadActivity extends Activity {
         public void handleMessage(Message message) {
             if (message.what == DownloadService.SUCCESSFUL) {
                 if (view != null)
-                    view.setImageBitmap((Bitmap)message.obj);
+                    view.setImageURI((Uri)message.obj);
             } else {
                 Log.w(LaunchActivity.TAG, "download failed :(");
             }

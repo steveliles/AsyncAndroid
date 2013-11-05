@@ -16,7 +16,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public abstract class DownloadService<T> extends AsyncTaskIntentService {
+public abstract class DownloadService extends AsyncTaskIntentService {
 
     public static final String REQUEST_ID = "request_id";
     public static final String DOWNLOAD_FROM_URL = "from_url";
@@ -51,13 +51,6 @@ public abstract class DownloadService<T> extends AsyncTaskIntentService {
      * @return a cache implementation ready for use.
      */
     protected abstract Cache initCache()
-    throws Exception;
-
-    /**
-     * @param downloaded Uri to cached download data
-     * @return a parcelable version of the data
-     */
-    protected abstract T convert(Uri downloaded)
     throws Exception;
 
     @Override
@@ -96,7 +89,7 @@ public abstract class DownloadService<T> extends AsyncTaskIntentService {
             Message msg = Message.obtain();
             msg.what = SUCCESSFUL;
             msg.arg1 = requestId;
-            msg.obj = convert(data);
+            msg.obj = data;
             messenger.send(msg);
         } catch (RemoteException exc) {
             Log.e(LaunchActivity.TAG, "unable to send success message to client.");

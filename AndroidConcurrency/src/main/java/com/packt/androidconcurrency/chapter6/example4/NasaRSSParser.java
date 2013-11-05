@@ -1,10 +1,5 @@
 package com.packt.androidconcurrency.chapter6.example4;
 
-import android.net.Uri;
-
-import com.packt.androidconcurrency.chapter6.CacheDirCache;
-import com.packt.androidconcurrency.chapter6.DownloadService;
-
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -16,29 +11,21 @@ import java.io.InputStream;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-public class NasaRSSDownloadService extends DownloadService<NasaRSS> {
+public class NasaRSSParser {
 
     private SAXParserFactory factory;
 
-    public NasaRSSDownloadService() {
+    public NasaRSSParser(){
         factory = SAXParserFactory.newInstance();
     }
 
-    @Override
-    protected Cache initCache()
-    throws Exception {
-        return new CacheDirCache(getApplicationContext());
-    }
-
-    @Override
-    protected NasaRSS convert(Uri data)
+    public NasaRSS parse(InputStream in)
     throws Exception {
         SAXParser parser = factory.newSAXParser();
         XMLReader reader = parser.getXMLReader();
         NasaRSSHandler rss = new NasaRSSHandler();
         reader.setContentHandler(rss);
 
-        InputStream in = getContentResolver().openInputStream(data);
         reader.parse(new InputSource(in));
         return rss.result;
     }
@@ -48,11 +35,12 @@ public class NasaRSSDownloadService extends DownloadService<NasaRSS> {
 
         @Override
         public void startElement(
-            String uri, String localName,
-            String qName, Attributes attributes
+                String uri, String localName,
+                String qName, Attributes attributes
         ) throws SAXException {
             if ("enclosure".equals(qName))
-                result.add(attributes.getValue("url"));
+                result.add(attributes.getValue("url"), "todo");
         }
     }
+
 }

@@ -10,8 +10,10 @@ public class NasaRSS implements Parcelable {
 
     public static class Item {
         public String url;
-        public Item(String url) {
+        public String title;
+        public Item(String url, String title) {
             this.url = url;
+            this.title = title;
         }
     }
 
@@ -20,15 +22,17 @@ public class NasaRSS implements Parcelable {
     public NasaRSS(Parcel parcel) {
         int len = parcel.readInt();
         for (int i=0; i<len; i++)
-            items.add(new Item(parcel.readString()));
+            items.add(new Item(
+                parcel.readString(),
+                parcel.readString()));
     }
 
     public NasaRSS(){
         items = new ArrayList<Item>();
     }
 
-    public void add(String url) {
-        items.add(new Item(url));
+    public void add(String url, String title) {
+        items.add(new Item(url, title));
     }
 
     public int size() {
@@ -47,7 +51,9 @@ public class NasaRSS implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(items.size());
-        for (Item i : items)
+        for (Item i : items) {
             dest.writeString(i.url);
+            dest.writeString(i.title);
+        }
     }
 }

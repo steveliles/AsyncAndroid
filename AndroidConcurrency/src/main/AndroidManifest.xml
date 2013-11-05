@@ -177,20 +177,13 @@
             android:description="@string/ch6_ex2_desc"/>
 
         <service
-            android:name=".chapter6.example3.BitmapDownloadService"
+            android:name=".chapter6.CachingDownloadService"
             android:exported="false"/>
 
         <activity
             android:name=".chapter6.example3.DownloadActivity"
             android:label="@string/ch6_ex3"
             android:description="@string/ch6_ex3_desc"/>
-
-        <service
-            android:name=".chapter6.example4.NasaRSSDownloadService"
-            android:exported="false"/>
-        <service
-            android:name=".chapter6.example4.ImageDownloadService"
-            android:exported="false"/>
 
         <activity
             android:name=".chapter6.example4.NasaImageOfTheDayActivity"
