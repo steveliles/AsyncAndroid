@@ -4,10 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-public class NasaRSS implements Iterable<NasaRSS.Item>, Parcelable {
+public class NasaRSS implements Parcelable {
 
     public static class Item {
         public String url;
@@ -20,9 +19,8 @@ public class NasaRSS implements Iterable<NasaRSS.Item>, Parcelable {
 
     public NasaRSS(Parcel parcel) {
         int len = parcel.readInt();
-        for (int i=0; i<len; i++) {
+        for (int i=0; i<len; i++)
             items.add(new Item(parcel.readString()));
-        }
     }
 
     public NasaRSS(){
@@ -37,8 +35,8 @@ public class NasaRSS implements Iterable<NasaRSS.Item>, Parcelable {
         return items.size();
     }
 
-    public Iterator<Item> iterator(){
-        return items.iterator();
+    public Item get(int i){
+        return items.get(i);
     }
 
     @Override

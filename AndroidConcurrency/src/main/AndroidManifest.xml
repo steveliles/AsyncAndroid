@@ -188,6 +188,9 @@
         <service
             android:name=".chapter6.example4.NasaRSSDownloadService"
             android:exported="false"/>
+        <service
+            android:name=".chapter6.example4.ImageDownloadService"
+            android:exported="false"/>
 
         <activity
             android:name=".chapter6.example4.NasaImageOfTheDayActivity"

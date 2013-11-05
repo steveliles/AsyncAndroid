@@ -1,16 +1,12 @@
 package com.packt.androidconcurrency.chapter6;
 
 import android.content.Context;
+import android.net.Uri;
 
-import com.packt.androidconcurrency.chapter6.DownloadService;
-
-import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 
@@ -29,10 +25,10 @@ public class CacheDirCache implements DownloadService.Cache {
     }
 
     @Override
-    public InputStream getInputStream(URL downloadURL)
+    public Uri get(URL downloadURL)
     throws IOException {
         File f = getCacheFile(downloadURL);
-        return new BufferedInputStream(new FileInputStream(f));
+        return Uri.fromFile(f);
     }
 
     @Override

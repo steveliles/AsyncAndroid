@@ -59,7 +59,7 @@ public abstract class AsyncTaskIntentService extends Service {
                 active.remove(this);
                 if (active.isEmpty()) {
                     Log.i(LaunchActivity.TAG, "No more active tasks, stopping");
-                    AsyncTaskIntentService.this.stopSelf(startId);
+                    AsyncTaskIntentService.this.stopSelf();
                 } else {
                     Log.i(LaunchActivity.TAG, active.size() + " tasks still active, not stopping");
                 }

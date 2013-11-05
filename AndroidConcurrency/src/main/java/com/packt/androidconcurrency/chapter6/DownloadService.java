@@ -1,13 +1,13 @@
 package com.packt.androidconcurrency.chapter6;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
 import android.util.Log;
 
 import com.packt.androidconcurrency.LaunchActivity;
-import com.packt.androidconcurrency.chapter6.AsyncTaskIntentService;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -28,7 +28,7 @@ public abstract class DownloadService<T> extends AsyncTaskIntentService {
     public interface Cache {
         public boolean exists(URL downloadURL);
 
-        public InputStream getInputStream(URL downloadURL)
+        public Uri get(URL downloadURL)
         throws IOException;
 
         public OutputStream getOutputStream(URL downloadURL)
@@ -54,10 +54,10 @@ public abstract class DownloadService<T> extends AsyncTaskIntentService {
     throws Exception;
 
     /**
-     * @param in inputstream from the cached data
+     * @param downloaded Uri to cached download data
      * @return a parcelable version of the data
      */
-    protected abstract T convert(InputStream in)
+    protected abstract T convert(Uri downloaded)
     throws Exception;
 
     @Override
@@ -70,9 +70,8 @@ public abstract class DownloadService<T> extends AsyncTaskIntentService {
             if (!cache.exists(from)) {
                 download(from);
             }
-            sendSuccessMessage(messenger, requestId, cache.getInputStream(from));
+            sendSuccessMessage(messenger, requestId, cache.get(from));
         } catch (IOException exc) {
-            System.out.println(exc);
             sendErrorMessage(messenger, requestId);
         }
     }
@@ -92,19 +91,17 @@ public abstract class DownloadService<T> extends AsyncTaskIntentService {
         close(out);
     }
 
-    private void sendSuccessMessage(Messenger messenger, int requestId, InputStream in) {
+    private void sendSuccessMessage(Messenger messenger, int requestId, Uri data) {
         try {
             Message msg = Message.obtain();
             msg.what = SUCCESSFUL;
             msg.arg1 = requestId;
-            msg.obj = convert(in);
+            msg.obj = convert(data);
             messenger.send(msg);
         } catch (RemoteException exc) {
             Log.e(LaunchActivity.TAG, "unable to send success message to client.");
         } catch (Exception exc) {
             Log.e(LaunchActivity.TAG, "unable to convert downloaded data to parcelable.", exc);
-        } finally {
-            close(in);
         }
     }
 
