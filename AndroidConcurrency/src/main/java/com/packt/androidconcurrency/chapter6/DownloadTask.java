@@ -13,12 +13,10 @@ public abstract class DownloadTask {
     private static final SparseArray<DownloadTask> tasks = new SparseArray<DownloadTask>();
 
     /**
-     * Clears ALL pending callbacks. If you are starting DownloadTask's
-     * from an Activity you MUST call this when the Activity is restarting
-     * or finishing otherwise you will incur memory leaks until the pending
-     * DownloadTask's complete.
+     * Must be called when Activity restarts or finishes to avoid
+     * memory leaks for the duration of pending downloads.
      */
-    public void clearCallbacks() {
+    public static void clearCallbacks() {
         if (!isMainThread())
             throw new RuntimeException(
                 "DownloadTask.clearCallbacks must be called on the main thread!");
@@ -49,7 +47,7 @@ public abstract class DownloadTask {
                 }
             });
         } else {
-            Intent intent = new Intent(ctx, CachingDownloadService.class);
+            Intent intent = new Intent(ctx, DownloadService.class);
             intent.putExtra(DownloadService.DOWNLOAD_FROM_URL, url);
             intent.putExtra(DownloadService.REQUEST_ID, url.hashCode());
             intent.putExtra(DownloadService.MESSENGER, messenger);
@@ -58,7 +56,7 @@ public abstract class DownloadTask {
         }
     }
 
-    private boolean isMainThread() {
+    private static boolean isMainThread() {
         Thread c = Thread.currentThread();
         Thread m = Looper.getMainLooper().getThread();
         return c.equals(m);

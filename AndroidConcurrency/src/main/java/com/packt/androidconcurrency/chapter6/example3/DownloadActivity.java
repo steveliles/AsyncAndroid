@@ -12,7 +12,6 @@ import android.widget.ImageView;
 
 import com.packt.androidconcurrency.LaunchActivity;
 import com.packt.androidconcurrency.R;
-import com.packt.androidconcurrency.chapter6.CachingDownloadService;
 import com.packt.androidconcurrency.chapter6.DownloadService;
 
 public class DownloadActivity extends Activity {
@@ -36,7 +35,7 @@ public class DownloadActivity extends Activity {
 
         handler.attach((ImageView)findViewById(R.id.img));
 
-        Intent intent = new Intent(this, CachingDownloadService.class);
+        Intent intent = new Intent(this, DownloadService.class);
         intent.putExtra(DownloadService.DOWNLOAD_FROM_URL, URL);
         intent.putExtra(DownloadService.REQUEST_ID, 1);
         intent.putExtra(DownloadService.MESSENGER, messenger);

@@ -16,7 +16,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public abstract class DownloadService extends AsyncTaskIntentService {
+public class DownloadService extends AsyncTaskIntentService {
 
     public static final String REQUEST_ID = "request_id";
     public static final String DOWNLOAD_FROM_URL = "from_url";
@@ -25,33 +25,17 @@ public abstract class DownloadService extends AsyncTaskIntentService {
     public static final int SUCCESSFUL = "download_successful".hashCode();
     public static final int FAILED = "download_failed".hashCode();
 
-    public interface Cache {
-        public boolean exists(URL downloadURL);
-
-        public Uri get(URL downloadURL)
-        throws IOException;
-
-        public OutputStream getOutputStream(URL downloadURL)
-        throws IOException;
-    }
-
-    private Cache cache;
+    private LocalDownloadCache cache;
 
     @Override
     public void onCreate() {
         super.onCreate();
         try {
-            cache = initCache();
+            cache = new LocalDownloadCache(this);
         } catch (Exception exc) {
             Log.e(LaunchActivity.TAG, "problem while initialising cache", exc);
         }
     }
-
-    /**
-     * @return a cache implementation ready for use.
-     */
-    protected abstract Cache initCache()
-    throws Exception;
 
     @Override
     protected void onHandleIntent(Intent intent) {

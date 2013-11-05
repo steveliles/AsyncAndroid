@@ -177,7 +177,7 @@
             android:description="@string/ch6_ex2_desc"/>
 
         <service
-            android:name=".chapter6.CachingDownloadService"
+            android:name=".chapter6.DownloadService"
             android:exported="false"/>
 
         <activity

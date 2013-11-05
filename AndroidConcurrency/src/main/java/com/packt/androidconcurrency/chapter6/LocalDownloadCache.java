@@ -10,28 +10,25 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
 
-public class CacheDirCache implements DownloadService.Cache {
+public class LocalDownloadCache {
 
     private File dir;
 
-    public CacheDirCache(Context ctx) {
+    public LocalDownloadCache(Context ctx) {
         dir = ctx.getCacheDir();
     }
 
-    @Override
     public boolean exists(URL downloadURL) {
         File f = getCacheFile(downloadURL);
         return f.exists();
     }
 
-    @Override
     public Uri get(URL downloadURL)
     throws IOException {
         File f = getCacheFile(downloadURL);
         return Uri.fromFile(f);
     }
 
-    @Override
     public OutputStream getOutputStream(URL downloadURL)
     throws IOException {
         File f = getCacheFile(downloadURL);
