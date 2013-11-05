@@ -4,9 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.*;
+import android.util.Log;
 import android.util.SparseArray;
 
-public abstract class DownloadTask {
+import com.packt.androidconcurrency.LaunchActivity;
+
+public abstract class DownloadTask<T> {
 
     private static final Handler handler = new DownloadTaskHandler(Looper.getMainLooper());
     private static final Messenger messenger = new Messenger(handler);
@@ -29,9 +32,18 @@ public abstract class DownloadTask {
         this.url = url;
     }
 
-    public abstract void onSuccess(Uri data);
+    public abstract T convertInBackground(Uri data)
+    throws Exception;
 
-    public abstract void onFailure();
+    public abstract void onSuccess(T result);
+
+    public void onFailure() {
+        Log.w(LaunchActivity.TAG, "download failed: " + url);
+    }
+
+    public void onError(Exception exc) {
+        Log.e(LaunchActivity.TAG, "conversion failed: " + url, exc);
+    }
 
     public void execute(Context ctx) {
         if (!isMainThread()) {
@@ -73,13 +85,44 @@ public abstract class DownloadTask {
             if (task != null) {
                 try {
                     if (DownloadService.SUCCESSFUL == msg.what) {
-                        task.onSuccess((Uri)msg.obj);
+                        convert(task, (Uri)msg.obj);
                     } else {
                         task.onFailure();
                     }
                 } finally {
                     tasks.remove(msg.arg1);
                 }
+            }
+        }
+
+        private <T> void convert(final DownloadTask<T> task, final Uri uri) {
+            AsyncTask<Void,Void,T> at = new AsyncTask<Void,Void,T>(){
+                private Exception e;
+
+                @Override
+                protected T doInBackground(Void... params) {
+                    try {
+                        return task.convertInBackground(uri);
+                    } catch (Exception exc) {
+                        e = exc;
+                        return null;
+                    }
+                }
+
+                @Override
+                protected void onPostExecute(T t) {
+                    if (e == null) {
+                        task.onSuccess(t);
+                    } else {
+                        task.onError(e);
+                    }
+                }
+            };
+
+            if (Build.VERSION.SDK_INT >= 11) {
+                at.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            } else {
+                at.execute();
             }
         }
     }

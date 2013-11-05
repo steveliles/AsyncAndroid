@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -45,49 +46,48 @@ public class NasaImageOfTheDayActivity extends Activity {
     }
 
     private void downloadRSS(){
-        new DownloadTask(RSS_URL) {
+        new DownloadTask<NasaRSS>(RSS_URL) {
             @Override
-            public void onSuccess(Uri data) {
+            public NasaRSS convertInBackground(Uri data)
+            throws Exception {
                 InputStream in = null;
                 try {
                     in = openStream(data);
-                    NasaRSS rss = parser.parse(in);
-                    for (int i=0; i<rss.size(); i++)
-                        handle(i, rss.get(i));
-                } catch (Exception exc) {
-                    Log.e(LaunchActivity.TAG, "parsing RSS", exc);
+                    return parser.parse(in);
                 } finally {
                     Streams.close(in);
                 }
             }
 
             @Override
-            public void onFailure() {
-                Log.e(LaunchActivity.TAG, "unable to download RSS.");
+            public void onSuccess(NasaRSS rss) {
+                for (int i=0; i<rss.size(); i++)
+                    handle(i, rss.get(i));
             }
 
             private void handle(int i, NasaRSS.Item item) {
                 displayText(i, item.url);
-                downloadImage(i, item.url);
+                downloadImage(i, item.url, 8);
+                getRow(i).setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        // todo
+                    }
+                });
             }
         }.execute(this);
     }
 
-    private void downloadImage(final int i, String url){
-        new DownloadTask(url) {
+    private void downloadImage(final int i, String url, final int sampleSize){
+        new DownloadTask<Bitmap>(url) {
             @Override
-            public void onSuccess(Uri data) {
-                displayImage(i, loadBitmap(data, 8));
+            public Bitmap convertInBackground(Uri data) throws Exception {
+                return loadBitmap(data, sampleSize);
             }
 
             @Override
-            public void onFailure() {
-                Log.e(LaunchActivity.TAG, "unable to download RSS.");
-            }
-
-            private void handle(int i, NasaRSS.Item item) {
-                displayText(i, item.url);
-                downloadImage(i, item.url);
+            public void onSuccess(Bitmap data) {
+                displayImage(i, data);
             }
         }.execute(this);
     }
