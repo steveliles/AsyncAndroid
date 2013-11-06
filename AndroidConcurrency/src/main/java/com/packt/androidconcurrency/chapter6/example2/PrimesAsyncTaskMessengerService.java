@@ -21,7 +21,7 @@ public class PrimesAsyncTaskMessengerService extends AsyncTaskMessengerService {
             try {
                 if (replyTo != null) {
                     BigInteger result = calculateNthPrime((Integer) obj);
-                    replyTo.send(Message.obtain(null, RESULT, result.toString()));
+                    replyTo.send(Message.obtain(null, RESULT, (Integer) obj, 0, result.toString()));
                 }
             } catch (RemoteException exc) {
                 Log.e(LaunchActivity.TAG, "Unable to send message", exc);

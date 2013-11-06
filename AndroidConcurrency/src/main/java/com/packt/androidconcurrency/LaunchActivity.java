@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,8 +25,8 @@ public class LaunchActivity extends Activity {
 
     public static final String TAG = "android.concurrency";
     public static final int[] COLORS = new int[]{
-        0xff0099ff, // not used
-        0xff00ff99, // ch1
+        0xff000000, // not used
+        0xffff0000, // ch1
         0xffff9900, // ch2
         0xff88dd00, // ch3
         0xff0099ff, // ch4
@@ -33,15 +34,31 @@ public class LaunchActivity extends Activity {
         0xff9900ff  // ch6
     };
 
+    private Handler handler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.book_layout);
 
-        final List<ActivityInfo> info = getActivityList();
-        Log.i(TAG, info.size() + " demos to enjoy!");
+        handler = new Handler();
 
+        new Thread(){
+            public void run(){
+                final List<ActivityInfo> info = getActivityList();
+                Log.i(TAG, info.size() + " demos to enjoy!");
+
+                handler.post(new Runnable(){
+                    @Override
+                    public void run() {
+                        initActivityGrid(info);
+                    }
+                });
+            }
+        }.start();
+    }
+
+    private void initActivityGrid(final List<ActivityInfo> info) {
         GridView grid = (GridView) findViewById(R.id.grid);
         grid.setAdapter(new ArrayAdapter<ActivityInfo>(this, R.layout.book_activity_cell, info) {
             @Override
@@ -68,6 +85,7 @@ public class LaunchActivity extends Activity {
                 return view;
             }
         });
+
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

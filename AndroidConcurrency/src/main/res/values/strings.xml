@@ -7,8 +7,9 @@
     <string name="ch1_ex1">Chapter1 Example1</string>
     <string name="ch1_ex1_desc">Triggers an Application Not Responding dialog (which will crash the app!)</string>
     <string name="ch1_ex2">Chapter1 Example2</string>
-    <string name="ch1_ex2_desc">Hog the cpu with a high priority "background" thread - causes UI "jank"</string>
-    <string name="logcat_choreographer">Watch logcat from your IDE while running this activity - expect to see the choreographer complaining about skipped frames with messages like: </string>
+    <string name="ch1_ex2_desc">Performs "too much" work on the main thread, causing the Choreographer to complain (API level 16+)</string>
+    <string name="expect_choreographer">Watch logcat from your IDE while running this activity - expect to see the choreographer complaining about skipped frames with messages like:</string>
+    <string name="logcat_choreographer">I/Choreographer﹕ Skipped 48 frames!  The application may be doing too much work on its main thread.</string>
 
     <!-- chapter2 -->
     <string name="ch2_ex1">Chapter2 Example1</string>
@@ -78,9 +79,10 @@
 
     <string name="primes_service">Primes IntentService</string>
     <string name="upload_service">Upload IntentService</string>
-    <string name="nth_prime">Enter N to find Nth Prime</string>
+    <string name="nth_prime">Enter N to find Nth prime</string>
 
     <!-- chapter6 -->
+    <string name="comma_nth_prime">Enter comma separated N\'s to find Nth primes</string>
     <string name="ch6_ex1">Chapter6 Example1</string>
     <string name="ch6_ex1_desc">Invoke a Service with Intents, perform multiple concurrent calculations, return results via messenger</string>
 

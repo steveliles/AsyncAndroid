@@ -10,6 +10,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
 
+/**
+ * Very simple cache that makes no attempt whatsoever
+ * to expire old entries. This is NOT production quality!
+ */
 public class LocalDownloadCache {
 
     private File dir;

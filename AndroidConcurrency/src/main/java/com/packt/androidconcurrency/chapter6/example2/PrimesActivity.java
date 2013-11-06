@@ -14,6 +14,7 @@ import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +37,7 @@ public class PrimesActivity extends Activity implements ServiceConnection {
         startService(intent);
         bindService(intent, this, Context.BIND_AUTO_CREATE);
 
-        setContentView(R.layout.ch5_example1_layout);
+        setContentView(R.layout.ch6_example2_layout);
 
         Button go = (Button)findViewById(R.id.go);
         go.setOnClickListener(new View.OnClickListener() {
@@ -45,8 +46,8 @@ public class PrimesActivity extends Activity implements ServiceConnection {
                 TextView input = (TextView) findViewById(R.id.prime_to_find);
                 String[] values = input.getText().toString().split(",");
                 for (String value : values) {
-                    if (value.matches("[1-9]+[0-9]*")) {
-                        triggerService(Integer.parseInt(value));
+                    if (value.trim().matches("[1-9]+[0-9]*")) {
+                        triggerService(Integer.parseInt(value.trim()));
                     } else {
                         Toast.makeText(PrimesActivity.this, "not a number!", 5000).show();
                     }
@@ -58,7 +59,7 @@ public class PrimesActivity extends Activity implements ServiceConnection {
     @Override
     protected void onResume() {
         super.onResume();
-        handler.attach((TextView)findViewById(R.id.result));
+        handler.attach((LinearLayout)findViewById(R.id.result));
     }
 
     @Override
@@ -93,24 +94,30 @@ public class PrimesActivity extends Activity implements ServiceConnection {
     }
 
     public static class PrimesHandler extends Handler {
-        private TextView view;
+        private LinearLayout view;
 
         @Override
         public void handleMessage(Message message) {
             if (message.what == PrimesAsyncTaskIntentService.RESULT) {
-                if (view != null)
-                    view.setText(message.obj.toString());
-                else
+                if (view != null) {
+                    TextView text = new TextView(view.getContext());
+                    text.setText(message.arg1 + "th prime: " + message.obj.toString());
+                    view.addView(text);
+                } else {
                     Log.i(LaunchActivity.TAG, "received a result, ignoring because we're detached");
+                }
             } else if (message.what == PrimesAsyncTaskIntentService.INVALID) {
-                if (view != null)
-                    view.setText("Invalid request");
+                if (view != null) {
+                    TextView text = new TextView(view.getContext());
+                    text.setText("Invalid request");
+                    view.addView(text);
+                }
             } else {
                 super.handleMessage(message);
             }
         }
 
-        public void attach(TextView view) {
+        public void attach(LinearLayout view) {
             this.view = view;
         }
 

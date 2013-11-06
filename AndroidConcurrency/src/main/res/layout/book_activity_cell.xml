@@ -1,31 +1,23 @@
 <com.packt.androidconcurrency.SquareLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/panel"
     android:id="@+id/grid"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp">
+    android:layout_height="match_parent">
 
     <TextView
+        style="@style/title"
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right|bottom"
-        android:gravity="right|bottom"
-        android:textAlignment="gravity"
-        android:textSize="22dp"
-        android:textColor="#ffffff"
         android:text="@string/app_name"/>
 
     <TextView
+        style="@style/desc"
         android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right|bottom"
-        android:gravity="right|bottom"
-        android:textAlignment="gravity"
-        android:textSize="12dp"
-        android:textColor="#ffffff"
         android:text="@string/app_name"/>
 
 </com.packt.androidconcurrency.SquareLayout>

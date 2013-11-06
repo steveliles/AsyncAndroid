@@ -26,7 +26,7 @@ public class PrimesAsyncTaskIntentService extends AsyncTaskIntentService {
             if (primeToFind < 2) {
                 messenger.send(Message.obtain(null, INVALID));
             } else {
-                messenger.send(Message.obtain(null, RESULT, calculateNthPrime(primeToFind)));
+                messenger.send(Message.obtain(null, RESULT, primeToFind, 0, calculateNthPrime(primeToFind)));
             }
         } catch (RemoteException anExc) {
             Log.e(LaunchActivity.TAG, "Unable to send message", anExc);

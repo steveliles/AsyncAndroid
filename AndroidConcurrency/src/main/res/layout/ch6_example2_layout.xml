@@ -9,8 +9,9 @@
         android:id="@+id/prime_to_find"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/nth_prime"
-        android:inputType="number"/>
+        android:hint="@string/comma_nth_prime"
+        android:inputType="numberDecimal"
+        android:digits="0123456789.,"/>
 
     <Button
         android:id="@+id/go"
@@ -19,11 +20,11 @@
         android:text="@string/go"
         android:layout_gravity="center"/>
 
-    <TextView
+    <LinearLayout
         android:id="@+id/result"
+        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/no_result_yet"
         android:layout_gravity="center"/>
 
 </LinearLayout>

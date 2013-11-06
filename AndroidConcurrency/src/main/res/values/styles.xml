@@ -17,4 +17,32 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+    <style name="panel">
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="title">
+        <item name="android:layout_gravity">right|bottom</item>
+        <item name="android:gravity">right|bottom</item>
+        <item name="android:text">gravity</item>
+        <item name="android:textSize">22dp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:shadowRadius">4</item>
+    </style>
+
+    <style name="desc">
+        <item name="android:layout_gravity">right|bottom</item>
+        <item name="android:gravity">right|bottom</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:textColor">#ffffffff</item>
+    </style>
+
+    <style name="text">
+        <item name="android:layout_gravity">left|bottom</item>
+        <item name="android:gravity">left|bottom</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:layout_marginTop">15dp</item>
+    </style>
+
 </resources>

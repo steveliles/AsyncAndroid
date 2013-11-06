@@ -13,10 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A Service that implements Intent-driven behavior like IntentService,
+ * A Service that implements Intent-driven behavior - like IntentService,
  * but uses AsyncTask to perform the background work instead of
  * IntentService's single worker thread, giving a level of concurrency
  * of up to 128 on all API levels.
+ *
+ * Also like IntentService, AsyncTaskIntentService will stop itself
+ * when all pending tasks have completed, so there is no need for
+ * clients to ever ask the service to stop.
  */
 public abstract class AsyncTaskIntentService extends Service {
 
@@ -58,31 +62,28 @@ public abstract class AsyncTaskIntentService extends Service {
             private void onComplete() {
                 active.remove(this);
                 if (active.isEmpty()) {
-                    Log.i(LaunchActivity.TAG, "No more active tasks, stopping");
+                    Log.d(LaunchActivity.TAG, "No more active tasks, stopping");
                     AsyncTaskIntentService.this.stopSelf();
                 } else {
-                    Log.i(LaunchActivity.TAG, active.size() + " tasks still active, not stopping");
+                    Log.d(LaunchActivity.TAG, active.size() + " tasks still active, not stopping");
                 }
             }
         }, intent);
     }
 
-    /**
-     * Don't override this - instead implement onHandleIntent.
-     */
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    public final int onStartCommand(Intent intent, int flags, int startId) {
         onStart(intent, startId);
         return START_NOT_STICKY;
     }
 
     @Override
     public void onDestroy() {
-        Log.i(LaunchActivity.TAG, "stopping " + getClass().getName());
+        Log.d(LaunchActivity.TAG, "stopping " + getClass().getName());
         for (AsyncTask<Intent,Void,Void> at : active) {
             at.cancel(true);
         }
-        Log.i(LaunchActivity.TAG, "stopped " + getClass().getName());
+        Log.d(LaunchActivity.TAG, "stopped " + getClass().getName());
     }
 
     @Override
