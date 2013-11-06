@@ -25,6 +25,19 @@
         </activity>
 
         <!--
+        CHAPTER1: HURTING THE MAIN THREAD EXAMPLES
+        -->
+        <activity
+            android:name=".chapter1.example1.ANRActivity"
+            android:label="@string/ch1_ex1"
+            android:description="@string/ch1_ex1_desc"/>
+
+        <activity
+            android:name=".chapter1.example2.ChoreographerActivity"
+            android:label="@string/ch1_ex2"
+            android:description="@string/ch1_ex2_desc"/>
+
+        <!--
         CHAPTER2: ASYNCTASK EXAMPLES
         -->
         <activity

@@ -61,19 +61,17 @@ public class NasaImageOfTheDayActivity extends Activity {
 
             @Override
             public void onSuccess(NasaRSS rss) {
-                for (int i=0; i<rss.size(); i++)
-                    handle(i, rss.get(i));
+                for (int i=0; i<rss.size(); i++) {
+                    NasaRSS.Item item = rss.get(i);
+                    displayText(i, item.url);
+                    downloadImage(i, item.url, 8);
+                }
             }
 
-            private void handle(int i, NasaRSS.Item item) {
-                displayText(i, item.url);
-                downloadImage(i, item.url, 8);
-                getRow(i).setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        // todo
-                    }
-                });
+            private void displayText(int i, String name) {
+                name = name.substring(name.lastIndexOf("/")+1, name.length());
+                TextView text = (TextView) getRow(i).findViewById(R.id.text);
+                text.setText(name);
             }
         }.execute(this);
     }
@@ -82,25 +80,24 @@ public class NasaImageOfTheDayActivity extends Activity {
         new DownloadTask<Bitmap>(url) {
             @Override
             public Bitmap convertInBackground(Uri data) throws Exception {
-                return loadBitmap(data, sampleSize);
+                InputStream in = null;
+                try {
+                    BitmapFactory.Options opts = new BitmapFactory.Options();
+                    opts.inSampleSize = sampleSize;
+                    in = openStream(data);
+                    return BitmapFactory.decodeStream(in, null, opts);
+                } finally {
+                    Streams.close(in);
+                }
             }
 
             @Override
             public void onSuccess(Bitmap data) {
-                displayImage(i, data);
+                ImageView image = (ImageView)
+                    getRow(i).findViewById(R.id.img);
+                image.setImageBitmap(data);
             }
         }.execute(this);
-    }
-
-    private void displayText(int i, String name) {
-        name = name.substring(name.lastIndexOf("/")+1, name.length());
-        TextView text = (TextView) getRow(i).findViewById(R.id.text);
-        text.setText(name);
-    }
-
-    private void displayImage(int i, Bitmap bitmap) {
-        ImageView image = (ImageView) getRow(i).findViewById(R.id.img);
-        image.setImageBitmap(bitmap);
     }
 
     private ViewGroup getRow(int i) {
@@ -116,17 +113,4 @@ public class NasaImageOfTheDayActivity extends Activity {
             return null;
         }
     }
-
-    protected Bitmap loadBitmap(Uri data, int sampleSize) {
-        InputStream in = null;
-        try {
-            BitmapFactory.Options opts = new BitmapFactory.Options();
-            opts.inSampleSize = sampleSize;
-            in = openStream(data);
-            return BitmapFactory.decodeStream(in, null, opts);
-        } finally {
-            Streams.close(in);
-        }
-    }
-
 }

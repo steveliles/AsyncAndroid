@@ -3,6 +3,13 @@
 
     <string name="app_name">Android Concurrency Examples</string>
 
+    <!-- chapter1 -->
+    <string name="ch1_ex1">Chapter1 Example1</string>
+    <string name="ch1_ex1_desc">Triggers an Application Not Responding dialog (which will crash the app!)</string>
+    <string name="ch1_ex2">Chapter1 Example2</string>
+    <string name="ch1_ex2_desc">Hog the cpu with a high priority "background" thread - causes UI "jank"</string>
+    <string name="logcat_choreographer">Watch logcat from your IDE while running this activity - expect to see the choreographer complaining about skipped frames with messages like: </string>
+
     <!-- chapter2 -->
     <string name="ch2_ex1">Chapter2 Example1</string>
     <string name="ch2_ex1_desc">Find the nth probable prime in the background using AsyncTask</string>
