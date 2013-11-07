@@ -11,20 +11,30 @@ import java.io.OutputStream;
 import java.net.URL;
 
 /**
- * Very simple cache that makes no attempt whatsoever
- * to expire old entries. This is NOT production quality!
+ * Very simple cache that uses a constant expiry time
+ * set as a constructor parameter.
  */
 public class LocalDownloadCache {
 
     private File dir;
+    private long expiry;
 
-    public LocalDownloadCache(Context ctx) {
+    public LocalDownloadCache(long expiry, Context ctx) {
+        this.expiry = expiry;
         dir = ctx.getCacheDir();
     }
 
     public boolean exists(URL downloadURL) {
         File f = getCacheFile(downloadURL);
-        return f.exists();
+        if (f.exists()) {
+            if (System.currentTimeMillis() - f.lastModified() > expiry) {
+                f.delete();
+                return false;
+            } else {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Uri get(URL downloadURL)
