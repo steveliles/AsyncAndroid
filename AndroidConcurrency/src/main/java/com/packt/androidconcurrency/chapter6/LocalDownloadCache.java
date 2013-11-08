@@ -13,7 +13,7 @@ import java.io.OutputStream;
  * Very simple cache that uses a constant expiry time of 5 minutes.
  * Note that nothing is expired from the cache unless it is requested
  * again, which is very poor behaviour from a cache - this is  NOT a
- * production quality download cache!
+ * production quality startDownload cache!
  */
 public class LocalDownloadCache {
 

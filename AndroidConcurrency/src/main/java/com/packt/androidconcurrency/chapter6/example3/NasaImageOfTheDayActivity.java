@@ -1,4 +1,4 @@
-package com.packt.androidconcurrency.chapter6.example4;
+package com.packt.androidconcurrency.chapter6.example3;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -27,7 +27,7 @@ public class NasaImageOfTheDayActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.ch6_example4_layout);
+        setContentView(R.layout.ch6_example3_layout);
     }
 
     @Override
@@ -41,6 +41,9 @@ public class NasaImageOfTheDayActivity extends Activity {
     protected void onPause() {
         super.onPause();
 
+        // prevent memory leaks by clearing the references
+        // to the callbacks which, being non-static inner
+        // classes, have an implicit reference to the Activity.
         DownloadTask.clearCallbacks();
     }
 

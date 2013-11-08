@@ -1,30 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/prime_to_find"
+    <ImageView
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_launcher"
+        android:scaleType="center"/>
+
+    <TextView
+        android:id="@+id/wait"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/wait"/>
+
+    <ImageView
+        android:id="@+id/img"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/comma_nth_prime"
-        android:inputType="numberDecimal"
-        android:digits="0123456789.,"/>
+        android:layout_height="match_parent"
+        android:scaleType="centerInside"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"/>
 
-    <Button
-        android:id="@+id/go"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/go"
-        android:layout_gravity="center"/>
+</FrameLayout>
 
-    <LinearLayout
-        android:id="@+id/result"
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
-
-</LinearLayout>

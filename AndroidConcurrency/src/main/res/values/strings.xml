@@ -87,13 +87,10 @@
     <string name="ch6_ex1_desc">Invoke a Service with Intents, perform multiple concurrent calculations, return results via messenger</string>
 
     <string name="ch6_ex2">Chapter6 Example2</string>
-    <string name="ch6_ex2_desc">Invoke a Service via Messenger, perform multiple concurrent calculations, return results via messenger</string>
+    <string name="ch6_ex2_desc">Invoke a Service with Intents, perform large image download, return Bitmap for display via messenger</string>
 
     <string name="ch6_ex3">Chapter6 Example3</string>
-    <string name="ch6_ex3_desc">Invoke a Service with Intents, perform large image download, return Bitmap for display via messenger</string>
-
-    <string name="ch6_ex4">Chapter6 Example4</string>
-    <string name="ch6_ex4_desc">Uses a Service to download and parse RSS, then download and display images from RSS</string>
+    <string name="ch6_ex3_desc">Uses a Service to download and parse RSS, then download and display images from RSS</string>
 
     <!-- chapter7 -->
 

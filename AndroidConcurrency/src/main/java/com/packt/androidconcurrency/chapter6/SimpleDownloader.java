@@ -10,16 +10,34 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class SimpleDownloader {
 
     private LocalDownloadCache cache;
+    private ConcurrentHashMap<String,String> locks;
 
     public SimpleDownloader(Context ctx){
         cache = new LocalDownloadCache(ctx);
+        locks = new ConcurrentHashMap<String,String>();
     }
 
     public Uri download(String from) throws IOException {
+        locks.putIfAbsent(from,from);
+        from = locks.get(from);
+        try {
+            synchronized(from) {
+                if (!cache.exists(from)) {
+                   doDownload(from);
+                }
+                return cache.get(from);
+            }
+        } finally {
+            locks.remove(from);
+        }
+    }
+
+    private void doDownload(String from) throws IOException {
         URL url = new URL(from);
         HttpURLConnection conn = (HttpURLConnection)url.openConnection();
         try {
@@ -32,7 +50,6 @@ public class SimpleDownloader {
                 out.flush();
             }
             Streams.close(in, out);
-            return cache.get(from);
         } finally {
             conn.disconnect();
         }

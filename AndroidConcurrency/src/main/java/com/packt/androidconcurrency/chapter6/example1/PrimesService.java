@@ -7,16 +7,33 @@ import android.os.RemoteException;
 import android.util.Log;
 
 import com.packt.androidconcurrency.LaunchActivity;
-import com.packt.androidconcurrency.chapter6.AsyncTaskIntentService;
+import com.packt.androidconcurrency.chapter6.ConcurrentIntentService;
 
 import java.math.BigInteger;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 
-public class PrimesAsyncTaskIntentService extends AsyncTaskIntentService {
+public class PrimesService extends ConcurrentIntentService {
 
+    private static final int MAX_CONCURRENT_CALCULATIONS = 5;
     public static final String PARAM = "prime_to_find";
     public static final String MESSENGER = "messenger";
     public static final int INVALID = "invalid".hashCode();
     public static final int RESULT = "nth_prime".hashCode();
+
+    public PrimesService() {
+        super(Executors.newFixedThreadPool(
+            MAX_CONCURRENT_CALCULATIONS,
+            new ThreadFactory(){
+                @Override
+                public Thread newThread(Runnable r) {
+                    Thread t = new Thread(r);
+                    t.setPriority(Thread.MIN_PRIORITY);
+                    t.setName("download");
+                    return t;
+                }
+            }));
+    }
 
     @Override
     protected void onHandleIntent(Intent intent) {

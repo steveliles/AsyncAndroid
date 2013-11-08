@@ -1,9 +1,13 @@
 package com.packt.androidconcurrency.chapter6;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
-import android.os.*;
+import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.os.Messenger;
 import android.util.Log;
 import android.util.SparseArray;
 
@@ -38,7 +42,7 @@ public abstract class DownloadTask<T> {
     public abstract void onSuccess(T result);
 
     public void onFailure() {
-        Log.w(LaunchActivity.TAG, "download failed: " + url);
+        Log.w(LaunchActivity.TAG, "startDownload failed: " + url);
     }
 
     public void onError(Exception exc) {
@@ -59,12 +63,9 @@ public abstract class DownloadTask<T> {
                 }
             });
         } else {
-            Intent intent = new Intent(ctx, ConcurrentDownloadService.class);
-            intent.putExtra(ConcurrentDownloadService.DOWNLOAD_FROM_URL, url);
-            intent.putExtra(ConcurrentDownloadService.REQUEST_ID, url.hashCode());
-            intent.putExtra(ConcurrentDownloadService.MESSENGER, messenger);
-            ctx.startService(intent);
-            tasks.put(url.hashCode(), this);
+            int requestId = ConcurrentDownloadService
+                .startDownload(url, ctx, messenger);
+            tasks.put(requestId, this);
         }
     }
 

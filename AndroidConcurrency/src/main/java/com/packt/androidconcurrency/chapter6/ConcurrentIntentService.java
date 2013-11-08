@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.util.Log;
-import android.util.SparseArray;
 
 import com.packt.androidconcurrency.LaunchActivity;
 
@@ -28,8 +27,8 @@ public abstract class ConcurrentIntentService extends Service {
     public static final String REQUEST_ID = "request_id";
 
     private final CompletionHandler handler = new CompletionHandler();
-    private final SparseArray<Runnable> active = new SparseArray<Runnable>();
     private final ExecutorService executor;
+    private int counter;
 
     public ConcurrentIntentService(ExecutorService executor) {
         this.executor = executor;
@@ -41,12 +40,6 @@ public abstract class ConcurrentIntentService extends Service {
      * When all requests have been handled, this Service stops itself,
      * so you should not call {@link #stopSelf}.
      *
-     * To prevent duplication of work, set an IntExtra on the Intent
-     * containing a REQUEST_ID which in some way represents or
-     * identifies the task - for example a hashcode of a URL that is
-     * to be downloaded. If a REQUEST_ID is _currently_ being processed,
-     * intents which arrive with the same id will be dropped.
-     *
      * @param intent The value passed to {@link
      *               android.content.Context#startService(android.content.Intent)}.
      */
@@ -54,22 +47,9 @@ public abstract class ConcurrentIntentService extends Service {
 
     @Deprecated
     @Override
-    public void onStart(Intent intent, int startId) {
-        int requestId = intent.getIntExtra(REQUEST_ID, -1);
-        if (requestId == -1)
-            requestId = intent.hashCode(); // extremely unlikely to clash with other requestId's
-
-        if (active.get(requestId) == null) {
-            Runnable task = newRunnable(intent);
-            active.put(requestId, task);
-            executor.execute(task);
-        } else {
-            Log.i(LaunchActivity.TAG, "request " + requestId + " currently running, not re-scheduling.");
-        }
-    }
-
-    private Runnable newRunnable(final Intent intent) {
-        return new Runnable(){
+    public void onStart(final Intent intent, int startId) {
+        counter++;
+        executor.execute(new Runnable(){
             @Override
             public void run() {
                 try {
@@ -78,20 +58,13 @@ public abstract class ConcurrentIntentService extends Service {
                     handler.sendMessage(Message.obtain(handler));
                 }
             }
-        };
+        });
     }
 
     @Override
     public final int onStartCommand(Intent intent, int flags, int startId) {
         onStart(intent, startId);
         return START_NOT_STICKY;
-    }
-
-    @Override
-    public void onDestroy() {
-        Log.d(LaunchActivity.TAG, "stopping " + getClass().getName());
-        executor.shutdown();
-        Log.d(LaunchActivity.TAG, "stopped " + getClass().getName());
     }
 
     @Override
@@ -102,11 +75,11 @@ public abstract class ConcurrentIntentService extends Service {
     private class CompletionHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
-            if (active.size() == 0) {
-                Log.d(LaunchActivity.TAG, "no more tasks, stopping");
+            if (--counter == 0) {
+                Log.i(LaunchActivity.TAG, "no more tasks, stopping");
                 stopSelf();
             } else {
-                Log.d(LaunchActivity.TAG, active.size() + " active tasks");
+                Log.i(LaunchActivity.TAG, counter + " active tasks");
             }
         }
     }

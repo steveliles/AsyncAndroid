@@ -1,7 +1,6 @@
-package com.packt.androidconcurrency.chapter6.example3;
+package com.packt.androidconcurrency.chapter6.example2;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,7 +11,7 @@ import android.widget.ImageView;
 
 import com.packt.androidconcurrency.LaunchActivity;
 import com.packt.androidconcurrency.R;
-import com.packt.androidconcurrency.chapter6.AsyncTaskDownloadService;
+import com.packt.androidconcurrency.chapter6.ConcurrentDownloadService;
 
 public class DownloadActivity extends Activity {
 
@@ -26,7 +25,7 @@ public class DownloadActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.ch6_example3_layout);
+        setContentView(R.layout.ch6_example2_layout);
     }
 
     @Override
@@ -35,11 +34,7 @@ public class DownloadActivity extends Activity {
 
         handler.attach((ImageView)findViewById(R.id.img));
 
-        Intent intent = new Intent(this, AsyncTaskDownloadService.class);
-        intent.putExtra(AsyncTaskDownloadService.DOWNLOAD_FROM_URL, URL);
-        intent.putExtra(AsyncTaskDownloadService.REQUEST_ID, 1);
-        intent.putExtra(AsyncTaskDownloadService.MESSENGER, messenger);
-        startService(intent);
+        ConcurrentDownloadService.startDownload(URL, this, messenger);
     }
 
     @Override
@@ -54,11 +49,11 @@ public class DownloadActivity extends Activity {
 
         @Override
         public void handleMessage(Message message) {
-            if (message.what == AsyncTaskDownloadService.SUCCESSFUL) {
+            if (message.what == ConcurrentDownloadService.SUCCESSFUL) {
                 if (view != null)
                     view.setImageURI((Uri)message.obj);
             } else {
-                Log.w(LaunchActivity.TAG, "download failed :(");
+                Log.w(LaunchActivity.TAG, "startDownload failed :(");
             }
         }
 

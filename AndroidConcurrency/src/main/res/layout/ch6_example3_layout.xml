@@ -1,31 +1,54 @@
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/root"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 
-    <ImageView
-        android:id="@+id/loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_launcher"
-        android:scaleType="center"/>
-
-    <TextView
-        android:id="@+id/wait"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/wait"/>
-
-    <ImageView
-        android:id="@+id/img"
+    <LinearLayout
+        android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerInside"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"/>
+        android:orientation="vertical"
+        android:padding="1dp">
 
-</FrameLayout>
+        <include
+            layout="@layout/ch6_example3_row_img_right"
+            android:id="@+id/row1" />
+
+        <include
+            layout="@layout/ch6_example3_row_img_left"
+            android:id="@+id/row2" />
+
+        <include
+            layout="@layout/ch6_example3_row_img_right"
+            android:id="@+id/row3" />
+
+        <include
+            layout="@layout/ch6_example3_row_img_left"
+            android:id="@+id/row4" />
+
+        <include
+            layout="@layout/ch6_example3_row_img_right"
+            android:id="@+id/row5" />
+
+        <include
+            layout="@layout/ch6_example3_row_img_left"
+            android:id="@+id/row6" />
+
+        <include
+            layout="@layout/ch6_example3_row_img_right"
+            android:id="@+id/row7" />
+
+        <include
+            layout="@layout/ch6_example3_row_img_left"
+            android:id="@+id/row8" />
+
+        <include
+            layout="@layout/ch6_example3_row_img_right"
+            android:id="@+id/row9" />
+
+        <include
+            layout="@layout/ch6_example3_row_img_left"
+            android:id="@+id/row10" />
+
+    </LinearLayout>
+</ScrollView>
 
