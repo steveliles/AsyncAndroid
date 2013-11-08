@@ -31,7 +31,7 @@ public abstract class AsyncTaskIntentService extends Service {
     /**
      * Runs in the background using AsyncTask, using up to 128 threads.
      *
-     * When all requests have been handled, the IntentService stops itself,
+     * When all requests have been handled, this Service stops itself,
      * so you should not call {@link #stopSelf}.
      *
      * @param intent The value passed to {@link

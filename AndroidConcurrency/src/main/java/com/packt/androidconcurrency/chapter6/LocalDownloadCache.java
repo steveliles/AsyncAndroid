@@ -8,26 +8,27 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.net.URL;
 
 /**
- * Very simple cache that uses a constant expiry time
- * set as a constructor parameter.
+ * Very simple cache that uses a constant expiry time of 5 minutes.
+ * Note that nothing is expired from the cache unless it is requested
+ * again, which is very poor behaviour from a cache - this is  NOT a
+ * production quality download cache!
  */
 public class LocalDownloadCache {
 
-    private File dir;
-    private long expiry;
+    public static final long FIVE_MINUTES = 5L * 60L * 1000L;
 
-    public LocalDownloadCache(long expiry, Context ctx) {
-        this.expiry = expiry;
+    private File dir;
+
+    public LocalDownloadCache(Context ctx) {
         dir = ctx.getCacheDir();
     }
 
-    public boolean exists(URL downloadURL) {
-        File f = getCacheFile(downloadURL);
+    public boolean exists(String url) {
+        File f = getCacheFile(url);
         if (f.exists()) {
-            if (System.currentTimeMillis() - f.lastModified() > expiry) {
+            if (System.currentTimeMillis() - f.lastModified() > FIVE_MINUTES) {
                 f.delete();
                 return false;
             } else {
@@ -37,21 +38,20 @@ public class LocalDownloadCache {
         return false;
     }
 
-    public Uri get(URL downloadURL)
+    public Uri get(String url)
     throws IOException {
-        File f = getCacheFile(downloadURL);
+        File f = getCacheFile(url);
         return Uri.fromFile(f);
     }
 
-    public OutputStream getOutputStream(URL downloadURL)
+    public OutputStream getOutputStream(String url)
     throws IOException {
-        File f = getCacheFile(downloadURL);
+        File f = getCacheFile(url);
         return new BufferedOutputStream(new FileOutputStream(f));
     }
 
-    private File getCacheFile(URL downloadURL) {
-        String name = downloadURL.getFile();
-        name = name.substring(name.lastIndexOf("/")+1, name.length());
-        return new File(dir, downloadURL.hashCode() + "_" + name);
+    private File getCacheFile(String url) {
+        String name = url.substring(url.lastIndexOf("/")+1, url.length());
+        return new File(dir, url.hashCode() + "_" + name);
     }
 }

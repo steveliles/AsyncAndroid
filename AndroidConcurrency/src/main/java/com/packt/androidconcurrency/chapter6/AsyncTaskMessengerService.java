@@ -42,6 +42,11 @@ public abstract class AsyncTaskMessengerService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         bound = true;
+
+        // when a client binds we'll send back a binder
+        // to the messenger so that the client can send
+        // messages directly to the AsyncTaskHandler
+        // instance wrapped by the messenger.
         return messenger.getBinder();
     }
 
@@ -58,6 +63,13 @@ public abstract class AsyncTaskMessengerService extends Service {
         return true;
     }
 
+    /**
+     * Handler class that receives messages via the
+     * messenger in the enclosing AsyncTaskMessengerService
+     * the executes the service's doInBackground method,
+     * parameterised with the data from the received message.
+     * Execution is done in the background using AsyncTask.
+     */
     public class AsyncTaskHandler extends Handler {
 
         @Override

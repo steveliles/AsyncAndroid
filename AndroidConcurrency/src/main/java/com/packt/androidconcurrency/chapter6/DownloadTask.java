@@ -59,10 +59,10 @@ public abstract class DownloadTask<T> {
                 }
             });
         } else {
-            Intent intent = new Intent(ctx, DownloadService.class);
-            intent.putExtra(DownloadService.DOWNLOAD_FROM_URL, url);
-            intent.putExtra(DownloadService.REQUEST_ID, url.hashCode());
-            intent.putExtra(DownloadService.MESSENGER, messenger);
+            Intent intent = new Intent(ctx, ConcurrentDownloadService.class);
+            intent.putExtra(ConcurrentDownloadService.DOWNLOAD_FROM_URL, url);
+            intent.putExtra(ConcurrentDownloadService.REQUEST_ID, url.hashCode());
+            intent.putExtra(ConcurrentDownloadService.MESSENGER, messenger);
             ctx.startService(intent);
             tasks.put(url.hashCode(), this);
         }
@@ -84,7 +84,7 @@ public abstract class DownloadTask<T> {
             DownloadTask task = tasks.get(msg.arg1);
             if (task != null) {
                 try {
-                    if (DownloadService.SUCCESSFUL == msg.what) {
+                    if (ConcurrentDownloadService.SUCCESSFUL == msg.what) {
                         convert(task, (Uri)msg.obj);
                     } else {
                         task.onFailure();

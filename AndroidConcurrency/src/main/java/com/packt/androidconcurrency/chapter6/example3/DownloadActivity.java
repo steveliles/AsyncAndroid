@@ -12,7 +12,7 @@ import android.widget.ImageView;
 
 import com.packt.androidconcurrency.LaunchActivity;
 import com.packt.androidconcurrency.R;
-import com.packt.androidconcurrency.chapter6.DownloadService;
+import com.packt.androidconcurrency.chapter6.AsyncTaskDownloadService;
 
 public class DownloadActivity extends Activity {
 
@@ -35,10 +35,10 @@ public class DownloadActivity extends Activity {
 
         handler.attach((ImageView)findViewById(R.id.img));
 
-        Intent intent = new Intent(this, DownloadService.class);
-        intent.putExtra(DownloadService.DOWNLOAD_FROM_URL, URL);
-        intent.putExtra(DownloadService.REQUEST_ID, 1);
-        intent.putExtra(DownloadService.MESSENGER, messenger);
+        Intent intent = new Intent(this, AsyncTaskDownloadService.class);
+        intent.putExtra(AsyncTaskDownloadService.DOWNLOAD_FROM_URL, URL);
+        intent.putExtra(AsyncTaskDownloadService.REQUEST_ID, 1);
+        intent.putExtra(AsyncTaskDownloadService.MESSENGER, messenger);
         startService(intent);
     }
 
@@ -54,7 +54,7 @@ public class DownloadActivity extends Activity {
 
         @Override
         public void handleMessage(Message message) {
-            if (message.what == DownloadService.SUCCESSFUL) {
+            if (message.what == AsyncTaskDownloadService.SUCCESSFUL) {
                 if (view != null)
                     view.setImageURI((Uri)message.obj);
             } else {
