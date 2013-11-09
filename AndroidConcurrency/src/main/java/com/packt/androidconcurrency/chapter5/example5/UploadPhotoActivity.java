@@ -1,4 +1,4 @@
-package com.packt.androidconcurrency.chapter5.example3;
+package com.packt.androidconcurrency.chapter5.example5;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -27,7 +27,7 @@ implements LoaderManager.LoaderCallbacks<Cursor> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.ch5_example2_layout);
+        setContentView(R.layout.ch5_example5_layout);
 
         adapter = new MediaCursorAdapter(
             getApplicationContext(),

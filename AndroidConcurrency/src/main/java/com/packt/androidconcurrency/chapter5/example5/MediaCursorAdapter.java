@@ -1,4 +1,4 @@
-package com.packt.androidconcurrency.chapter5.example3;
+package com.packt.androidconcurrency.chapter5.example5;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -34,7 +34,7 @@ public class MediaCursorAdapter extends CursorAdapter {
     @Override
     public View newView(final Context ctx, Cursor crsr, ViewGroup parent) {
         ImageView view = (ImageView) inf.
-            inflate(R.layout.ch5_example2_cell, parent, false);
+            inflate(R.layout.ch5_example5_cell, parent, false);
         view.setId(MediaCursorAdapter.class.hashCode() + ++count);
         mgr.initLoader(
             view.getId(), null, new ThumbnailCallbacks(ctx, view));

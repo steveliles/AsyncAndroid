@@ -142,31 +142,40 @@
         CHAPTER5: INTENTSERVICE EXAMPLES
         -->
         <service
-            android:name=".chapter5.example1.PrimesIntentService"
+            android:name=".chapter5.example1.PrimesIntentServiceWithPendingIntent"
             android:exported="false"/>
 
         <activity
-            android:name=".chapter5.example1.PrimesActivity"
+            android:name=".chapter5.example1.PrimesActivityWithPendingIntent"
             android:label="@string/ch5_ex1"
             android:description="@string/ch5_ex1_desc"/>
 
         <service
-            android:name=".chapter5.example2.PrimesIntentService"
+            android:name=".chapter5.example3.PrimesIntentServiceWithMessenger"
             android:exported="false"/>
 
         <activity
-            android:name=".chapter5.example2.PrimesActivity"
-            android:label="@string/ch5_ex2"
-            android:description="@string/ch5_ex2_desc"/>
-
-        <service
-            android:name=".chapter5.example3.UploadIntentService"
-            android:exported="false"/>
-
-        <activity
-            android:name=".chapter5.example3.UploadPhotoActivity"
+            android:name=".chapter5.example3.PrimesActivityWithMessenger"
             android:label="@string/ch5_ex3"
             android:description="@string/ch5_ex3_desc"/>
+
+        <service
+            android:name=".chapter5.example4.PrimesIntentServiceWithBroadcast"
+            android:exported="false"/>
+
+        <activity
+            android:name=".chapter5.example4.PrimesActivityWithBroadcastReceiver"
+            android:label="@string/ch5_ex4"
+            android:description="@string/ch5_ex4_desc"/>
+
+        <service
+            android:name=".chapter5.example5.UploadIntentService"
+            android:exported="false"/>
+
+        <activity
+            android:name=".chapter5.example5.UploadPhotoActivity"
+            android:label="@string/ch5_ex5"
+            android:description="@string/ch5_ex5_desc"/>
 
         <!--
         CHAPTER6: SERVICE EXAMPLES

@@ -1,10 +1,9 @@
-package com.packt.androidconcurrency.chapter5.example2;
+package com.packt.androidconcurrency.chapter5.example4;
 
 import android.app.IntentService;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Handler;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 
@@ -12,14 +11,14 @@ import com.packt.androidconcurrency.R;
 
 import java.math.BigInteger;
 
-public class PrimesIntentService extends IntentService {
+public class PrimesIntentServiceWithBroadcast extends IntentService {
 
-    public static final String PRIMES_BROADCAST = "androidconcurrency.chapter5.example1.BROADCAST";
+    public static final String PRIMES_BROADCAST = "androidconcurrency.chapter5.example4.BROADCAST";
     public static final String PARAM = "prime_to_find";
     public static final String RESULT = "nth_prime";
     public static final String HANDLED = "intent_handled";
 
-    public PrimesIntentService() {
+    public PrimesIntentServiceWithBroadcast() {
         super("primes");
     }
 

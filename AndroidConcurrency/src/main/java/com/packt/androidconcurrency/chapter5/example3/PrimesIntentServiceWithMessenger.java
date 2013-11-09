@@ -1,30 +1,24 @@
-package com.packt.androidconcurrency.chapter5.example1;
+package com.packt.androidconcurrency.chapter5.example3;
 
 import android.app.IntentService;
-import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Handler;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.packt.androidconcurrency.LaunchActivity;
-import com.packt.androidconcurrency.R;
 
 import java.math.BigInteger;
 
-public class PrimesIntentService extends IntentService {
+public class PrimesIntentServiceWithMessenger extends IntentService {
 
     public static final String PARAM = "prime_to_find";
     public static final String MESSENGER = "messenger";
     public static final int INVALID = "invalid".hashCode();
     public static final int RESULT = "nth_prime".hashCode();
 
-    public PrimesIntentService() {
+    public PrimesIntentServiceWithMessenger() {
         super("primes");
     }
 

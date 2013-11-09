@@ -1,4 +1,4 @@
-package com.packt.androidconcurrency.chapter5.example3;
+package com.packt.androidconcurrency.chapter5.example5;
 
 import android.content.ContentResolver;
 import android.net.Uri;
@@ -7,7 +7,6 @@ import android.util.Log;
 
 import com.packt.androidconcurrency.Streams;
 
-import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
