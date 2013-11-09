@@ -48,16 +48,12 @@ public class PrimesActivityWithPendingIntent extends Activity{
     }
 
     private void triggerIntentService(int primeToFind) {
+        PendingIntent pendingResult = createPendingResult(
+            PrimesIntentServiceWithPendingIntent.RESULT_CODE,
+            new Intent(), 0);
         Intent intent = new Intent(this, PrimesIntentServiceWithPendingIntent.class);
         intent.putExtra(PrimesIntentServiceWithPendingIntent.PARAM, primeToFind);
-        intent.putExtra(PrimesIntentServiceWithPendingIntent.PENDING_RESULT, preparePendingResult());
+        intent.putExtra(PrimesIntentServiceWithPendingIntent.PENDING_RESULT, pendingResult);
         startService(intent);
-    }
-
-    private PendingIntent preparePendingResult(){
-        return createPendingResult(
-            PrimesIntentServiceWithPendingIntent.RESULT_CODE,
-            new Intent(), 0
-        );
     }
 }
