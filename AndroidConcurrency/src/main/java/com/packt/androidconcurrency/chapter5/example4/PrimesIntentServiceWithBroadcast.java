@@ -39,7 +39,7 @@ public class PrimesIntentServiceWithBroadcast extends IntentService {
         }
 
         if (!broadcastResultHandled(prime.toString()))
-            notifyResult(primeToFind, prime.toString());
+            notifyUser(primeToFind, prime.toString());
     }
 
     private void invalidRequest() {
@@ -55,7 +55,7 @@ public class PrimesIntentServiceWithBroadcast extends IntentService {
         return intent.getBooleanExtra(HANDLED, false);
     }
 
-    private void notifyResult(int primeToFind, String result) {
+    private void notifyUser(int primeToFind, String result) {
         String msg = String.format("The %sth prime is %s",
             primeToFind, result);
         NotificationCompat.Builder builder =

@@ -12,7 +12,6 @@ public class NasaRSS implements Parcelable {
         public String url;
         public String title;
         public Item(String url, String title) {
-            System.out.println(url + "/" + title);
             this.url = url;
             this.title = title;
         }

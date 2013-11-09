@@ -151,6 +151,15 @@
             android:description="@string/ch5_ex1_desc"/>
 
         <service
+            android:name=".chapter5.example2.PrimesIntentServiceWithNotification"
+            android:exported="false"/>
+
+        <activity
+            android:name=".chapter5.example2.PrimesActivityWithNotification"
+            android:label="@string/ch5_ex2"
+            android:description="@string/ch5_ex2_desc"/>
+
+        <service
             android:name=".chapter5.example3.PrimesIntentServiceWithMessenger"
             android:exported="false"/>
 
