@@ -65,15 +65,16 @@ public class NasaImageOfTheDayActivity extends Activity {
             public void onSuccess(NasaRSS rss) {
                 for (int i=0; i<rss.size(); i++) {
                     NasaRSS.Item item = rss.get(i);
-                    displayText(i, item.url);
+                    displayText(i, item.title);
                     downloadImage(i, item.url, 8);
                 }
             }
 
-            private void displayText(int i, String name) {
-                name = name.substring(name.lastIndexOf("/")+1, name.length());
-                TextView text = (TextView) getRow(i).findViewById(R.id.text);
-                text.setText(name);
+            private void displayText(int i, String text) {
+                if (text != null) {
+                    TextView view = (TextView) getRow(i).findViewById(R.id.text);
+                    view.setText(text);
+                }
             }
         }.execute(this);
     }

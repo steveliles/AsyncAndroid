@@ -33,13 +33,35 @@ public class NasaRSSParser {
     class NasaRSSHandler extends DefaultHandler {
         NasaRSS result = new NasaRSS();
 
+        private String el;
+        private String url;
+        private StringBuilder title = new StringBuilder();
+
         @Override
         public void startElement(
                 String uri, String localName,
                 String qName, Attributes attributes
         ) throws SAXException {
-            if ("enclosure".equals(qName))
-                result.add(attributes.getValue("url"), "todo");
+            if ("item".equals(qName)) {
+                title.setLength(0);
+                url = null;
+            } else if ("enclosure".equals(qName)) {
+                url = attributes.getValue("url");
+            }
+            el = localName;
+        }
+
+        @Override
+        public void characters(char[] ch, int start, int length) throws SAXException {
+            if ("title".equals(el))
+                title.append(ch,start,length);
+        }
+
+        @Override
+        public void endElement(String uri, String localName, String qName) throws SAXException {
+            if ("item".equals(localName) && url != null) {
+                result.add(url, title.toString());
+            }
         }
     }
 
