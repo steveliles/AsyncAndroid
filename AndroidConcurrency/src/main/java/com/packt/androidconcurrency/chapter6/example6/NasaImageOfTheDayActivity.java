@@ -1,4 +1,4 @@
-package com.packt.androidconcurrency.chapter6.example4;
+package com.packt.androidconcurrency.chapter6.example6;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.packt.androidconcurrency.LaunchActivity;
 import com.packt.androidconcurrency.R;
 import com.packt.androidconcurrency.Streams;
-import com.packt.androidconcurrency.chapter6.DownloadTask;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,7 +26,7 @@ public class NasaImageOfTheDayActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.ch6_example4_layout);
+        setContentView(R.layout.ch6_example6_layout);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.packt.androidconcurrency.chapter6;
+package com.packt.androidconcurrency.chapter6.example6;
 
 import android.content.Context;
 import android.net.Uri;
@@ -12,7 +12,51 @@ import android.util.Log;
 import android.util.SparseArray;
 
 import com.packt.androidconcurrency.LaunchActivity;
+import com.packt.androidconcurrency.chapter6.ConcurrentDownloadService;
 
+/**
+ * A simple class that encapsulates invoking the ConcurrentDownloadService
+ * with a URL to download, collecting the response from the download service
+ * and doing some data-handling work in the background using AsyncTask, for
+ * example to load the downloaded data into a Bitmap object off the main thread.
+ *
+ * This class is modelled on AsyncTask, so it should feel very familiar.
+ *
+ * It can be used like this:
+ *
+ * <pre>
+ * new DownloadTask&lt;Bitmap&gt;(url) {
+ *     @Override
+ *     public Bitmap convertInBackground(Uri data) throws Exception {
+ *         InputStream in = null;
+ *         try {
+ *             return BitmapFactory.decodeStream(in=openStream(data));
+ *         } finally {
+ *             Streams.close(in);
+ *         }
+ *     }
+ *
+ *     @Override
+ *     public void onSuccess(Bitmap data) {
+ *         ImageView image = (ImageView) findViewById(R.id.img);
+ *         image.setImageBitmap(data);
+ *     }
+ * }.execute(context);
+ * </pre>
+ *
+ * To avoid memory leaks caused by DownloadTask's lingering after the enclosing
+ * Activity has finished or restarted, invoke DownloadTask.clearCallbacks() from
+ * onPause or onStop in the Activity.
+ *
+ * See NasaImageOfTheDayActivity for two example uses:
+ *  - download an RSS, then use the post-download background step to parse the XML
+ *    before handing over to the main thread for display.
+ *  - download images referenced by the RSS, then use the post-download step to
+ *    load the images into Bitmap objects and hand them over to the main thread
+ *    for display.
+ *
+ * @param <T> the target data-type that this task will convert downloaded data to.
+ */
 public abstract class DownloadTask<T> {
 
     private static final Handler handler = new DownloadTaskHandler(Looper.getMainLooper());
@@ -49,17 +93,16 @@ public abstract class DownloadTask<T> {
         Log.e(LaunchActivity.TAG, "conversion failed: " + url, exc);
     }
 
-    public void execute(Context ctx) {
+    public void execute(final Context ctx) {
         if (!isMainThread()) {
             // post to the main thread so that we're always
             // starting the service from the main thread and
             // so that we're always interacting with the 'tasks'
             // array from the main thread (so no sync needed).
-            final Context app = ctx.getApplicationContext();
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    DownloadTask.this.execute(app);
+                    DownloadTask.this.execute(ctx);
                 }
             });
         } else {

@@ -10,10 +10,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * Very simple cache that uses a constant expiry time of 5 minutes.
- * Note that nothing is expired from the cache unless it is requested
- * again, which is very poor behaviour from a cache - this is  NOT a
- * production quality startDownload cache!
+ * Very simple cache - most definitely not advised for
+ * production use!
  */
 public class LocalDownloadCache {
 
@@ -28,7 +26,7 @@ public class LocalDownloadCache {
     public boolean exists(String url) {
         File f = getCacheFile(url);
         if (f.exists()) {
-            if (System.currentTimeMillis() - f.lastModified() > FIVE_MINUTES) {
+            if (expired(f)) {
                 f.delete();
                 return false;
             } else {
@@ -48,6 +46,10 @@ public class LocalDownloadCache {
     throws IOException {
         File f = getCacheFile(url);
         return new BufferedOutputStream(new FileOutputStream(f));
+    }
+
+    private boolean expired(File f) {
+        return System.currentTimeMillis() - f.lastModified() > FIVE_MINUTES;
     }
 
     private File getCacheFile(String url) {

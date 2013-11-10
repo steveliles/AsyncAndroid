@@ -94,10 +94,16 @@
     <string name="ch6_ex2_desc">Obtain a local binding to a Service, invoke background work directly with "normal" java method invocations</string>
 
     <string name="ch6_ex3">Chapter6 Example3</string>
-    <string name="ch6_ex3_desc">Invoke a Service with Intents, perform large image download, return Bitmap for display via messenger</string>
+    <string name="ch6_ex3_desc">Obtain a local binding to a Service, invoke work with direction method invocation, return results via messenger</string>
 
     <string name="ch6_ex4">Chapter6 Example4</string>
-    <string name="ch6_ex4_desc">Uses a Service to download and parse RSS, then download and display images from RSS</string>
+    <string name="ch6_ex4_desc">Obtain a local binding to a Service, directly invoke work, return results by Broadcast or notification</string>
+
+    <string name="ch6_ex5">Chapter6 Example5</string>
+    <string name="ch6_ex5_desc">Invoke a Service with Intents, perform large image download, return Bitmap for display via messenger</string>
+
+    <string name="ch6_ex6">Chapter6 Example6</string>
+    <string name="ch6_ex6_desc">Uses a Service to download and parse RSS, then download and display images from RSS</string>
 
     <!-- chapter7 -->
 

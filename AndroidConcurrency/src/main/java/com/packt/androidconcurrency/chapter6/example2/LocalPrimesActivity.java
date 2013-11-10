@@ -17,7 +17,7 @@ import com.packt.androidconcurrency.R;
 
 import java.math.BigInteger;
 
-public class PrimesActivity extends Activity
+public class LocalPrimesActivity extends Activity
 implements LocalPrimesService.Callback {
 
     private LocalPrimesService service;
@@ -34,16 +34,15 @@ implements LocalPrimesService.Callback {
             @Override
             public void onClick(View v) {
                 if (service == null) {
-                    Toast.makeText(PrimesActivity.this, "service not bound", 5000).show();
-                }
-                else {
+                    Toast.makeText(LocalPrimesActivity.this, "service not bound", 5000).show();
+                } else {
                     TextView input = (TextView) findViewById(R.id.prime_to_find);
                     String[] values = input.getText().toString().split(",");
                     for (String value : values) {
                         if (value.trim().matches("[1-9]+[0-9]*")) {
-                            service.calculateNthPrime(Integer.parseInt(value), PrimesActivity.this);
+                            service.calculateNthPrime(Integer.parseInt(value), LocalPrimesActivity.this);
                         } else {
-                            Toast.makeText(PrimesActivity.this, "not a number!", 5000).show();
+                            Toast.makeText(LocalPrimesActivity.this, "not a number!", 5000).show();
                         }
                     }
                 }

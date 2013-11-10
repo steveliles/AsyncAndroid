@@ -10,43 +10,43 @@
         android:padding="1dp">
 
         <include
-            layout="@layout/ch6_example4_row_img_right"
+            layout="@layout/ch6_example6_row_img_right"
             android:id="@+id/row1" />
 
         <include
-            layout="@layout/ch6_example4_row_img_left"
+            layout="@layout/ch6_example6_row_img_left"
             android:id="@+id/row2" />
 
         <include
-            layout="@layout/ch6_example4_row_img_right"
+            layout="@layout/ch6_example6_row_img_right"
             android:id="@+id/row3" />
 
         <include
-            layout="@layout/ch6_example4_row_img_left"
+            layout="@layout/ch6_example6_row_img_left"
             android:id="@+id/row4" />
 
         <include
-            layout="@layout/ch6_example4_row_img_right"
+            layout="@layout/ch6_example6_row_img_right"
             android:id="@+id/row5" />
 
         <include
-            layout="@layout/ch6_example4_row_img_left"
+            layout="@layout/ch6_example6_row_img_left"
             android:id="@+id/row6" />
 
         <include
-            layout="@layout/ch6_example4_row_img_right"
+            layout="@layout/ch6_example6_row_img_right"
             android:id="@+id/row7" />
 
         <include
-            layout="@layout/ch6_example4_row_img_left"
+            layout="@layout/ch6_example6_row_img_left"
             android:id="@+id/row8" />
 
         <include
-            layout="@layout/ch6_example4_row_img_right"
+            layout="@layout/ch6_example6_row_img_right"
             android:id="@+id/row9" />
 
         <include
-            layout="@layout/ch6_example4_row_img_left"
+            layout="@layout/ch6_example6_row_img_left"
             android:id="@+id/row10" />
 
     </LinearLayout>

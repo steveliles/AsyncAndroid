@@ -21,7 +21,7 @@ public class PrimesActivityWithBroadcastReceiver extends Activity {
     private static final int RESULT_MSG = "result".hashCode();
 
     private static PrimesHandler handler = new PrimesHandler();
-    private BroadcastReceiver receiver;
+    private static BroadcastReceiver receiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +75,7 @@ public class PrimesActivityWithBroadcastReceiver extends Activity {
         startService(intent);
     }
 
-    private class NthPrimeReceiver extends BroadcastReceiver {
+    private static class NthPrimeReceiver extends BroadcastReceiver {
         private Handler handler;
         public NthPrimeReceiver(Handler handler) {
             this.handler = handler;

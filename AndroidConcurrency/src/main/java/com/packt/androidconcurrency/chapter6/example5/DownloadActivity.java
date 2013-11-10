@@ -1,4 +1,4 @@
-package com.packt.androidconcurrency.chapter6.example3;
+package com.packt.androidconcurrency.chapter6.example5;
 
 import android.app.Activity;
 import android.net.Uri;
@@ -25,7 +25,7 @@ public class DownloadActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.ch6_example3_layout);
+        setContentView(R.layout.ch6_example5_layout);
     }
 
     @Override
