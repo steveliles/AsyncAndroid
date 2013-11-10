@@ -47,7 +47,7 @@ public class PrimesActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        handler.attach((LinearLayout)findViewById(R.id.result));
+        handler.attach((LinearLayout)findViewById(R.id.results));
     }
 
     @Override
@@ -57,9 +57,9 @@ public class PrimesActivity extends Activity {
     }
 
     private void triggerService(int primeToFind) {
-        Intent intent = new Intent(this, PrimesService.class);
-        intent.putExtra(PrimesService.PARAM, primeToFind);
-        intent.putExtra(PrimesService.MESSENGER, messenger);
+        Intent intent = new Intent(this, PrimesConcurrentIntentService.class);
+        intent.putExtra(PrimesConcurrentIntentService.PARAM, primeToFind);
+        intent.putExtra(PrimesConcurrentIntentService.MESSENGER, messenger);
         startService(intent);
     }
 
@@ -68,7 +68,7 @@ public class PrimesActivity extends Activity {
 
         @Override
         public void handleMessage(Message message) {
-            if (message.what == PrimesService.RESULT) {
+            if (message.what == PrimesConcurrentIntentService.RESULT) {
                 if (view != null) {
                     TextView text = new TextView(view.getContext());
                     text.setText(message.arg1 + "th prime: " + message.obj.toString());
@@ -76,7 +76,7 @@ public class PrimesActivity extends Activity {
                 } else {
                     Log.i(LaunchActivity.TAG, "received a result, ignoring because we're detached");
                 }
-            } else if (message.what == PrimesService.INVALID) {
+            } else if (message.what == PrimesConcurrentIntentService.INVALID) {
                 if (view != null) {
                     TextView text = new TextView(view.getContext());
                     text.setText("Invalid request");

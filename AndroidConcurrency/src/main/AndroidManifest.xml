@@ -190,7 +190,7 @@
         CHAPTER6: SERVICE EXAMPLES
         -->
         <service
-            android:name=".chapter6.example1.PrimesService"
+            android:name=".chapter6.example1.PrimesConcurrentIntentService"
             android:exported="false"/>
 
         <activity
@@ -198,8 +198,12 @@
             android:label="@string/ch6_ex1"
             android:description="@string/ch6_ex1_desc"/>
 
+        <service
+            android:name=".chapter6.example2.LocalPrimesService"
+            android:exported="false"/>
+
         <activity
-            android:name=".chapter6.example2.DownloadActivity"
+            android:name=".chapter6.example2.PrimesActivity"
             android:label="@string/ch6_ex2"
             android:description="@string/ch6_ex2_desc"/>
 
@@ -208,9 +212,14 @@
             android:exported="false"/>
 
         <activity
-            android:name=".chapter6.example3.NasaImageOfTheDayActivity"
+            android:name=".chapter6.example3.DownloadActivity"
             android:label="@string/ch6_ex3"
             android:description="@string/ch6_ex3_desc"/>
+
+        <activity
+            android:name=".chapter6.example4.NasaImageOfTheDayActivity"
+            android:label="@string/ch6_ex4"
+            android:description="@string/ch6_ex4_desc"/>
 
     </application>
 

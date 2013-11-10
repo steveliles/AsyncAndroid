@@ -9,7 +9,7 @@ import android.util.Log;
 
 import com.packt.androidconcurrency.LaunchActivity;
 
-import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executor;
 
 /**
  * A Service that implements Intent-driven behavior - like IntentService,
@@ -27,10 +27,10 @@ public abstract class ConcurrentIntentService extends Service {
     public static final String REQUEST_ID = "request_id";
 
     private final CompletionHandler handler = new CompletionHandler();
-    private final ExecutorService executor;
+    private final Executor executor;
     private int counter;
 
-    public ConcurrentIntentService(ExecutorService executor) {
+    public ConcurrentIntentService(Executor executor) {
         this.executor = executor;
     }
 

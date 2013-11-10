@@ -13,7 +13,7 @@ import java.math.BigInteger;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
-public class PrimesService extends ConcurrentIntentService {
+public class PrimesConcurrentIntentService extends ConcurrentIntentService {
 
     private static final int MAX_CONCURRENT_CALCULATIONS = 5;
     public static final String PARAM = "prime_to_find";
@@ -21,7 +21,7 @@ public class PrimesService extends ConcurrentIntentService {
     public static final int INVALID = "invalid".hashCode();
     public static final int RESULT = "nth_prime".hashCode();
 
-    public PrimesService() {
+    public PrimesConcurrentIntentService() {
         super(Executors.newFixedThreadPool(
             MAX_CONCURRENT_CALCULATIONS,
             new ThreadFactory(){

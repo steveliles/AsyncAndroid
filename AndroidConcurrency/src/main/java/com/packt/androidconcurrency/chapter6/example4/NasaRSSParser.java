@@ -1,4 +1,4 @@
-package com.packt.androidconcurrency.chapter6.example3;
+package com.packt.androidconcurrency.chapter6.example4;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;

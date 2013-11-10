@@ -12,14 +12,14 @@ import android.util.Log;
 import com.packt.androidconcurrency.LaunchActivity;
 
 import java.io.IOException;
-import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
 public class ConcurrentDownloadService extends ConcurrentIntentService {
 
     public static final int MAX_CONCURRENT_DOWNLOADS = 3;
-    public static final ExecutorService DOWNLOAD_THREAD_POOL =
+    public static final Executor DOWNLOAD_THREAD_POOL =
         Executors.newFixedThreadPool(
             MAX_CONCURRENT_DOWNLOADS, new ThreadFactory(){
                 @Override
