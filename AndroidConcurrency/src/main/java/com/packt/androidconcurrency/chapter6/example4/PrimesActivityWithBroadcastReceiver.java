@@ -8,9 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
@@ -24,10 +22,7 @@ import com.packt.androidconcurrency.R;
 
 public class PrimesActivityWithBroadcastReceiver extends Activity {
 
-    private static final int RESULT_MSG = "result".hashCode();
-
-    private static PrimesHandler handler = new PrimesHandler();
-    private static BroadcastReceiver receiver;
+    private static NthPrimeReceiver receiver = new NthPrimeReceiver();
 
     private PrimesServiceWithBroadcast service;
     private ServiceConnection connection;
@@ -60,11 +55,11 @@ public class PrimesActivityWithBroadcastReceiver extends Activity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        handler.attach((LinearLayout)findViewById(R.id.results));
+    protected void onStart() {
+        super.onStart();
 
-        receiver = new NthPrimeReceiver(handler);
+        receiver.attach((LinearLayout)findViewById(R.id.results));
+
         IntentFilter filter = new IntentFilter(
             PrimesServiceWithBroadcast.PRIMES_BROADCAST);
         LocalBroadcastManager.getInstance(this).
@@ -77,15 +72,15 @@ public class PrimesActivityWithBroadcastReceiver extends Activity {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onStop() {
+        super.onStop();
         service = null;
         unbindService(connection);
 
         LocalBroadcastManager.getInstance(this).
-                unregisterReceiver(receiver);
+            unregisterReceiver(receiver);
 
-        handler.detach();
+        receiver.detach();
     }
 
     private class Connection implements ServiceConnection {
@@ -101,27 +96,15 @@ public class PrimesActivityWithBroadcastReceiver extends Activity {
     }
 
     private static class NthPrimeReceiver extends BroadcastReceiver {
-        private Handler handler;
-        public NthPrimeReceiver(Handler handler) {
-            this.handler = handler;
-        }
+        private LinearLayout view;
+
         @Override
         public void onReceive(Context context, Intent intent) {
             String result = intent.getStringExtra(
                 PrimesServiceWithBroadcast.RESULT);
-            intent.putExtra(PrimesServiceWithBroadcast.HANDLED, true);
-            handler.sendMessage(Message.obtain(handler, RESULT_MSG, result));
-        }
-    }
-
-    private static class PrimesHandler extends Handler {
-        private LinearLayout view;
-
-        @Override
-        public void handleMessage(Message message) {
             if (view != null) {
                 TextView text = new TextView(view.getContext());
-                text.setText(message.obj.toString());
+                text.setText(result);
                 view.addView(text);
             } else {
                 Log.i(LaunchActivity.TAG, "received a result, ignoring because we're detached");

@@ -39,15 +39,19 @@ public class PrimesServiceWithBroadcast extends Service {
     }
 
     public void calculateNthPrime(final int n) {
-        new AsyncTask<Void,Void,Void>(){
+        new AsyncTask<Void,Void,BigInteger>(){
             @Override
-            protected Void doInBackground(Void... params) {
+            protected BigInteger doInBackground(Void... params) {
                 BigInteger prime = new BigInteger("2");
                 for (int i=0; i<n; i++)
                     prime = prime.nextProbablePrime();
-                if (!broadcastResult(prime.toString()))
-                    notifyUser(n, prime.toString());
-                return null;
+                return prime;
+            }
+
+            @Override
+            protected void onPostExecute(BigInteger result) {
+                if (!broadcastResult(result.toString()))
+                    notifyUser(n, result.toString());
             }
         }.execute();
     }
@@ -56,7 +60,7 @@ public class PrimesServiceWithBroadcast extends Service {
         Intent intent = new Intent(PRIMES_BROADCAST);
         intent.putExtra(RESULT, result);
         LocalBroadcastManager.getInstance(this).
-                sendBroadcastSync(intent);
+            sendBroadcastSync(intent);
         return intent.getBooleanExtra(HANDLED, false);
     }
 

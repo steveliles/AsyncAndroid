@@ -56,8 +56,8 @@ public class PrimesActivityWithMessenger extends Activity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
         handler.attach((LinearLayout)findViewById(R.id.results));
         bindService(
                 new Intent(this, PrimesServiceWithMessenger.class),
@@ -66,8 +66,8 @@ public class PrimesActivityWithMessenger extends Activity {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onStop() {
+        super.onStop();
         service = null;
         unbindService(connection);
         handler.detach();

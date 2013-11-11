@@ -64,8 +64,8 @@ implements LocalPrimesService.Callback {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
         bindService(
             new Intent(this, LocalPrimesService.class),
             connection = new Connection(),
@@ -73,8 +73,8 @@ implements LocalPrimesService.Callback {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onStop() {
+        super.onStop();
         service = null;
         unbindService(connection);
     }
