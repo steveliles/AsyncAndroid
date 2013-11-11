@@ -61,11 +61,11 @@ public class UploadIntentService extends IntentService {
 
         @Override
         public void onProgress(int max, int progress) {
-            int tenth = max/10;
-            if (progress-tenth > prev) {
-                builder.setProgress(100, (progress/tenth)*10, false);
+            int percent = (int)((100f*progress)/max);
+            if (percent > (prev + 5)) {
+                builder.setProgress(100, percent, false);
                 nm.notify(id, builder.build());
-                prev = progress;
+                prev = percent;
             }
         }
 
