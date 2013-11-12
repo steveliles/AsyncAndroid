@@ -9,6 +9,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application android:allowBackup="true"
         android:label="@string/app_name"
@@ -238,6 +239,16 @@
             android:name=".chapter6.example6.NasaImageOfTheDayActivity"
             android:label="@string/ch6_ex6"
             android:description="@string/ch6_ex6_desc"/>
+
+        <!--
+        CHAPTER7: SERVICE EXAMPLES
+        -->
+        <activity
+            android:name=".chapter7.example1.AlarmActivity"
+            android:label="@string/ch7_ex1"
+            android:description="@string/ch7_ex1_desc"/>
+
+        <receiver android:name=".chapter7.example1.AlarmReceiver"/>
 
     </application>
 

@@ -6,6 +6,10 @@
     <!-- chapter1 -->
     <string name="ch1_ex1">Chapter1 Example1</string>
     <string name="ch1_ex1_desc">Triggers an Application Not Responding dialog (which will crash the app!)</string>
+    <string name="tap">Tap</string>
+    <string name="each">Each</string>
+    <string name="button">Button</string>
+    <string name="tap_each_button">Tap each button a couple of times to trigger the ANR</string>
     <string name="ch1_ex2">Chapter1 Example2</string>
     <string name="ch1_ex2_desc">Performs "too much" work on the main thread, causing the Choreographer to complain (API level 16+)</string>
     <string name="expect_choreographer">Watch logcat from your IDE while running this activity - expect to see the choreographer complaining about skipped frames with messages like:</string>
@@ -106,5 +110,10 @@
     <string name="ch6_ex6_desc">Uses a Service to download and parse RSS, then download and display images from RSS</string>
 
     <!-- chapter7 -->
+    <string name="schedule_1min">Tap \'Schedule\' to set up an alarm for 1 minute\'s time. Tap \'unschedule\' to remove it.</string>
+    <string name="schedule">Schedule</string>
+    <string name="unschedule">Unschedule</string>
+    <string name="ch7_ex1">Chapter7 Example1</string>
+    <string name="ch7_ex1_desc">Simple AlarmManager example - schedule/unschedule an alarm, received by a dynamically registered BroadcastReceiver</string>
 
 </resources>

@@ -2,6 +2,10 @@ package com.packt.androidconcurrency.chapter1.example1;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+import com.packt.androidconcurrency.R;
 
 /**
  * DELIBERATELY trigger's an Application Not Responding dialog,
@@ -12,10 +16,23 @@ public class ANRActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        try {
-            Thread.sleep(10000L);
-        } catch (InterruptedException anExc) {
-            anExc.printStackTrace();
-        }
+        setContentView(R.layout.ch1_example1_layout);
+
+        makeEvil((Button)findViewById(R.id.button1));
+        makeEvil((Button)findViewById(R.id.button2));
+        makeEvil((Button)findViewById(R.id.button3));
+    }
+
+    private void makeEvil(Button button) {
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Thread.sleep(6000L);
+                } catch (InterruptedException anExc) {
+                    anExc.printStackTrace();
+                }
+            }
+        });
     }
 }

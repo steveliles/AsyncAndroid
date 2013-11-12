@@ -31,7 +31,8 @@ public class LaunchActivity extends Activity {
         0xff88dd00, // ch3
         0xff0099ff, // ch4
         0xffff0099, // ch5
-        0xff9900ff  // ch6
+        0xff9900ff, // ch6
+        0xff229900  // ch7
     };
 
     private Handler handler;
