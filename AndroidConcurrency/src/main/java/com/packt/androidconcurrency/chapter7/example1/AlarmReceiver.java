@@ -15,8 +15,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             new NotificationCompat.Builder(context)
                 .setSmallIcon(android.R.drawable.stat_notify_chat)
                 .setContentTitle(context.getString(R.string.ch7_ex1))
-                .setContentText("Result!")
-                .setProgress(100, 0, false);
+                .setContentText("Result!");
         NotificationManager nm = (NotificationManager)
             context.getSystemService(Context.NOTIFICATION_SERVICE);
         nm.notify(0, builder.build());

@@ -25,7 +25,7 @@ public class AlarmActivity extends Activity {
 
         Intent intent = new Intent(this, AlarmReceiver.class);
         final PendingIntent pending = PendingIntent.getBroadcast(
-            this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+            this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Button schedule = (Button)findViewById(R.id.schedule);
         schedule.setOnClickListener(new View.OnClickListener() {
