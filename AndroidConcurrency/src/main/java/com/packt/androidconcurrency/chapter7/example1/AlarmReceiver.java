@@ -18,6 +18,6 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setContentText("Result!");
         NotificationManager nm = (NotificationManager)
             context.getSystemService(Context.NOTIFICATION_SERVICE);
-        nm.notify(0, builder.build());
+        nm.notify(R.string.ch7_ex1, builder.build());
     }
 }

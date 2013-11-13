@@ -110,10 +110,15 @@
     <string name="ch6_ex6_desc">Uses a Service to download and parse RSS, then download and display images from RSS</string>
 
     <!-- chapter7 -->
-    <string name="schedule_1min">Tap \'Schedule\' to set up an alarm for 1 minute\'s time. Tap \'unschedule\' to remove it.</string>
-    <string name="schedule">Schedule</string>
-    <string name="unschedule">Unschedule</string>
+    <string name="schedule_1min">Tap \'Schedule\' to set up an alarm for 5 seconds time. Tap \'unschedule\' to remove it.</string>
+    <string name="schedule">Set Alarm</string>
+    <string name="unschedule">Cancel Alarm</string>
     <string name="ch7_ex1">Chapter7 Example1</string>
-    <string name="ch7_ex1_desc">Simple AlarmManager example - schedule/unschedule an alarm, received by a dynamically registered BroadcastReceiver</string>
+    <string name="ch7_ex1_desc">Simple AlarmManager example - schedule/unschedule an alarm, received by a BroadcastReceiver registered in the manifest</string>
+
+    <string name="register">Register Receiver</string>
+    <string name="unregister">Unregister Receiver</string>
+    <string name="ch7_ex2">Chapter7 Example2</string>
+    <string name="ch7_ex2_desc">Simple AlarmManager example - schedule/unschedule an alarm, received by a dynamically registered BroadcastReceiver</string>
 
 </resources>
