@@ -85,6 +85,14 @@ public class AlarmActivity extends Activity {
         });
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (isFinishing() && (receiver != null)) {
+            unregisterReceiver(receiver);
+        }
+    }
+
     private static class AlarmReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {

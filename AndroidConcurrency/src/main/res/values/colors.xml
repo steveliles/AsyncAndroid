@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="light">#ffffffff</color>
+    <color name="dark">#ff000000</color>
+    <color name="ch1">#ffff0000</color>
+    <color name="ch2">#ffff9900</color>
+    <color name="ch3">#ff88dd00</color>
+    <color name="ch4">#ff0099ff</color>
+    <color name="ch5">#ffff0099</color>
+    <color name="ch6">#ff9900ff</color>
+    <color name="ch7">#ff229900</color>
+</resources>

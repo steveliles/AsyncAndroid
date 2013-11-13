@@ -1,7 +1,22 @@
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    style="@style/panel"
+    android:layout_margin="2dp"
+    android:background="@color/ch4">
+
+    <TextView
+        style="@style/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ch4_ex1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ch4_ex1_desc" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -13,6 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_weight="2"
         android:src="@android:drawable/sym_def_app_icon"/>
 
-</FrameLayout>
+</LinearLayout>

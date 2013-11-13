@@ -1,10 +1,27 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
+    android:id="@+id/root"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    style="@style/panel"
+    android:layout_margin="2dp"
+    android:background="@color/ch7">
 
     <TextView
+        style="@style/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ch7_ex2"/>
+
+    <TextView
+        style="@style/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ch7_ex2_desc"/>
+
+    <TextView
+        style="@style/text"
         android:id="@+id/instruction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,6 +44,13 @@
             android:text="@string/unschedule"/>
 
     </LinearLayout>
+
+    <TextView
+        style="@style/text"
+        android:id="@+id/instruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_to_receive"/>
 
     <LinearLayout
         android:layout_width="match_parent"

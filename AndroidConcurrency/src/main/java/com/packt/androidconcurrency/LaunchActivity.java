@@ -24,15 +24,15 @@ import java.util.List;
 public class LaunchActivity extends Activity {
 
     public static final String TAG = "android.concurrency";
-    public static final int[] COLORS = new int[]{
-        0xff000000, // not used
-        0xffff0000, // ch1
-        0xffff9900, // ch2
-        0xff88dd00, // ch3
-        0xff0099ff, // ch4
-        0xffff0099, // ch5
-        0xff9900ff, // ch6
-        0xff229900  // ch7
+    public int[] COLORS = new int[]{
+        0xff000000,
+        R.color.ch1,
+        R.color.ch2,
+        R.color.ch3,
+        R.color.ch4,
+        R.color.ch5,
+        R.color.ch6,
+        R.color.ch7
     };
 
     private Handler handler;
@@ -77,7 +77,7 @@ public class LaunchActivity extends Activity {
 
                 String name = info.loadLabel(getPackageManager()).toString();
                 int chapter = Integer.parseInt(name.substring(7, name.indexOf(" ")));
-                view.setBackgroundColor(COLORS[chapter]);
+                view.setBackgroundColor(getResources().getColor(COLORS[chapter]));
 
                 title.setText(name);
                 if (info.descriptionRes > 0)

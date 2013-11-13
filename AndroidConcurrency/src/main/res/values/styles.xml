@@ -15,6 +15,8 @@
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        <item name="android:textViewStyle">@style/text</item>
+        <item name="android:editTextStyle">@style/input</item>
     </style>
 
     <style name="panel">
@@ -26,7 +28,7 @@
         <item name="android:gravity">right|bottom</item>
         <item name="android:text">gravity</item>
         <item name="android:textSize">22dp</item>
-        <item name="android:textColor">#ffffff</item>
+        <item name="android:textColor">@color/light</item>
         <item name="android:shadowRadius">4</item>
     </style>
 
@@ -34,15 +36,24 @@
         <item name="android:layout_gravity">right|bottom</item>
         <item name="android:gravity">right|bottom</item>
         <item name="android:textSize">12dp</item>
-        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textColor">@color/light</item>
     </style>
 
-    <style name="text">
+    <style name="text" parent="android:Widget.TextView">
         <item name="android:layout_gravity">left|bottom</item>
         <item name="android:gravity">left|bottom</item>
         <item name="android:textSize">14dp</item>
-        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textColor">@color/light</item>
         <item name="android:layout_marginTop">15dp</item>
+    </style>
+
+    <style name="input" parent="android:Widget.EditText">
+        <item name="android:textSize">20dp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+        <item name="android:textColor">@color/dark</item>
+        <item name="android:background">@color/light</item>
     </style>
 
 </resources>

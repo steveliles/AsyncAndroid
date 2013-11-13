@@ -23,7 +23,7 @@ public class ExplicitHandlerPrimesActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.ch3_example1_layout);
+        setContentView(R.layout.ch3_example1a_layout);
 
         // create a Handler bound to the main thread
         handler = new Handler();

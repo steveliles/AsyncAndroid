@@ -21,7 +21,7 @@ public class ViewHandlerPrimesActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.ch3_example1_layout);
+        setContentView(R.layout.ch3_example1a_layout);
 
         final TextView resultView = (TextView) findViewById(R.id.result);
 
