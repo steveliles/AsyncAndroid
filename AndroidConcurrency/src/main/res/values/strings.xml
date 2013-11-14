@@ -110,7 +110,7 @@
     <string name="ch6_ex6_desc">Uses a Service to download and parse RSS, then download and display images from RSS</string>
 
     <!-- chapter7 -->
-    <string name="schedule_1min">Tap \'Set Alarm\' to set up an alarm for 5 seconds time. Tap \'Cancel Alarm\' to remove it.</string>
+    <string name="schedule_5_sec">Tap \'Set Alarm\' to set up an alarm for 5 seconds time. Tap \'Cancel Alarm\' to remove it.</string>
     <string name="schedule">Set Alarm</string>
     <string name="unschedule">Cancel Alarm</string>
     <string name="ch7_ex1">Chapter7 Example1</string>
@@ -121,5 +121,12 @@
     <string name="unregister">Unregister Receiver</string>
     <string name="ch7_ex2">Chapter7 Example2</string>
     <string name="ch7_ex2_desc">Simple AlarmManager example - schedule/unschedule an alarm, received by a dynamically registered BroadcastReceiver</string>
+
+    <string name="schedule_30_sec">Tap \'Set Alarm\' to set up an alarm for 30 seconds time, then quit the app with task manager before the alarm triggers...</string>
+    <string name="ch7_ex3">Chapter7 Example3</string>
+    <string name="ch7_ex3_desc">AlarmManager example - schedule alarm for 30 seconds time to calculate primes in async BroadcastReceiver</string>
+
+    <string name="ch7_ex4">Chapter7 Example4</string>
+    <string name="ch7_ex4_desc">AlarmManager example - schedule alarm for 30 seconds time to calculate primes using IntentService</string>
 
 </resources>

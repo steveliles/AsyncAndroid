@@ -243,17 +243,37 @@
         <!--
         CHAPTER7: SERVICE EXAMPLES
         -->
-        <receiver android:name=".chapter7.example1.AlarmReceiver"/>
+        <receiver android:name=".chapter7.example1.AlarmReceiver">
+          <intent-filter>
+            <action android:name="static-receiver"/>
+          </intent-filter>
+        </receiver>
 
         <activity
-            android:name=".chapter7.example1.AlarmActivity"
+            android:name=".chapter7.example1.AlarmActivityWithStaticBroadcastReceiver"
             android:label="@string/ch7_ex1"
             android:description="@string/ch7_ex1_desc"/>
 
         <activity
-            android:name=".chapter7.example2.AlarmActivity"
+            android:name=".chapter7.example2.AlarmActivityWithDynamicBroadcastReceiver"
             android:label="@string/ch7_ex2"
             android:description="@string/ch7_ex2_desc"/>
+
+        <activity
+            android:name=".chapter7.example3.AlarmActivityWithAsyncBroadcastReceiver"
+            android:label="@string/ch7_ex3"
+            android:description="@string/ch7_ex3_desc"/>
+
+        <receiver android:name=".chapter7.example3.AsyncBroadcastReceiver">
+          <intent-filter>
+            <action android:name="primes-async-receiver"/>
+          </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".chapter7.example4.SetAlarmToTriggerServiceActivity"
+            android:label="@string/ch7_ex4"
+            android:description="@string/ch7_ex4_desc"/>
 
     </application>
 

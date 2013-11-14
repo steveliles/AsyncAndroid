@@ -15,7 +15,7 @@ import android.widget.Button;
 
 import com.packt.androidconcurrency.R;
 
-public class AlarmActivity extends Activity {
+public class AlarmActivityWithDynamicBroadcastReceiver extends Activity {
 
     private BroadcastReceiver receiver;
 

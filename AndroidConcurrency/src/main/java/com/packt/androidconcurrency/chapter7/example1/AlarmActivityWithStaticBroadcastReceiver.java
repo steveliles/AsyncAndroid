@@ -11,7 +11,7 @@ import android.widget.Button;
 
 import com.packt.androidconcurrency.R;
 
-public class AlarmActivity extends Activity {
+public class AlarmActivityWithStaticBroadcastReceiver extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +38,9 @@ public class AlarmActivity extends Activity {
             @Override
             public void onClick(View v) {
                 AlarmManager am = (AlarmManager)
-                    getSystemService(ALARM_SERVICE);
+                        getSystemService(ALARM_SERVICE);
                 am.cancel(pending);
             }
         });
-
-        registerReceiver(new AlarmReceiver(), new IntentFilter("static-receiver"));
     }
 }

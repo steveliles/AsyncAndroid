@@ -25,7 +25,7 @@
         android:id="@+id/instruction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/schedule_1min"/>
+        android:text="@string/schedule_5_sec"/>
 
     <LinearLayout
         android:layout_width="match_parent"
