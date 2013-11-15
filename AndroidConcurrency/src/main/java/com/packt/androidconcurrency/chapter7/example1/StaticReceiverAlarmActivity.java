@@ -11,7 +11,7 @@ import android.widget.Button;
 
 import com.packt.androidconcurrency.R;
 
-public class AlarmActivityWithStaticBroadcastReceiver extends Activity {
+public class StaticReceiverAlarmActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

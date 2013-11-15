@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.packt.androidconcurrency.R;
 
-public class PrimesActivityWithPendingIntent extends Activity{
+public class PendingIntentPrimesActivity extends Activity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,17 +20,17 @@ public class PrimesActivityWithPendingIntent extends Activity{
         setContentView(R.layout.ch5_example3_layout);
 
         Button go = (Button)findViewById(R.id.go);
-        go.setOnClickListener(new View.OnClickListener(){
+        go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView input = (TextView)findViewById(R.id.prime_to_find);
+                TextView input = (TextView) findViewById(R.id.prime_to_find);
                 String value = input.getText().toString();
                 if (value.matches("[1-9]+[0-9]*")) {
                     // if the value is a number, trigger the loader to
                     // reload when appropriate.
                     triggerIntentService(Integer.parseInt(value));
                 } else {
-                    Toast.makeText(PrimesActivityWithPendingIntent.this, "not a number!", 5000).show();
+                    Toast.makeText(PendingIntentPrimesActivity.this, "not a number!", 5000).show();
                 }
             }
         });
@@ -38,9 +38,9 @@ public class PrimesActivityWithPendingIntent extends Activity{
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == PrimesIntentServiceWithPendingIntent.RESULT_CODE) {
+        if (requestCode == PendingIntentPrimesIntentService.RESULT_CODE) {
             String result = data.getStringExtra(
-                PrimesIntentServiceWithPendingIntent.RESULT);
+                PendingIntentPrimesIntentService.RESULT);
             TextView view = (TextView)findViewById(R.id.result);
             view.setText(result);
         }
@@ -49,11 +49,11 @@ public class PrimesActivityWithPendingIntent extends Activity{
 
     private void triggerIntentService(int primeToFind) {
         PendingIntent pendingResult = createPendingResult(
-            PrimesIntentServiceWithPendingIntent.RESULT_CODE,
+            PendingIntentPrimesIntentService.RESULT_CODE,
             new Intent(), 0);
-        Intent intent = new Intent(this, PrimesIntentServiceWithPendingIntent.class);
-        intent.putExtra(PrimesIntentServiceWithPendingIntent.PARAM, primeToFind);
-        intent.putExtra(PrimesIntentServiceWithPendingIntent.PENDING_RESULT, pendingResult);
+        Intent intent = new Intent(this, PendingIntentPrimesIntentService.class);
+        intent.putExtra(PendingIntentPrimesIntentService.PARAM, primeToFind);
+        intent.putExtra(PendingIntentPrimesIntentService.PENDING_RESULT, pendingResult);
         startService(intent);
     }
 }

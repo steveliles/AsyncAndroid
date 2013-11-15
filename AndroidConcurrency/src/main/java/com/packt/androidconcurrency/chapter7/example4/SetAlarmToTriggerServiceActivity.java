@@ -10,8 +10,15 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.packt.androidconcurrency.R;
-import com.packt.androidconcurrency.chapter5.example4.PrimesIntentServiceWithBroadcast;
+import com.packt.androidconcurrency.chapter5.example4.BroadcastingPrimesIntentService;
 
+/**
+ * Sets an Alarm to trigger the PrimesIntentService that we built
+ * in chapter 5. If the device is awake there's no real problem
+ * with this - the service will be invoked and run to completion,
+ * but we cannot rely on that behaviour if the device is not awake
+ * when the alarm is triggered. The device will want to sleep again...
+ */
 public class SetAlarmToTriggerServiceActivity extends Activity {
 
     @Override
@@ -29,9 +36,9 @@ public class SetAlarmToTriggerServiceActivity extends Activity {
                 if (value.matches("[1-9]+[0-9]*")) {
                     Intent intent = new Intent(
                         SetAlarmToTriggerServiceActivity.this,
-                        PrimesIntentServiceWithBroadcast.class);
+                        BroadcastingPrimesIntentService.class);
                     intent.putExtra(
-                        PrimesIntentServiceWithBroadcast.PARAM,
+                        BroadcastingPrimesIntentService.PARAM,
                         Integer.parseInt(value));
 
                     final PendingIntent pending = PendingIntent.getService(

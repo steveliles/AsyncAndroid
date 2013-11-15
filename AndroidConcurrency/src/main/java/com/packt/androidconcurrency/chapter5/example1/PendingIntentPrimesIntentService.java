@@ -9,7 +9,7 @@ import com.packt.androidconcurrency.LaunchActivity;
 
 import java.math.BigInteger;
 
-public class PrimesIntentServiceWithPendingIntent extends IntentService {
+public class PendingIntentPrimesIntentService extends IntentService {
 
     public static final String PARAM = "prime_to_find";
     public static final String PENDING_RESULT = "pending_result";
@@ -17,7 +17,7 @@ public class PrimesIntentServiceWithPendingIntent extends IntentService {
     public static final int RESULT_CODE = "nth_prime".hashCode();
     public static final int INVALID = "invalid".hashCode();
 
-    public PrimesIntentServiceWithPendingIntent() {
+    public PendingIntentPrimesIntentService() {
         super("primes");
     }
 

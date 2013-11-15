@@ -1,4 +1,4 @@
-package com.packt.androidconcurrency.chapter6.example3;
+package com.packt.androidconcurrency.chapter6.example4;
 
 import android.app.NotificationManager;
 import android.app.Service;
@@ -7,24 +7,22 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.IBinder;
-import android.os.Message;
-import android.os.Messenger;
-import android.os.RemoteException;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
+import android.support.v4.content.LocalBroadcastManager;
 
-import com.packt.androidconcurrency.LaunchActivity;
 import com.packt.androidconcurrency.R;
 
 import java.math.BigInteger;
 
-public class PrimesServiceWithMessenger extends Service {
+public class BroadcastingPrimesService extends Service {
 
-    public static final int RESULT = "nth_prime".hashCode();
+    public static final String PRIMES_BROADCAST = "com.packt.CH6_PRIMES_BROADCAST";
+    public static final String HANDLED = "intent_handled";
+    public static final String RESULT = "nth_prime";
 
     public class Access extends Binder {
-        public PrimesServiceWithMessenger getService() {
-            return PrimesServiceWithMessenger.this;
+        public BroadcastingPrimesService getService() {
+            return BroadcastingPrimesService.this;
         }
     };
 
@@ -40,22 +38,30 @@ public class PrimesServiceWithMessenger extends Service {
         return START_STICKY;
     }
 
-    public void calculateNthPrime(final int n, final Messenger messenger) {
-        new AsyncTask<Void,Void,Void>(){
+    public void calculateNthPrime(final int n) {
+        new AsyncTask<Void,Void,BigInteger>(){
             @Override
-            protected Void doInBackground(Void... params) {
+            protected BigInteger doInBackground(Void... params) {
                 BigInteger prime = new BigInteger("2");
-                for (int i=0; i<n; i++) {
+                for (int i=0; i<n; i++)
                     prime = prime.nextProbablePrime();
-                }
-                try {
-                    messenger.send(Message.obtain(null, RESULT, prime.toString()));
-                } catch (RemoteException exc) {
-                    Log.e(LaunchActivity.TAG, "unable to send msg", exc);
-                }
-                return null;
+                return prime;
+            }
+
+            @Override
+            protected void onPostExecute(BigInteger result) {
+                if (!broadcastResult(result.toString()))
+                    notifyUser(n, result.toString());
             }
         }.execute();
+    }
+
+    private boolean broadcastResult(String result) {
+        Intent intent = new Intent(PRIMES_BROADCAST);
+        intent.putExtra(RESULT, result);
+        LocalBroadcastManager.getInstance(this).
+            sendBroadcastSync(intent);
+        return intent.getBooleanExtra(HANDLED, false);
     }
 
     private void notifyUser(int primeToFind, String result) {

@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.packt.androidconcurrency.LaunchActivity;
 import com.packt.androidconcurrency.R;
 
-public class PrimesActivityWithMessenger extends Activity {
+public class MessageSendingPrimesActivity extends Activity {
 
     private static PrimesHandler handler = new PrimesHandler();
     private static Messenger messenger = new Messenger(handler);
@@ -37,7 +37,7 @@ public class PrimesActivityWithMessenger extends Activity {
                     // reload when appropriate.
                     triggerIntentService(Integer.parseInt(value));
                 } else {
-                    Toast.makeText(PrimesActivityWithMessenger.this, "not a number!", 5000).show();
+                    Toast.makeText(MessageSendingPrimesActivity.this, "not a number!", 5000).show();
                 }
             }
         });
@@ -56,9 +56,9 @@ public class PrimesActivityWithMessenger extends Activity {
     }
 
     private void triggerIntentService(int primeToFind) {
-        Intent intent = new Intent(this, PrimesIntentServiceWithMessenger.class);
-        intent.putExtra(PrimesIntentServiceWithMessenger.PARAM, primeToFind);
-        intent.putExtra(PrimesIntentServiceWithMessenger.MESSENGER, messenger);
+        Intent intent = new Intent(this, MessageSendingPrimesIntentService.class);
+        intent.putExtra(MessageSendingPrimesIntentService.PARAM, primeToFind);
+        intent.putExtra(MessageSendingPrimesIntentService.MESSENGER, messenger);
         startService(intent);
     }
 
@@ -67,12 +67,12 @@ public class PrimesActivityWithMessenger extends Activity {
 
         @Override
         public void handleMessage(Message message) {
-            if (message.what == PrimesIntentServiceWithMessenger.RESULT) {
+            if (message.what == MessageSendingPrimesIntentService.RESULT) {
                 if (view != null)
                     view.setText(message.obj.toString());
                 else
                     Log.i(LaunchActivity.TAG, "received a result, ignoring because we're detached");
-            } else if (message.what == PrimesIntentServiceWithMessenger.INVALID) {
+            } else if (message.what == MessageSendingPrimesIntentService.INVALID) {
                 if (view != null)
                     view.setText("Invalid request");
             } else {

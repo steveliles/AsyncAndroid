@@ -11,14 +11,14 @@ import com.packt.androidconcurrency.R;
 
 import java.math.BigInteger;
 
-public class PrimesIntentServiceWithBroadcast extends IntentService {
+public class BroadcastingPrimesIntentService extends IntentService {
 
     public static final String PRIMES_BROADCAST = "com.packt.CH5_PRIMES_BROADCAST";
     public static final String PARAM = "prime_to_find";
     public static final String RESULT = "nth_prime";
     public static final String HANDLED = "intent_handled";
 
-    public PrimesIntentServiceWithBroadcast() {
+    public BroadcastingPrimesIntentService() {
         super("primes");
     }
 

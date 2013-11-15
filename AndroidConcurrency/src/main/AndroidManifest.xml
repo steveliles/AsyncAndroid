@@ -143,38 +143,38 @@
         CHAPTER5: INTENTSERVICE EXAMPLES
         -->
         <service
-            android:name=".chapter5.example1.PrimesIntentServiceWithPendingIntent"
+            android:name=".chapter5.example1.PendingIntentPrimesIntentService"
             android:exported="false"/>
 
         <activity
-            android:name=".chapter5.example1.PrimesActivityWithPendingIntent"
+            android:name=".chapter5.example1.PendingIntentPrimesActivity"
             android:label="@string/ch5_ex1"
             android:description="@string/ch5_ex1_desc"/>
 
         <service
-            android:name=".chapter5.example2.PrimesIntentServiceWithNotification"
+            android:name=".chapter5.example2.NotifyingPrimesIntentService"
             android:exported="false"/>
 
         <activity
-            android:name=".chapter5.example2.PrimesActivityWithNotification"
+            android:name=".chapter5.example2.NotifyingPrimesActivity"
             android:label="@string/ch5_ex2"
             android:description="@string/ch5_ex2_desc"/>
 
         <service
-            android:name=".chapter5.example3.PrimesIntentServiceWithMessenger"
+            android:name=".chapter5.example3.MessageSendingPrimesIntentService"
             android:exported="false"/>
 
         <activity
-            android:name=".chapter5.example3.PrimesActivityWithMessenger"
+            android:name=".chapter5.example3.MessageSendingPrimesActivity"
             android:label="@string/ch5_ex3"
             android:description="@string/ch5_ex3_desc"/>
 
         <service
-            android:name=".chapter5.example4.PrimesIntentServiceWithBroadcast"
+            android:name=".chapter5.example4.BroadcastingPrimesIntentService"
             android:exported="false"/>
 
         <activity
-            android:name=".chapter5.example4.PrimesActivityWithBroadcastReceiver"
+            android:name=".chapter5.example4.BroadcastReceivingPrimesActivity"
             android:label="@string/ch5_ex4"
             android:description="@string/ch5_ex4_desc"/>
 
@@ -209,20 +209,20 @@
             android:description="@string/ch6_ex2_desc"/>
 
         <service
-            android:name=".chapter6.example3.PrimesServiceWithMessenger"
+            android:name=".chapter6.example3.MessageSendingPrimesService"
             android:exported="false"/>
 
         <activity
-            android:name=".chapter6.example3.PrimesActivityWithMessenger"
+            android:name=".chapter6.example3.MessageReceivingPrimesActivity"
             android:label="@string/ch6_ex3"
             android:description="@string/ch6_ex3_desc"/>
 
         <service
-            android:name=".chapter6.example4.PrimesServiceWithBroadcast"
+            android:name=".chapter6.example4.BroadcastingPrimesService"
             android:exported="false"/>
 
         <activity
-            android:name=".chapter6.example4.PrimesActivityWithBroadcastReceiver"
+            android:name=".chapter6.example4.BroadcastReceivingPrimesActivity"
             android:label="@string/ch6_ex4"
             android:description="@string/ch6_ex4_desc"/>
 
@@ -250,17 +250,17 @@
         </receiver>
 
         <activity
-            android:name=".chapter7.example1.AlarmActivityWithStaticBroadcastReceiver"
+            android:name=".chapter7.example1.StaticReceiverAlarmActivity"
             android:label="@string/ch7_ex1"
             android:description="@string/ch7_ex1_desc"/>
 
         <activity
-            android:name=".chapter7.example2.AlarmActivityWithDynamicBroadcastReceiver"
+            android:name=".chapter7.example2.DynamicReceiverAlarmActivity"
             android:label="@string/ch7_ex2"
             android:description="@string/ch7_ex2_desc"/>
 
         <activity
-            android:name=".chapter7.example3.AlarmActivityWithAsyncBroadcastReceiver"
+            android:name=".chapter7.example3.AlarmSettingActivity"
             android:label="@string/ch7_ex3"
             android:description="@string/ch7_ex3_desc"/>
 

@@ -11,14 +11,14 @@ import com.packt.androidconcurrency.LaunchActivity;
 
 import java.math.BigInteger;
 
-public class PrimesIntentServiceWithMessenger extends IntentService {
+public class MessageSendingPrimesIntentService extends IntentService {
 
     public static final String PARAM = "prime_to_find";
     public static final String MESSENGER = "messenger";
     public static final int INVALID = "invalid".hashCode();
     public static final int RESULT = "nth_prime".hashCode();
 
-    public PrimesIntentServiceWithMessenger() {
+    public MessageSendingPrimesIntentService() {
         super("primes");
     }
 

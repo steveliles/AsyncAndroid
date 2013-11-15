@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.packt.androidconcurrency.R;
 
-public class PrimesActivityWithBroadcastReceiver extends Activity {
+public class BroadcastReceivingPrimesActivity extends Activity {
 
     private static final int RESULT_MSG = "result".hashCode();
 
@@ -40,7 +40,7 @@ public class PrimesActivityWithBroadcastReceiver extends Activity {
                     // reload when appropriate.
                     triggerIntentService(Integer.parseInt(value));
                 } else {
-                    Toast.makeText(PrimesActivityWithBroadcastReceiver.this, "not a number!", 5000).show();
+                    Toast.makeText(BroadcastReceivingPrimesActivity.this, "not a number!", 5000).show();
                 }
             }
         });
@@ -54,7 +54,7 @@ public class PrimesActivityWithBroadcastReceiver extends Activity {
 
         receiver = new NthPrimeReceiver(handler);
         IntentFilter filter = new IntentFilter(
-            PrimesIntentServiceWithBroadcast.PRIMES_BROADCAST);
+            BroadcastingPrimesIntentService.PRIMES_BROADCAST);
         LocalBroadcastManager.getInstance(this).
             registerReceiver(receiver, filter);
     }
@@ -70,8 +70,8 @@ public class PrimesActivityWithBroadcastReceiver extends Activity {
     }
 
     private void triggerIntentService(int primeToFind) {
-        Intent intent = new Intent(this, PrimesIntentServiceWithBroadcast.class);
-        intent.putExtra(PrimesIntentServiceWithBroadcast.PARAM, primeToFind);
+        Intent intent = new Intent(this, BroadcastingPrimesIntentService.class);
+        intent.putExtra(BroadcastingPrimesIntentService.PARAM, primeToFind);
         startService(intent);
     }
 
@@ -83,9 +83,9 @@ public class PrimesActivityWithBroadcastReceiver extends Activity {
         @Override
         public void onReceive(Context context, Intent intent) {
             String result = intent.getStringExtra(
-                PrimesIntentServiceWithBroadcast.RESULT);
+                BroadcastingPrimesIntentService.RESULT);
 
-            intent.putExtra(PrimesIntentServiceWithBroadcast.HANDLED, true);
+            intent.putExtra(BroadcastingPrimesIntentService.HANDLED, true);
             handler.sendMessage(Message.obtain(handler, RESULT_MSG, result));
         }
     }

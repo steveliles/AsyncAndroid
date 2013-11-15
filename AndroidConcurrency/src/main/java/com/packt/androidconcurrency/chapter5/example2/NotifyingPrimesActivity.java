@@ -1,28 +1,22 @@
 package com.packt.androidconcurrency.chapter5.example2;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.support.v4.content.LocalBroadcastManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.packt.androidconcurrency.R;
-import com.packt.androidconcurrency.chapter5.example4.PrimesIntentServiceWithBroadcast;
+import com.packt.androidconcurrency.chapter5.example4.BroadcastingPrimesIntentService;
 
 /**
  * This activity starts the IntentService but doesn't expect to
  * receive a result, so its nice and simple. The result will be
  * posted as a system-notification by the IntentService itself.
  */
-public class PrimesActivityWithNotification extends Activity {
+public class NotifyingPrimesActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +35,15 @@ public class PrimesActivityWithNotification extends Activity {
                     // reload when appropriate.
                     triggerIntentService(Integer.parseInt(value));
                 } else {
-                    Toast.makeText(PrimesActivityWithNotification.this, "not a number!", 5000).show();
+                    Toast.makeText(NotifyingPrimesActivity.this, "not a number!", 5000).show();
                 }
             }
         });
     }
 
     private void triggerIntentService(int primeToFind) {
-        Intent intent = new Intent(this, PrimesIntentServiceWithBroadcast.class);
-        intent.putExtra(PrimesIntentServiceWithBroadcast.PARAM, primeToFind);
+        Intent intent = new Intent(this, BroadcastingPrimesIntentService.class);
+        intent.putExtra(BroadcastingPrimesIntentService.PARAM, primeToFind);
         startService(intent);
     }
 }

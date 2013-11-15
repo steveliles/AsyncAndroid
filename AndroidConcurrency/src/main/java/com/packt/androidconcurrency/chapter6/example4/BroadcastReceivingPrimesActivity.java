@@ -1,15 +1,15 @@
-package com.packt.androidconcurrency.chapter6.example3;
+package com.packt.androidconcurrency.chapter6.example4;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
-import android.os.Messenger;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,12 +20,11 @@ import android.widget.Toast;
 import com.packt.androidconcurrency.LaunchActivity;
 import com.packt.androidconcurrency.R;
 
-public class PrimesActivityWithMessenger extends Activity {
+public class BroadcastReceivingPrimesActivity extends Activity {
 
-    private static PrimesHandler handler = new PrimesHandler();
-    private static Messenger messenger = new Messenger(handler);
+    private static NthPrimeReceiver receiver = new NthPrimeReceiver();
 
-    private PrimesServiceWithMessenger service;
+    private BroadcastingPrimesService service;
     private ServiceConnection connection;
 
     @Override
@@ -39,15 +38,15 @@ public class PrimesActivityWithMessenger extends Activity {
             @Override
             public void onClick(View v) {
                 if (service == null) {
-                    Toast.makeText(PrimesActivityWithMessenger.this, "service not bound", 5000).show();
+                    Toast.makeText(BroadcastReceivingPrimesActivity.this, "service not bound", 5000).show();
                 } else {
                     TextView input = (TextView) findViewById(R.id.prime_to_find);
                     String[] values = input.getText().toString().split(",");
                     for (String value : values) {
                         if (value.trim().matches("[1-9]+[0-9]*")) {
-                            service.calculateNthPrime(Integer.parseInt(value), messenger);
+                            service.calculateNthPrime(Integer.parseInt(value));
                         } else {
-                            Toast.makeText(PrimesActivityWithMessenger.this, "not a number!", 5000).show();
+                            Toast.makeText(BroadcastReceivingPrimesActivity.this, "not a number!", 5000).show();
                         }
                     }
                 }
@@ -58,11 +57,18 @@ public class PrimesActivityWithMessenger extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-        handler.attach((LinearLayout)findViewById(R.id.results));
+
+        receiver.attach((LinearLayout)findViewById(R.id.results));
+
+        IntentFilter filter = new IntentFilter(
+            BroadcastingPrimesService.PRIMES_BROADCAST);
+        LocalBroadcastManager.getInstance(this).
+            registerReceiver(receiver, filter);
+
         bindService(
-                new Intent(this, PrimesServiceWithMessenger.class),
-                connection = new Connection(),
-                Context.BIND_AUTO_CREATE);
+            new Intent(this, BroadcastingPrimesService.class),
+            connection = new Connection(),
+            Context.BIND_AUTO_CREATE);
     }
 
     @Override
@@ -70,13 +76,17 @@ public class PrimesActivityWithMessenger extends Activity {
         super.onStop();
         service = null;
         unbindService(connection);
-        handler.detach();
+
+        LocalBroadcastManager.getInstance(this).
+            unregisterReceiver(receiver);
+
+        receiver.detach();
     }
 
     private class Connection implements ServiceConnection {
         @Override
         public void onServiceConnected(ComponentName name, IBinder binder) {
-            service = ((PrimesServiceWithMessenger.Access)binder).getService();
+            service = ((BroadcastingPrimesService.Access)binder).getService();
         }
 
         @Override
@@ -85,19 +95,19 @@ public class PrimesActivityWithMessenger extends Activity {
         }
     }
 
-    private static class PrimesHandler extends Handler {
+    private static class NthPrimeReceiver extends BroadcastReceiver {
         private LinearLayout view;
 
         @Override
-        public void handleMessage(Message message) {
-            if (message.what == PrimesServiceWithMessenger.RESULT) {
-                if (view != null) {
-                    TextView text = new TextView(view.getContext());
-                    text.setText(message.obj.toString());
-                    view.addView(text);
-                } else {
-                    Log.i(LaunchActivity.TAG, "received a result, ignoring because we're detached");
-                }
+        public void onReceive(Context context, Intent intent) {
+            String result = intent.getStringExtra(
+                BroadcastingPrimesService.RESULT);
+            if (view != null) {
+                TextView text = new TextView(view.getContext());
+                text.setText(result);
+                view.addView(text);
+            } else {
+                Log.i(LaunchActivity.TAG, "received a result, ignoring because we're detached");
             }
         }
 

@@ -10,12 +10,12 @@ import com.packt.androidconcurrency.R;
 
 import java.math.BigInteger;
 
-public class PrimesIntentServiceWithNotification extends IntentService {
+public class NotifyingPrimesIntentService extends IntentService {
 
     public static final String PARAM = "prime_to_find";
     public static final String RESULT = "nth_prime";
 
-    public PrimesIntentServiceWithNotification() {
+    public NotifyingPrimesIntentService() {
         super("primes");
     }
 
