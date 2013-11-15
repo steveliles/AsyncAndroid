@@ -18,7 +18,7 @@ public class SetAlarmToTriggerServiceActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.ch7_example3_layout);
+        setContentView(R.layout.ch7_example4_layout);
 
         Button go = (Button) findViewById(R.id.go);
         go.setOnClickListener(new View.OnClickListener() {
