@@ -129,4 +129,7 @@
     <string name="ch7_ex4">Chapter7 Example4</string>
     <string name="ch7_ex4_desc">AlarmManager example - schedule alarm for 30 seconds time to calculate primes using IntentService</string>
 
+    <string name="ch7_ex5">Chapter7 Example5</string>
+    <string name="ch7_ex5_desc">AlarmManager example - schedule alarm for 30 minutes time to calculate primes using IntentService with wake-lock</string>
+
 </resources>

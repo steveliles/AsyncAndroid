@@ -33,8 +33,6 @@ public class AsyncBroadcastReceiver extends BroadcastReceiver {
     @SuppressLint("NewApi")
     @Override
     public void onReceive(final Context context, final Intent intent) {
-
-
         if (Build.VERSION.SDK_INT > 11) {
             final PendingResult result = goAsync();
             final int n = intent.getIntExtra(PRIME_TO_FIND, 2);
