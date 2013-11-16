@@ -11,54 +11,36 @@ import android.util.SparseArray;
 import com.packt.androidconcurrency.R;
 
 import java.math.BigInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class WakeLockPrimesIntentService extends IntentService {
 
-    private static final String WAKELOCK = "wake_lock";
-
-    private static final SparseArray<PowerManager.WakeLock> locks =
-        new SparseArray<PowerManager.WakeLock>();
-
-    /**
-     * Creates a wakelock, acquires it, and adds a reference to it into the
-     * given Intent. When this Intent is sent to the Service, the Service
-     * can retrieve the lock and acquire it in turn, to ensure there is no
-     * gap between wake locks.
-     *
-     * @param ctx a context to use to create the lock
-     * @param flags for the wakelock - see PowerManager
-     * @param intent which will be dispatched to the service - an Extra will
-     *               be added to this intent allowing the service to find the
-     *               correct lock.
-     * @return WakeLock which has already been acquired
-     */
-    public static PowerManager.WakeLock newWakeLock(
-        Context ctx, int flags, String tag, Intent intent) {
-        PowerManager pm = (PowerManager) ctx.getSystemService(Context.POWER_SERVICE);
-        PowerManager.WakeLock lock = pm.newWakeLock(flags, tag);
-        synchronized(locks) {
-            locks.put(lock.hashCode(), lock);
-        }
-        intent.putExtra(WAKELOCK, lock.hashCode());
-        return lock;
-    }
-
-    /**
-     * Get the wakelock associated with this intent, if there is one.
-     * @throws RuntimeException if there is no wakelock associated with the intent.
-     * @param intent
-     * @return WakeLock
-     */
-    private static PowerManager.WakeLock getWakeLock(Intent intent) {
-        int lockId = intent.getIntExtra(WAKELOCK, -1);
-        PowerManager.WakeLock lock = locks.get(lockId);
-        if (lock == null)
-            throw new RuntimeException("Intent does not reference a lock!");
-        return lock;
-    }
-
+    private static final String WAKELOCK = "primes_wake_lock";
     public static final String PARAM = "prime_to_find";
     public static final String RESULT = "nth_prime";
+
+    private static final Object guard = new Object();
+    private static PowerManager.WakeLock lock;
+
+    public static PowerManager.WakeLock acquireLock(Context ctx) {
+        synchronized(guard) {
+            if (lock == null) {
+                PowerManager pm = (PowerManager) ctx.getSystemService(Context.POWER_SERVICE);
+                lock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, WAKELOCK);
+                lock.setReferenceCounted(true);
+                //lock.acquire();
+            }
+        }
+        return lock;
+    }
+
+    public static void releaseLock() {
+        synchronized(guard) {
+            if ((lock != null) && (lock.isHeld())) {
+                lock.release();
+            }
+        }
+    }
 
     public WakeLockPrimesIntentService() {
         super("primes");
@@ -66,17 +48,13 @@ public class WakeLockPrimesIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        PowerManager.WakeLock lock = getWakeLock(intent);
-        lock.acquire();
         try {
+            try {Thread.sleep(30000L);} catch (Exception e){}
             int n = intent.getIntExtra(PARAM, -1);
             BigInteger prime = calculateNthPrime(n);
             notifyUser(n, prime.toString());
         } finally {
-            synchronized(locks) {
-                locks.remove(lock.hashCode());
-            }
-            lock.release();
+            releaseLock();
         }
     }
 

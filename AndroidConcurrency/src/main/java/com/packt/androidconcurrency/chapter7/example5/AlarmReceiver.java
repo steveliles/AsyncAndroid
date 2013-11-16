@@ -25,11 +25,8 @@ public class AlarmReceiver extends BroadcastReceiver {
         Intent service = new Intent(context, WakeLockPrimesIntentService.class);
         service.putExtra(WakeLockPrimesIntentService.PARAM, primeToFind);
 
-        // create and acquire partial wakelock, associating it with the
-        // service Intent so that the service can release the lock...
-        WakeLockPrimesIntentService.newWakeLock(
-            context, PowerManager.PARTIAL_WAKE_LOCK,
-            WakeLockPrimesIntentService.class.getSimpleName(), service);
+        // create and acquire partial wakelock in the service...
+        WakeLockPrimesIntentService.acquireLock(context);
 
         context.startService(service);
     }
