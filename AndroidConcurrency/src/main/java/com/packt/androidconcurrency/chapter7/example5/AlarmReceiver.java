@@ -4,7 +4,6 @@ import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.PowerManager;
 import android.support.v4.app.NotificationCompat;
 
 import com.packt.androidconcurrency.R;
@@ -21,13 +20,10 @@ public class AlarmReceiver extends BroadcastReceiver {
             context.getSystemService(Context.NOTIFICATION_SERVICE);
         nm.notify(R.string.ch7_ex5, builder.build());
 
-        int primeToFind = intent.getIntExtra(WakeLockPrimesIntentService.PARAM, 2);
-        Intent service = new Intent(context, WakeLockPrimesIntentService.class);
-        service.putExtra(WakeLockPrimesIntentService.PARAM, primeToFind);
+        int primeToFind = intent.getIntExtra(AwakePrimesIntentService.PARAM, 2);
+        Intent service = new Intent(context, AwakePrimesIntentService.class);
+        service.putExtra(AwakePrimesIntentService.PARAM, primeToFind);
 
-        // create and acquire partial wakelock in the service...
-        WakeLockPrimesIntentService.acquireLock(context);
-
-        context.startService(service);
+        AwakeApplication.get().startServiceWithWakeLock(service);
     }
 }

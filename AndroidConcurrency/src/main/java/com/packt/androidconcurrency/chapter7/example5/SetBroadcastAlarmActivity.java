@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.packt.androidconcurrency.R;
-import com.packt.androidconcurrency.chapter5.example4.BroadcastingPrimesIntentService;
 
 /**
  * Sets an Alarm to trigger the PrimesIntentService that we built
@@ -39,12 +38,12 @@ public class SetBroadcastAlarmActivity extends Activity {
                 if (value.matches("[1-9]+[0-9]*")) {
                     Intent intent = new Intent("wakelock-primes-receiver");
                     intent.putExtra(
-                        WakeLockPrimesIntentService.PARAM,
+                        AwakePrimesIntentService.PARAM,
                         Integer.parseInt(value));
 
                     final PendingIntent pending = PendingIntent.getBroadcast(
-                        SetBroadcastAlarmActivity.this,
-                        0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                            SetBroadcastAlarmActivity.this,
+                            0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
                     AlarmManager am = (AlarmManager)
                         getSystemService(ALARM_SERVICE);

@@ -282,7 +282,7 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".chapter7.example5.WakeLockPrimesIntentService"/>
+        <service android:name=".chapter7.example5.AwakePrimesIntentService"/>
 
         <activity
             android:name=".chapter7.example5.SetBroadcastAlarmActivity"
