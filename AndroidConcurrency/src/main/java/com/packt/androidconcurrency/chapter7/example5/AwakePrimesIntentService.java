@@ -19,7 +19,7 @@ public class AwakePrimesIntentService extends AwakeIntentService {
     }
 
     @Override
-    protected void doInPartialWakeLock(Intent intent) {
+    protected void doWithPartialWakeLock(Intent intent) {
         int n = intent.getIntExtra(PARAM, -1);
         BigInteger prime = calculateNthPrime(n);
         notifyUser(n, prime.toString());

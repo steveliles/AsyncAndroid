@@ -10,20 +10,20 @@ import com.packt.androidconcurrency.R;
 
 public class AlarmReceiver extends BroadcastReceiver {
     @Override
-    public void onReceive(Context context, Intent intent) {
+    public void onReceive(Context ctx, Intent intent) {
         NotificationCompat.Builder builder =
-            new NotificationCompat.Builder(context)
+            new NotificationCompat.Builder(ctx)
                 .setSmallIcon(android.R.drawable.stat_notify_chat)
-                .setContentTitle(context.getString(R.string.ch7_ex5))
+                .setContentTitle(ctx.getString(R.string.ch7_ex5))
                 .setContentText("Broadcast received, starting Service");
         NotificationManager nm = (NotificationManager)
-            context.getSystemService(Context.NOTIFICATION_SERVICE);
+            ctx.getSystemService(Context.NOTIFICATION_SERVICE);
         nm.notify(R.string.ch7_ex5, builder.build());
 
         int primeToFind = intent.getIntExtra(AwakePrimesIntentService.PARAM, 2);
-        Intent service = new Intent(context, AwakePrimesIntentService.class);
+        Intent service = new Intent(ctx, AwakePrimesIntentService.class);
         service.putExtra(AwakePrimesIntentService.PARAM, primeToFind);
 
-        AwakeApplication.get().startServiceWithWakeLock(service);
+        AwakeIntentService.startServiceWithWakeLock(ctx, service);
     }
 }
