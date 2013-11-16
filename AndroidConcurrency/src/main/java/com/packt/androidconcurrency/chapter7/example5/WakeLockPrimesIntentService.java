@@ -28,7 +28,7 @@ public class WakeLockPrimesIntentService extends IntentService {
                 PowerManager pm = (PowerManager) ctx.getSystemService(Context.POWER_SERVICE);
                 lock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, WAKELOCK);
                 lock.setReferenceCounted(true);
-                //lock.acquire();
+                lock.acquire();
             }
         }
         return lock;
@@ -49,7 +49,6 @@ public class WakeLockPrimesIntentService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         try {
-            try {Thread.sleep(30000L);} catch (Exception e){}
             int n = intent.getIntExtra(PARAM, -1);
             BigInteger prime = calculateNthPrime(n);
             notifyUser(n, prime.toString());
