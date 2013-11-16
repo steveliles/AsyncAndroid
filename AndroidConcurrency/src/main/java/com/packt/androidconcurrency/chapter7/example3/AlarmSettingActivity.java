@@ -26,7 +26,7 @@ public class AlarmSettingActivity extends Activity {
                 EditText input = (EditText) findViewById(R.id.prime_to_find);
                 String value = input.getText().toString();
                 if (value.matches("[1-9]+[0-9]*")) {
-                    Intent intent = new Intent("primes-async-receiver");
+                    Intent intent = new Intent("primes_async_receiver");
                     intent.putExtra(
                         AsyncBroadcastReceiver.PRIME_TO_FIND, Integer.parseInt(value));
                     final PendingIntent pending = PendingIntent.getBroadcast(

@@ -36,7 +36,7 @@ public class SetBroadcastAlarmActivity extends Activity {
                 EditText input = (EditText) findViewById(R.id.prime_to_find);
                 String value = input.getText().toString();
                 if (value.matches("[1-9]+[0-9]*")) {
-                    Intent intent = new Intent("wakelock-primes-receiver");
+                    Intent intent = new Intent("wakelock_primes_receiver");
                     intent.putExtra(
                         AwakePrimesIntentService.PARAM,
                         Integer.parseInt(value));

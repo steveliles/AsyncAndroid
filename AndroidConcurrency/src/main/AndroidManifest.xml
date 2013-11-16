@@ -246,7 +246,7 @@
         -->
         <receiver android:name=".chapter7.example1.AlarmReceiver">
           <intent-filter>
-            <action android:name="static-receiver"/>
+            <action android:name="static_receiver"/>
           </intent-filter>
         </receiver>
 
@@ -267,7 +267,7 @@
 
         <receiver android:name=".chapter7.example3.AsyncBroadcastReceiver">
           <intent-filter>
-            <action android:name="primes-async-receiver"/>
+            <action android:name="primes_async_receiver"/>
           </intent-filter>
         </receiver>
 
@@ -278,7 +278,7 @@
 
         <receiver android:name=".chapter7.example5.AlarmReceiver">
             <intent-filter>
-                <action android:name="wakelock-primes-receiver"/>
+                <action android:name="wakelock_primes_receiver"/>
             </intent-filter>
         </receiver>
 

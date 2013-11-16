@@ -19,7 +19,7 @@ public class StaticReceiverAlarmActivity extends Activity {
 
         setContentView(R.layout.ch7_example1_layout);
 
-        Intent intent = new Intent("static-receiver");
+        Intent intent = new Intent("static_receiver");
         final PendingIntent pending = PendingIntent.getBroadcast(
             this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
