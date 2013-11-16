@@ -36,7 +36,9 @@ public class WakeLockPrimesIntentService extends IntentService {
         Context ctx, int flags, String tag, Intent intent) {
         PowerManager pm = (PowerManager) ctx.getSystemService(Context.POWER_SERVICE);
         PowerManager.WakeLock lock = pm.newWakeLock(flags, tag);
-        locks.put(lock.hashCode(), lock);
+        synchronized(locks) {
+            locks.put(lock.hashCode(), lock);
+        }
         intent.putExtra(WAKELOCK, lock.hashCode());
         return lock;
     }
@@ -71,7 +73,9 @@ public class WakeLockPrimesIntentService extends IntentService {
             BigInteger prime = calculateNthPrime(n);
             notifyUser(n, prime.toString());
         } finally {
-            locks.remove(lock.hashCode());
+            synchronized(locks) {
+                locks.remove(lock.hashCode());
+            }
             lock.release();
         }
     }
