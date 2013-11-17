@@ -49,6 +49,7 @@ public class SetBroadcastAlarmActivity extends Activity {
 
                     AlarmManager am = (AlarmManager)
                         getSystemService(ALARM_SERVICE);
+                    
                     am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 120000L, pending);
                 }
             }

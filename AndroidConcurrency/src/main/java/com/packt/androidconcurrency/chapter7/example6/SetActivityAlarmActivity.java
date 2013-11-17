@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -65,16 +64,16 @@ public class SetActivityAlarmActivity extends Activity {
                 Intent first = new Intent(
                     SetActivityAlarmActivity.this,
                     LaunchActivity.class);
-                first.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                first.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP );
                 Intent second = new Intent(
                     SetActivityAlarmActivity.this,
                     SetActivityAlarmActivity.class);
                 second.putExtra(ALARMED, true);
 
                 final PendingIntent pending = PendingIntent.getActivities(
-                    SetActivityAlarmActivity.this, 0,
-                    new Intent[]{ first, second },
-                    PendingIntent.FLAG_UPDATE_CURRENT);
+                        SetActivityAlarmActivity.this, 0,
+                        new Intent[]{first, second},
+                        PendingIntent.FLAG_UPDATE_CURRENT);
 
                 AlarmManager am = (AlarmManager)
                     getSystemService(ALARM_SERVICE);
