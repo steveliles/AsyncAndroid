@@ -5,8 +5,6 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.provider.AlarmClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,12 +42,12 @@ public class SetBroadcastAlarmActivity extends Activity {
                         Integer.parseInt(value));
 
                     final PendingIntent pending = PendingIntent.getBroadcast(
-                            SetBroadcastAlarmActivity.this,
-                            0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                        SetBroadcastAlarmActivity.this,
+                        0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
                     AlarmManager am = (AlarmManager)
                         getSystemService(ALARM_SERVICE);
-                    
+
                     am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 120000L, pending);
                 }
             }

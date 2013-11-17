@@ -71,9 +71,9 @@ public class SetActivityAlarmActivity extends Activity {
                 second.putExtra(ALARMED, true);
 
                 final PendingIntent pending = PendingIntent.getActivities(
-                        SetActivityAlarmActivity.this, 0,
-                        new Intent[]{first, second},
-                        PendingIntent.FLAG_UPDATE_CURRENT);
+                    SetActivityAlarmActivity.this, 0,
+                    new Intent[]{first, second},
+                    PendingIntent.FLAG_UPDATE_CURRENT);
 
                 AlarmManager am = (AlarmManager)
                     getSystemService(ALARM_SERVICE);
