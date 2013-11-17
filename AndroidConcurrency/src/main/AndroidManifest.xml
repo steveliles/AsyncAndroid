@@ -289,6 +289,11 @@
             android:label="@string/ch7_ex5"
             android:description="@string/ch7_ex5_desc"/>
 
+        <activity
+            android:name=".chapter7.example6.SetActivityAlarmActivity"
+            android:label="@string/ch7_ex6"
+            android:description="@string/ch7_ex6_desc"/>
+
     </application>
 
 </manifest>

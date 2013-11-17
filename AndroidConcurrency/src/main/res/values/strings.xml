@@ -133,4 +133,13 @@
     <string name="ch7_ex5">Chapter7 Example5</string>
     <string name="ch7_ex5_desc">AlarmManager example - schedule alarm for 2 minutes time to calculate primes using IntentService with wake-lock</string>
 
+    <string name="schedule_get_activity">Tap \'Set Alarm with getActivity\' to set an alarm for 15 seconds time. If you don\'t exit the app, a new Activity will start on top of this one.</string>
+    <string name="set_alarm_get_activity">Set Alarm with getActivity</string>
+    <string name="schedule_get_activities">Tap \'Set Alarm with getActivities\' to set an alarm for 15 seconds time. Even if you don\'t exit the app, the back-stack will be re-constructed.</string>
+    <string name="set_alarm_get_activities">Set Alarm with getActivities</string>
+    <string name="was_started_by_alarm">Started by an Alarm!</string>
+    <string name="was_not_started_by_alarm">Not started by an Alarm</string>
+    <string name="ch7_ex6">Chapter7 Example6</string>
+    <string name="ch7_ex6_desc">AlarmManager example - schedule alarm for 15 seconds time to start an Activity (or Activities, plural)</string>
+
 </resources>

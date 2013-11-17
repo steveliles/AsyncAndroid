@@ -19,17 +19,15 @@ public class StaticReceiverAlarmActivity extends Activity {
 
         setContentView(R.layout.ch7_example1_layout);
 
-        Intent intent = new Intent("static_receiver");
-        final PendingIntent pending = PendingIntent.getBroadcast(
-            this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
         Button schedule = (Button)findViewById(R.id.schedule);
         schedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlarmManager am = (AlarmManager)
                     getSystemService(ALARM_SERVICE);
-                am.set(AlarmManager.RTC, System.currentTimeMillis()+5000L, pending);
+                am.set(
+                    AlarmManager.RTC, System.currentTimeMillis()+5000L,
+                    createPendingIntent());
             }
         });
 
@@ -38,9 +36,15 @@ public class StaticReceiverAlarmActivity extends Activity {
             @Override
             public void onClick(View v) {
                 AlarmManager am = (AlarmManager)
-                        getSystemService(ALARM_SERVICE);
-                am.cancel(pending);
+                    getSystemService(ALARM_SERVICE);
+                am.cancel(createPendingIntent());
             }
         });
+    }
+
+    private PendingIntent createPendingIntent() {
+        Intent intent = new Intent("static_receiver");
+        return PendingIntent.getBroadcast(
+            this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 }
