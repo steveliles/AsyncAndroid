@@ -1,7 +1,7 @@
 Building Responsive Android Apps
 ================================
 
-This project contains the example code for the book "Android Concurrency" (ISBN 978-1-78328-687-4).
+This project contains the example code for the book "Asynchronous Android" (ISBN 978-1-78328-687-4).
 
 Check out [the book](todo) (coming soon!) for detailed coverage and explanation of all of the constructs presented in these examples.
 
