@@ -26,12 +26,15 @@
     <string name="ch2_ex4_desc">Find the nth probable prime with cancellation</string>
     <string name="ch2_ex5">Chapter2 Example5</string>
     <string name="ch2_ex5_desc">Retained Headless Fragment to continue AsyncTask processing across activity restarts</string>
+    <string name="ch2_ex6">Chapter2 Example6</string>
+    <string name="ch2_ex6_desc">Exception handling example - uses a "safe" AsyncTask subclass to handle exceptions nicely</string>
     <string name="ch2_medley">Chapter2 AsyncTask Medley</string>
     <string name="ch2_medley_desc">One Activity incorporating all of the chapter 2 examples for comparison</string>
 
     <string name="no_result_yet">Press a button</string>
     <string name="do_on_main_thread">Execute on Main thread</string>
     <string name="do_in_background">Execute in background</string>
+    <string name="result_or_exception">Result or Exception?</string>
     <string name="do_in_background_with_feedback">Execute in background with spinner</string>
     <string name="calculating">Calculating&#8230;</string>
     <string name="do_in_background_with_progress">Execute in background showing progress</string>

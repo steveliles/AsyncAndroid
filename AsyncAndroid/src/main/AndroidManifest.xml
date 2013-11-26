@@ -68,6 +68,11 @@
             android:description="@string/ch2_ex5_desc"/>
 
         <activity
+            android:name=".chapter2.example6.Example6Activity"
+            android:label="@string/ch2_ex6"
+            android:description="@string/ch2_ex6_desc"/>
+
+        <activity
             android:name=".chapter2.AsyncTaskMedleyActivity"
             android:label="@string/ch2_medley"
             android:description="@string/ch2_medley_desc"/>
