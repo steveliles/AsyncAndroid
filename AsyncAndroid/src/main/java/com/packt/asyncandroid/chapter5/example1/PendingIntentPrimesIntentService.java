@@ -33,7 +33,7 @@ public class PendingIntentPrimesIntentService extends IntentService {
                 Intent result = new Intent();
                 for (int i=0; i<n; i++) {
                     prime = prime.nextProbablePrime();
-                    result.putExtra(RESULT, prime.toString());
+                    result.putExtra(RESULT, prime);
                     reply.send(this, RESULT_CODE, result);
                 }
             }

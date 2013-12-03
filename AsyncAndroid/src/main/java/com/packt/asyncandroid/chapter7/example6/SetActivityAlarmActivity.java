@@ -13,11 +13,14 @@ import android.widget.TextView;
 import com.packt.asyncandroid.LaunchActivity;
 import com.packt.asyncandroid.R;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Starts an Activity from an Alarm.
  */
 public class SetActivityAlarmActivity extends Activity {
 
+    public static final long FIFTEEN_SECONDS = TimeUnit.SECONDS.toMillis(15);
     private static final String ALARMED = "alarmed";
 
     @Override
@@ -50,9 +53,9 @@ public class SetActivityAlarmActivity extends Activity {
                     getSystemService(ALARM_SERVICE);
 
                 if (Build.VERSION.SDK_INT >= 19) {
-                    am.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 15000L, pending);
+                    am.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + FIFTEEN_SECONDS, pending);
                 } else {
-                    am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 15000L, pending);
+                    am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + FIFTEEN_SECONDS, pending);
                 }
             }
         });
@@ -79,9 +82,9 @@ public class SetActivityAlarmActivity extends Activity {
                     getSystemService(ALARM_SERVICE);
 
                 if (Build.VERSION.SDK_INT >= 19) {
-                    am.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 15000L, pending);
+                    am.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + FIFTEEN_SECONDS, pending);
                 } else {
-                    am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 15000L, pending);
+                    am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + FIFTEEN_SECONDS, pending);
                 }
             }
         });

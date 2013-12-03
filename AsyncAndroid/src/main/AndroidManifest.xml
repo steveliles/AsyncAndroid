@@ -3,7 +3,7 @@
     android:versionCode="1"
     android:versionName="1.0">
 
-    <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="18" />
+    <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="19" />
 
     <uses-feature android:name="android.hardware.camera" />
 
@@ -120,6 +120,7 @@
             android:description="@string/ch4_ex1_desc">
             <intent-filter>
                 <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="image/*" />
             </intent-filter>
         </activity>
@@ -268,7 +269,8 @@
         <activity
             android:name=".chapter7.example3.AlarmSettingActivity"
             android:label="@string/ch7_ex3"
-            android:description="@string/ch7_ex3_desc"/>
+            android:description="@string/ch7_ex3_desc">
+        </activity>
 
         <receiver android:name=".chapter7.example3.AsyncBroadcastReceiver">
           <intent-filter>

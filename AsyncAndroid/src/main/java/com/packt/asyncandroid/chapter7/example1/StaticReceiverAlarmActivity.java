@@ -11,7 +11,11 @@ import android.widget.Button;
 
 import com.packt.asyncandroid.R;
 
+import java.util.concurrent.TimeUnit;
+
 public class StaticReceiverAlarmActivity extends Activity {
+
+    private static final long FIVE_SECONDS = TimeUnit.SECONDS.toMillis(5);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +30,7 @@ public class StaticReceiverAlarmActivity extends Activity {
                 AlarmManager am = (AlarmManager)
                     getSystemService(ALARM_SERVICE);
                 am.set(
-                    AlarmManager.RTC, System.currentTimeMillis()+5000L,
+                    AlarmManager.RTC, System.currentTimeMillis()+FIVE_SECONDS,
                     createPendingIntent());
             }
         });
@@ -44,6 +48,7 @@ public class StaticReceiverAlarmActivity extends Activity {
 
     private PendingIntent createPendingIntent() {
         Intent intent = new Intent("static_receiver");
+        intent.putExtra(AlarmReceiver.MSG, "Remember to try out the alarm examples!");
         return PendingIntent.getBroadcast(
             this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }

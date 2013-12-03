@@ -12,6 +12,8 @@ import android.widget.EditText;
 import com.packt.asyncandroid.R;
 import com.packt.asyncandroid.chapter5.example4.BroadcastingPrimesIntentService;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Sets an Alarm to trigger the PrimesIntentService that we built
  * in chapter 5. If the device is awake there's no real problem
@@ -23,6 +25,8 @@ import com.packt.asyncandroid.chapter5.example4.BroadcastingPrimesIntentService;
  * with a wake-lock ... this example does _not_ do that!
  */
 public class SetServiceAlarmActivity extends Activity {
+
+    private static final long THIRTY_SECONDS = TimeUnit.SECONDS.toMillis(30);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +54,8 @@ public class SetServiceAlarmActivity extends Activity {
 
                     AlarmManager am = (AlarmManager)
                         getSystemService(ALARM_SERVICE);
-                    am.set(AlarmManager.RTC, System.currentTimeMillis() + 30000L, pending);
+
+                    am.set(AlarmManager.RTC, System.currentTimeMillis() + THIRTY_SECONDS, pending);
                 }
             }
         });

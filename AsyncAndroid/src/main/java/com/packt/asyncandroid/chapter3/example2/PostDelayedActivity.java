@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.packt.asyncandroid.R;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Illustrates creating a Handler attached to the main thread's Looper,
  * and posting delayed Runnable's to the Handler for the main thread to
@@ -53,7 +55,7 @@ public class PostDelayedActivity extends Activity {
 
                 // request the main thread to execute our
                 // runnable in 3 seconds time
-                handler.postDelayed(tada, 3000);
+                handler.postDelayed(tada, TimeUnit.SECONDS.toMillis(3));
             }
         });
 

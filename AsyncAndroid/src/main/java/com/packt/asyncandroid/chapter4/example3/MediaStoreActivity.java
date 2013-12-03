@@ -32,10 +32,7 @@ implements LoaderManager.LoaderCallbacks<Cursor> {
         GridView grid = (GridView)findViewById(R.id.grid);
         grid.setAdapter(adapter);
 
-        final CursorLoader loader = (CursorLoader)
-            getSupportLoaderManager().initLoader(MS_LOADER, null, this);
-
-        loader.setUpdateThrottle(10000L);
+        getSupportLoaderManager().initLoader(MS_LOADER, null, this);
     }
 
     @Override

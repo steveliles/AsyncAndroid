@@ -17,7 +17,7 @@ public class PrimesConcurrentIntentService extends ConcurrentIntentService {
 
     private static final int MAX_CONCURRENT_CALCULATIONS = 5;
     public static final String PARAM = "prime_to_find";
-    public static final String MESSENGER = "messenger";
+    public static final String MSNGR = "messenger";
     public static final int INVALID = "invalid".hashCode();
     public static final int RESULT = "nth_prime".hashCode();
 
@@ -38,7 +38,7 @@ public class PrimesConcurrentIntentService extends ConcurrentIntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         int primeToFind = intent.getIntExtra(PARAM, -1);
-        Messenger messenger = intent.getParcelableExtra(MESSENGER);
+        Messenger messenger = intent.getParcelableExtra(MSNGR);
         try {
             if (primeToFind < 2) {
                 messenger.send(Message.obtain(null, INVALID));

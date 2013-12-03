@@ -11,7 +11,11 @@ import android.widget.Toast;
 
 import com.packt.asyncandroid.R;
 
+import java.math.BigInteger;
+
 public class PendingIntentPrimesActivity extends Activity{
+
+    private static final int REQUEST_CODE = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,19 +42,18 @@ public class PendingIntentPrimesActivity extends Activity{
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == PendingIntentPrimesIntentService.RESULT_CODE) {
-            String result = data.getStringExtra(
+        if (resultCode == PendingIntentPrimesIntentService.RESULT_CODE) {
+            BigInteger result = (BigInteger) data.getSerializableExtra(
                 PendingIntentPrimesIntentService.RESULT);
             TextView view = (TextView)findViewById(R.id.result);
-            view.setText(result);
+            view.setText(result.toString());
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void triggerIntentService(int primeToFind) {
         PendingIntent pendingResult = createPendingResult(
-            PendingIntentPrimesIntentService.RESULT_CODE,
-            new Intent(), 0);
+            REQUEST_CODE, new Intent(), 0);
         Intent intent = new Intent(this, PendingIntentPrimesIntentService.class);
         intent.putExtra(PendingIntentPrimesIntentService.PARAM, primeToFind);
         intent.putExtra(PendingIntentPrimesIntentService.PENDING_RESULT, pendingResult);

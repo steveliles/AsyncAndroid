@@ -15,8 +15,12 @@ import android.widget.Button;
 
 import com.packt.asyncandroid.R;
 
+import java.util.concurrent.TimeUnit;
+
 public class DynamicReceiverAlarmActivity extends Activity {
 
+    private static final long FIVE_SECONDS = TimeUnit.SECONDS.toMillis(5);
+    private static final String MSG = "message";
     private BroadcastReceiver receiver;
 
     @Override
@@ -26,6 +30,7 @@ public class DynamicReceiverAlarmActivity extends Activity {
         setContentView(R.layout.ch7_example2_layout);
 
         Intent intent = new Intent("dynamic-receiver");
+        intent.putExtra(MSG, "Remember to try out all of the alarm examples!");
         final PendingIntent pending = PendingIntent.getBroadcast(
             this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
@@ -38,7 +43,7 @@ public class DynamicReceiverAlarmActivity extends Activity {
             public void onClick(View v) {
                 AlarmManager am = (AlarmManager)
                     getSystemService(ALARM_SERVICE);
-                am.set(AlarmManager.RTC, System.currentTimeMillis()+5000L, pending);
+                am.set(AlarmManager.RTC, System.currentTimeMillis()+FIVE_SECONDS, pending);
                 schedule.setEnabled(false);
                 unschedule.setEnabled(true);
             }
@@ -96,13 +101,19 @@ public class DynamicReceiverAlarmActivity extends Activity {
     private static class AlarmReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+            Intent activity = new Intent(context, DynamicReceiverAlarmActivity.class);
+            activity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            PendingIntent pending = PendingIntent.getActivity(
+                context, 0, activity, PendingIntent.FLAG_ONE_SHOT);
             NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(context)
                     .setSmallIcon(android.R.drawable.stat_notify_chat)
                     .setContentTitle(context.getString(R.string.ch7_ex2))
-                    .setContentText("Result!");
+                    .setContentText(intent.getStringExtra(MSG))
+                    .setContentIntent(pending)
+                    .setAutoCancel(true);
             NotificationManager nm = (NotificationManager)
-                    context.getSystemService(Context.NOTIFICATION_SERVICE);
+                context.getSystemService(Context.NOTIFICATION_SERVICE);
             nm.notify(R.string.ch7_ex2, builder.build());
         }
     }

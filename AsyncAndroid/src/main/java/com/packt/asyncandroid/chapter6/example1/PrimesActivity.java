@@ -59,7 +59,7 @@ public class PrimesActivity extends Activity {
     private void triggerService(int primeToFind) {
         Intent intent = new Intent(this, PrimesConcurrentIntentService.class);
         intent.putExtra(PrimesConcurrentIntentService.PARAM, primeToFind);
-        intent.putExtra(PrimesConcurrentIntentService.MESSENGER, messenger);
+        intent.putExtra(PrimesConcurrentIntentService.MSNGR, messenger);
         startService(intent);
     }
 

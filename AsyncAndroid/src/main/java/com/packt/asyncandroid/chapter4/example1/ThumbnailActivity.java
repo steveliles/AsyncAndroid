@@ -31,6 +31,14 @@ implements LoaderManager.LoaderCallbacks<Bitmap> {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (isFinishing()) {
+            getSupportLoaderManager().destroyLoader(LOADER_ID);
+        }
+    }
+
+    @Override
     public Loader<Bitmap> onCreateLoader(int i, Bundle bundle) {
         return new ThumbnailLoader(getApplicationContext(), mediaId);
     }

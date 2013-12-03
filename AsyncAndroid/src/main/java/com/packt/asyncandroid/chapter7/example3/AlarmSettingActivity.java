@@ -5,13 +5,20 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.Time;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.packt.asyncandroid.R;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 public class AlarmSettingActivity extends Activity {
+
+    private static final long THIRTY_SECONDS = TimeUnit.SECONDS.toMillis(30);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +42,18 @@ public class AlarmSettingActivity extends Activity {
 
                     AlarmManager am = (AlarmManager)
                             getSystemService(ALARM_SERVICE);
-                    am.set(AlarmManager.RTC, System.currentTimeMillis()+30000L, pending);
+
+                    Calendar calendar = Calendar.getInstance();
+                    if (calendar.get(Calendar.HOUR_OF_DAY) >= 13) {
+                        calendar.add(Calendar.DATE, 1);
+                    }
+                    calendar.set(Calendar.HOUR_OF_DAY, 13);
+                    calendar.set(Calendar.MINUTE, 0);
+                    calendar.set(Calendar.SECOND, 0);
+
+                    System.out.println(calendar.getTime());
+
+                    am.set(AlarmManager.RTC, System.currentTimeMillis()+THIRTY_SECONDS, pending);
                 }
             }
         });

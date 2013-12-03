@@ -5,6 +5,9 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.support.v4.content.AsyncTaskLoader;
+import android.util.Log;
+
+import com.packt.asyncandroid.LaunchActivity;
 
 /**
  * An AsyncTaskLoader implementation that loads a Bitmap thumbnail
@@ -32,7 +35,7 @@ import android.support.v4.content.AsyncTaskLoader;
  */
 public class ThumbnailLoader extends AsyncTaskLoader<Bitmap> {
 
-    private Bitmap data, old;
+    private Bitmap data;
     private Integer mediaId;
 
     public ThumbnailLoader(Context context, Integer mediaId) {
@@ -58,12 +61,15 @@ public class ThumbnailLoader extends AsyncTaskLoader<Bitmap> {
 
     @Override
     public Bitmap loadInBackground() {
-        ContentResolver res = getContext().getContentResolver();
         if (mediaId != null) {
+            Log.i(LaunchActivity.TAG, "loading from mediastore");
+            ContentResolver res = getContext().getContentResolver();
             return MediaStore.Images.Thumbnails.getThumbnail(
                 res, mediaId, MediaStore.Images.Thumbnails.MINI_KIND, null);
+        } else {
+            Log.i(LaunchActivity.TAG, "mediaId was null!");
+            return null;
         }
-        return null;
     }
 
     @Override
@@ -83,6 +89,11 @@ public class ThumbnailLoader extends AsyncTaskLoader<Bitmap> {
     }
 
     @Override
+    protected void onForceLoad() {
+        super.onForceLoad();
+    }
+
+    @Override
     public void deliverResult(Bitmap data) {
         super.deliverResult(this.data = data);
     }
@@ -94,13 +105,12 @@ public class ThumbnailLoader extends AsyncTaskLoader<Bitmap> {
     }
 
     @Override
-    public void onCanceled(Bitmap data) {
+    public void onCanceled(Bitmap unneeded) {
         // loading was cancelled before we got
         // here, so we must discard the loaded
         // bitmap (if there was one).
-        if (data != null)
-            data.recycle();
-        old = null;
+        if ((unneeded != null) && (unneeded != data))
+            unneeded.recycle();
     }
 
     @Override

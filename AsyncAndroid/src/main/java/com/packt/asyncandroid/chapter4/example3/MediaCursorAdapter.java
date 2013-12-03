@@ -50,9 +50,13 @@ public class MediaCursorAdapter extends CursorAdapter {
 
         Integer mediaId = cursor.getInt(cursor.getColumnIndex(MediaStore.Images.Media._ID));
 
-        ImageView image = (ImageView) view;
-        image.setImageBitmap(null);
-        loader.setMediaId(mediaId);
+        // optimisation for orientation changes
+        // that would otherwise do unnecessary work
+        if (!mediaId.equals(loader.getMediaId())) {
+            ImageView image = (ImageView) view;
+            image.setImageBitmap(null);
+            loader.setMediaId(mediaId);
+        }
     }
 
     public void destroyLoaders() {

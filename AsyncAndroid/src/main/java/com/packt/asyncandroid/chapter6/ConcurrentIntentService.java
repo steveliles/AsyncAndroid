@@ -45,9 +45,8 @@ public abstract class ConcurrentIntentService extends Service {
      */
     protected abstract void onHandleIntent(Intent intent);
 
-    @Deprecated
     @Override
-    public void onStart(final Intent intent, int startId) {
+    public final int onStartCommand(final Intent intent, int flags, int startId) {
         counter++;
         executor.execute(new Runnable(){
             @Override
@@ -59,11 +58,6 @@ public abstract class ConcurrentIntentService extends Service {
                 }
             }
         });
-    }
-
-    @Override
-    public final int onStartCommand(Intent intent, int flags, int startId) {
-        onStart(intent, startId);
         return START_NOT_STICKY;
     }
 

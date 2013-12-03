@@ -23,7 +23,7 @@ import java.util.List;
 
 public class LaunchActivity extends Activity {
 
-    public static final String TAG = "android.concurrency";
+    public static final String TAG = "async.android";
     public int[] COLORS = new int[]{
         0xff000000,
         R.color.ch1,
