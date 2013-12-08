@@ -55,7 +55,7 @@ public class MessageSendingPrimesService extends Service {
                 }
                 return null;
             }
-        }.execute();
+        }.execute(); // remember, execute() operates off a single-threaded executor on API levels >= 11
     }
 
     private void notifyUser(int primeToFind, String result) {

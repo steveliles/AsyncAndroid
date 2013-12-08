@@ -24,7 +24,9 @@ public class MessageSendingPrimesActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.ch5_example3_layout);
+        setContentView(R.layout.ch5_example_layout);
+        ((TextView)findViewById(R.id.title)).setText(R.string.ch5_ex3);
+        ((TextView)findViewById(R.id.description)).setText(R.string.ch5_ex3_desc);
 
         Button go = (Button)findViewById(R.id.go);
         go.setOnClickListener(new View.OnClickListener() {

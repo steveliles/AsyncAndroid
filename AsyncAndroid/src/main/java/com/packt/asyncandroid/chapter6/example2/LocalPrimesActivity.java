@@ -27,7 +27,9 @@ implements LocalPrimesService.Callback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.ch6_example1_layout);
+        setContentView(R.layout.ch6_example_layout);
+        ((TextView)findViewById(R.id.title)).setText(R.string.ch6_ex2);
+        ((TextView)findViewById(R.id.description)).setText(R.string.ch6_ex2_desc);
 
         Button go = (Button)findViewById(R.id.go);
         go.setOnClickListener(new View.OnClickListener() {
@@ -37,7 +39,7 @@ implements LocalPrimesService.Callback {
                     Toast.makeText(LocalPrimesActivity.this, "service not bound", 5000).show();
                 } else {
                     TextView input = (TextView) findViewById(R.id.prime_to_find);
-                    String[] values = input.getText().toString().split(",");
+                    String[] values = input.getText().toString().split(",|\\s");
                     for (String value : values) {
                         if (value.trim().matches("[1-9]+[0-9]*")) {
                             service.calculateNthPrime(Integer.parseInt(value), LocalPrimesActivity.this);

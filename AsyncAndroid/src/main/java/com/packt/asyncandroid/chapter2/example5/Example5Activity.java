@@ -26,6 +26,9 @@ implements AsyncListener<Integer, BigInteger> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ch2_example_layout);
+        ((TextView)findViewById(R.id.title)).setText(R.string.ch2_ex5);
+        ((TextView)findViewById(R.id.description)).setText(R.string.ch2_ex5_desc);
+
         resultView = (TextView)findViewById(R.id.result);
         goButton = (Button)findViewById(R.id.go);
         goButton.setOnClickListener(new View.OnClickListener(){

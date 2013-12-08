@@ -25,14 +25,16 @@ public class PrimesActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.ch6_example1_layout);
+        setContentView(R.layout.ch6_example_layout);
+        ((TextView)findViewById(R.id.title)).setText(R.string.ch6_ex1);
+        ((TextView)findViewById(R.id.description)).setText(R.string.ch6_ex1_desc);
 
         Button go = (Button)findViewById(R.id.go);
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TextView input = (TextView) findViewById(R.id.prime_to_find);
-                String[] values = input.getText().toString().split(",");
+                String[] values = input.getText().toString().split(",|\\s");
                 for (String value : values) {
                     if (value.trim().matches("[1-9]+[0-9]*")) {
                         triggerService(Integer.parseInt(value.trim()));

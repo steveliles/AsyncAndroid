@@ -93,7 +93,7 @@
     <string name="nth_prime">Enter N to find Nth prime</string>
 
     <!-- chapter6 -->
-    <string name="comma_nth_prime">Enter comma separated N\'s to find Nth primes</string>
+    <string name="comma_nth_prime">Enter comma or space separated N\'s to find Nth primes</string>
     <string name="ch6_ex1">Chapter6 Example1</string>
     <string name="ch6_ex1_desc">Invoke a Service with Intents, perform multiple concurrent calculations, return results via messenger</string>
 

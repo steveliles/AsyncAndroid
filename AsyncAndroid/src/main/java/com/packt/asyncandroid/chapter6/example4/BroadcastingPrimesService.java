@@ -53,7 +53,7 @@ public class BroadcastingPrimesService extends Service {
                 if (!broadcastResult(result.toString()))
                     notifyUser(n, result.toString());
             }
-        }.execute();
+        }.execute(); // remember, execute() operates off a single-threaded executor in API levels >= 11
     }
 
     private boolean broadcastResult(String result) {

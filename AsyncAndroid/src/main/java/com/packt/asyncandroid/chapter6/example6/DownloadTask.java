@@ -44,9 +44,9 @@ import com.packt.asyncandroid.chapter6.ConcurrentDownloadService;
  * }.execute(context);
  * </pre>
  *
- * To avoid memory leaks caused by DownloadTask's lingering after the enclosing
- * Activity has finished or restarted, invoke DownloadTask.clearCallbacks() from
- * onPause or onStop in the Activity.
+ * IMPORTANT: To avoid memory leaks caused by DownloadTask's lingering after the
+ * enclosing Activity has finished or restarted, invoke DownloadTask.clearCallbacks()
+ * from onPause or onStop in the Activity.
  *
  * See NasaImageOfTheDayActivity for two example uses:
  *  - download an RSS, then use the post-download background step to parse the XML

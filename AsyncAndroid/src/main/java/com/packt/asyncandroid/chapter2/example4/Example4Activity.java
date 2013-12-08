@@ -16,6 +16,8 @@ public class Example4Activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ch2_example_layout);
+        ((TextView)findViewById(R.id.title)).setText(R.string.ch2_ex4);
+        ((TextView)findViewById(R.id.description)).setText(R.string.ch2_ex4_desc);
 
         Button goButton = (Button) findViewById(R.id.go);
         final TextView resultView = (TextView) findViewById(R.id.result);
