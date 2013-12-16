@@ -1,5 +1,5 @@
-Building Responsive Android Apps
-================================
+Asynchronous Android
+====================
 
 This project contains the example code for the book "Asynchronous Android" (ISBN 978-1-78328-687-4).
 
