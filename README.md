@@ -5,7 +5,7 @@ This project contains the example code for the book "Asynchronous Android" (ISBN
 
 Check out [the book](http://steveliles.github.io/asynchronous_android.html) for detailed coverage and explanation of all of the constructs presented in these examples. You can easily run the examples on your own device - either build this project or get [the app](https://play.google.com/store/apps/details?id=com.packt.asyncandroid) from Google Play.
 
-This project has been developed with Android Studio with the Gradle build system and the Android 4.3 platform. All of the examples should run fine on Android devices running 2.1 upwards.
+This project has been developed with Android Studio with the Gradle build system and the Android 4.4 (KitKat) platform. With the exception of a few examples that use newer API's, the examples should run fine on Android devices running 2.1 upwards.
 
 The examples are arranged in a single app, and grouped by chapter as follows:
 
