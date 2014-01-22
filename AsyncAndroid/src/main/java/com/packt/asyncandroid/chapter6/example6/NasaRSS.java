@@ -8,6 +8,18 @@ import java.util.List;
 
 public class NasaRSS implements Parcelable {
 
+    public static final Parcelable.Creator<NasaRSS> CREATOR = new Parcelable.Creator<NasaRSS>(){
+        @Override
+        public NasaRSS createFromParcel(Parcel source) {
+            return new NasaRSS(source);
+        }
+
+        @Override
+        public NasaRSS[] newArray(int size) {
+            return new NasaRSS[size];
+        }
+    };
+
     public static class Item {
         public String url;
         public String title;
@@ -20,6 +32,7 @@ public class NasaRSS implements Parcelable {
     private List<Item> items;
 
     public NasaRSS(Parcel parcel) {
+        items = new ArrayList<Item>();
         int len = parcel.readInt();
         for (int i=0; i<len; i++)
             items.add(new Item(
