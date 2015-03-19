@@ -62,7 +62,7 @@ public class NasaImageOfTheDayActivity extends Activity {
 
             @Override
             public void onSuccess(NasaRSS rss) {
-                for (int i=0; i<rss.size(); i++) {
+                for (int i=0; i<Math.min(rss.size(), 10); i++) {
                     NasaRSS.Item item = rss.get(i);
                     displayText(i, item.title);
                     downloadImage(i, item.url, 8);
@@ -71,7 +71,8 @@ public class NasaImageOfTheDayActivity extends Activity {
 
             private void displayText(int i, String text) {
                 if (text != null) {
-                    TextView view = (TextView) getRow(i).findViewById(R.id.text);
+                    TextView view = (TextView)
+                        getRow(i).findViewById(R.id.text);
                     view.setText(text);
                 }
             }
