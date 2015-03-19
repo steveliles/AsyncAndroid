@@ -47,7 +47,6 @@
 
     <TextView
         style="@style/text"
-        android:id="@+id/instruction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/register_to_receive"/>
