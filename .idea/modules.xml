@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AsyncAndroid.iml" filepath="$PROJECT_DIR$/AsyncAndroid.iml" />
-      <module fileurl="file://$PROJECT_DIR$/AsyncAndroid/AsyncAndroid-AsyncAndroid.iml" filepath="$PROJECT_DIR$/AsyncAndroid/AsyncAndroid-AsyncAndroid.iml" />
     </modules>
   </component>
 </project>
